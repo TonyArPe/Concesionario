@@ -1,0 +1,36 @@
+@startuml Compraventa de coches
+entity "Vehículo" {
+    +ID_Vehiculo : int
+    Marca : string
+    Modelo : string
+    Año : int
+    Precio : float
+    Combustible : string
+}
+
+entity "Cliente" {
+    +ID_Cliente : int
+    Nombre : string
+    Telefono : string
+    Direccion : string
+}
+
+entity "Venta" {
+    +ID_Venta : int
+    Fecha_Venta : date
+    Total : float
+}
+
+entity "Compra" {
+    +ID_Compra : int
+    Fecha_Compra : date
+    Precio_Compra : float
+}
+
+' Relación entre entidades
+Cliente ||--o{ Venta : Realiza
+Cliente ||--o{ Compra : Ofrece
+Venta }|--|| Vehículo : Incluye
+Compra }|--|| Vehículo : Comprado
+
+@enduml
