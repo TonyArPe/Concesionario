@@ -1,3 +1,5 @@
+# Docker compose temporal
+# TODO: actualizar parametros para nuestra aplicación
 version: '3.1'
 
 services:
