@@ -2,6 +2,7 @@ const express = require('express');
 const xlsx = require("xlsx");
 const jsonfile = require("jsonfile");
 const path = require("path");
+const fs = require('fs');
 
 const app = express();
 const port = process.env.SERVICE_PORT || 8000;
@@ -9,8 +10,8 @@ const port = process.env.SERVICE_PORT || 8000;
 /**
  * Paths de los archivos
  */
-const excelFilePath = path.join(__dirname, "doc/EntidadRelacionVehiculosData.xlsx");
-const jsonFilePath = path.join(__dirname, "data/datosConcesionario.json");
+const excelFilePath = path.join(__dirname, "doc\\EntidadRelacionVehiculosData.xlsx");
+const jsonFilePath = path.join(__dirname, "data\\datosConcesionario.json");
 
 /**
  * Funcion para convertir Excel en JSON y guardarlo
@@ -18,14 +19,23 @@ const jsonFilePath = path.join(__dirname, "data/datosConcesionario.json");
 function convertirExcelJson() {
     // Carga el archivo Excel
     const workbook = xlsx.readFile(excelFilePath);
-    const sheetName = workbook.SheetNames[0];
-    const sheet = workbook.Sheets[sheetName];
 
-    // Convierte la hoja en formato JSON
-    const data = xlsx.utils.sheet_to_json(sheet);
+    // Creamos un objeto para almacenar los datos de todas las hojas
+    let allData = {};
+
+    // Iteramos sobre todas las hojas del archivo Excel
+    workbook.SheetNames.forEach((sheetName) => {
+        const sheet = workbook.Sheets[sheetName];
+        
+        // Convierte la hoja en formato JSON
+        const sheetData = xlsx.utils.sheet_to_json(sheet);
+
+        // Guardamos los datos de cada hoja usando el nombre de la hoja como clave
+        allData[sheetName] = sheetData;
+    });
 
     // Guarda los datos JSON en un archivo
-    jsonfile.writeFile(jsonFilePath, data, { spaces: 2 }, (err) => {
+    jsonfile.writeFile(jsonFilePath, allData, { spaces: 2 }, (err) => {
         if (err) {
             console.error("Error al guardar el archivo JSON:", err);
         } else {
@@ -37,7 +47,6 @@ function convertirExcelJson() {
 /**
  * Convierte el Excel a JSON solo si el archivo JSON no existe
  */
-const fs = require('fs');
 if (!fs.existsSync(jsonFilePath)) {
     convertirExcelJson();
 }
@@ -63,6 +72,18 @@ function readJsonFile() {
  */
 app.get('/', (req, res) => {
     res.send("Bienvenido al Concesionario los Pallos");
+});
+
+/**
+ * Ruta para obtener los datos convertidos en JSON
+ */
+app.get('/datos', async (req, res) => {
+    try {
+        const data = await readJsonFile();
+        res.json(data); // Envia los datos como respuesta en formato JSON
+    } catch (err) {
+        res.status(500).send("Error al leer el archivo JSON");
+    }
 });
 
 /**

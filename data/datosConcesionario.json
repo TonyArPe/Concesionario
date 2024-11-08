@@ -1,122 +1,290 @@
-[
-  {
-    "ID_Vehiculo": 1,
-    "Marca": "Chevrolet",
-    "Modelo": "Sedan",
-    "Año": 2004,
-    "Precio": 40679.89,
-    "Combustible": "Gasolina"
-  },
-  {
-    "ID_Vehiculo": 2,
-    "Marca": "Toyota",
-    "Modelo": "Hatchback",
-    "Año": 2005,
-    "Precio": 30269.74,
-    "Combustible": "Eléctrico"
-  },
-  {
-    "ID_Vehiculo": 3,
-    "Marca": "Chevrolet",
-    "Modelo": "Coupe",
-    "Año": 2023,
-    "Precio": 18915.95,
-    "Combustible": "Diesel"
-  },
-  {
-    "ID_Vehiculo": 4,
-    "Marca": "Toyota",
-    "Modelo": "Coupe",
-    "Año": 2000,
-    "Precio": 12770.17,
-    "Combustible": "Híbrido"
-  },
-  {
-    "ID_Vehiculo": 5,
-    "Marca": "Toyota",
-    "Modelo": "Coupe",
-    "Año": 2003,
-    "Precio": 15343.84,
-    "Combustible": "Diesel"
-  },
-  {
-    "ID_Vehiculo": 6,
-    "Marca": "BMW",
-    "Modelo": "Sedan",
-    "Año": 2017,
-    "Precio": 49996.86,
-    "Combustible": "Eléctrico"
-  },
-  {
-    "ID_Vehiculo": 7,
-    "Marca": "Chevrolet",
-    "Modelo": "SUV",
-    "Año": 2003,
-    "Precio": 21170.79,
-    "Combustible": "Híbrido"
-  },
-  {
-    "ID_Vehiculo": 8,
-    "Marca": "Chevrolet",
-    "Modelo": "SUV",
-    "Año": 2022,
-    "Precio": 21421.32,
-    "Combustible": "Híbrido"
-  },
-  {
-    "ID_Vehiculo": 9,
-    "Marca": "Toyota",
-    "Modelo": "Coupe",
-    "Año": 2001,
-    "Precio": 36687.32,
-    "Combustible": "Híbrido"
-  },
-  {
-    "ID_Vehiculo": 10,
-    "Marca": "Toyota",
-    "Modelo": "Coupe",
-    "Año": 2015,
-    "Precio": 45768.36,
-    "Combustible": "Diesel"
-  },
-  {
-    "ID_Vehiculo": 11,
-    "Marca": "Toyota",
-    "Modelo": "SUV",
-    "Año": 2011,
-    "Precio": 8726.65,
-    "Combustible": "Híbrido"
-  },
-  {
-    "ID_Vehiculo": 12,
-    "Marca": "Ford",
-    "Modelo": "Truck",
-    "Año": 2023,
-    "Precio": 17419.34,
-    "Combustible": "Gasolina"
-  },
-  {
-    "ID_Vehiculo": 13,
-    "Marca": "Toyota",
-    "Modelo": "Hatchback",
-    "Año": 2001,
-    "Precio": 12121.02,
-    "Combustible": "Gasolina"
-  },
-  {
-    "ID_Vehiculo": 14,
-    "Marca": "Ford",
-    "Modelo": "Truck",
-    "Año": 2006,
-    "Precio": 12688.86,
-    "Combustible": "Diesel"
-  },
-  {
-    "ID_Vehiculo": 15,
-    "Marca": "BMW",
-    "Modelo": "Hatchback",
-    "Año": 2008,
-    "Precio": 6853.59,
-    "Combustible": "Diesel"
-  }
-]
+{
+  "Vehiculo": [
+    {
+      "ID_Vehiculo": 1,
+      "Marca": "Chevrolet",
+      "Modelo": "Sedan",
+      "Año": 2004,
+      "Precio": 40679.89,
+      "Combustible": "Gasolina"
+    },
+    {
+      "ID_Vehiculo": 2,
+      "Marca": "Toyota",
+      "Modelo": "Hatchback",
+      "Año": 2005,
+      "Precio": 30269.74,
+      "Combustible": "Eléctrico"
+    },
+    {
+      "ID_Vehiculo": 3,
+      "Marca": "Chevrolet",
+      "Modelo": "Coupe",
+      "Año": 2023,
+      "Precio": 18915.95,
+      "Combustible": "Diesel"
+    },
+    {
+      "ID_Vehiculo": 4,
+      "Marca": "Toyota",
+      "Modelo": "Coupe",
+      "Año": 2000,
+      "Precio": 12770.17,
+      "Combustible": "Híbrido"
+    },
+    {
+      "ID_Vehiculo": 5,
+      "Marca": "Toyota",
+      "Modelo": "Coupe",
+      "Año": 2003,
+      "Precio": 15343.84,
+      "Combustible": "Diesel"
+    },
+    {
+      "ID_Vehiculo": 6,
+      "Marca": "BMW",
+      "Modelo": "Sedan",
+      "Año": 2017,
+      "Precio": 49996.86,
+      "Combustible": "Eléctrico"
+    },
+    {
+      "ID_Vehiculo": 7,
+      "Marca": "Chevrolet",
+      "Modelo": "SUV",
+      "Año": 2003,
+      "Precio": 21170.79,
+      "Combustible": "Híbrido"
+    },
+    {
+      "ID_Vehiculo": 8,
+      "Marca": "Chevrolet",
+      "Modelo": "SUV",
+      "Año": 2022,
+      "Precio": 21421.32,
+      "Combustible": "Híbrido"
+    },
+    {
+      "ID_Vehiculo": 9,
+      "Marca": "Toyota",
+      "Modelo": "Coupe",
+      "Año": 2001,
+      "Precio": 36687.32,
+      "Combustible": "Híbrido"
+    },
+    {
+      "ID_Vehiculo": 10,
+      "Marca": "Toyota",
+      "Modelo": "Coupe",
+      "Año": 2015,
+      "Precio": 45768.36,
+      "Combustible": "Diesel"
+    },
+    {
+      "ID_Vehiculo": 11,
+      "Marca": "Toyota",
+      "Modelo": "SUV",
+      "Año": 2011,
+      "Precio": 8726.65,
+      "Combustible": "Híbrido"
+    },
+    {
+      "ID_Vehiculo": 12,
+      "Marca": "Ford",
+      "Modelo": "Truck",
+      "Año": 2023,
+      "Precio": 17419.34,
+      "Combustible": "Gasolina"
+    },
+    {
+      "ID_Vehiculo": 13,
+      "Marca": "Toyota",
+      "Modelo": "Hatchback",
+      "Año": 2001,
+      "Precio": 12121.02,
+      "Combustible": "Gasolina"
+    },
+    {
+      "ID_Vehiculo": 14,
+      "Marca": "Ford",
+      "Modelo": "Truck",
+      "Año": 2006,
+      "Precio": 12688.86,
+      "Combustible": "Diesel"
+    },
+    {
+      "ID_Vehiculo": 15,
+      "Marca": "BMW",
+      "Modelo": "Hatchback",
+      "Año": 2008,
+      "Precio": 6853.59,
+      "Combustible": "Diesel"
+    }
+  ],
+  "Cliente": [
+    {
+      "ID_Cliente": 1,
+      "Nombre": "Ana",
+      "Telefono": "555-8386",
+      "Direccion": "Calle 49 #963"
+    },
+    {
+      "ID_Cliente": 2,
+      "Nombre": "John",
+      "Telefono": "555-9349",
+      "Direccion": "Calle 31 #503"
+    },
+    {
+      "ID_Cliente": 3,
+      "Nombre": "Carlos",
+      "Telefono": "555-5291",
+      "Direccion": "Calle 45 #880"
+    },
+    {
+      "ID_Cliente": 4,
+      "Nombre": "John",
+      "Telefono": "555-2304",
+      "Direccion": "Calle 10 #987"
+    },
+    {
+      "ID_Cliente": 5,
+      "Nombre": "Ana",
+      "Telefono": "555-9803",
+      "Direccion": "Calle 34 #741"
+    },
+    {
+      "ID_Cliente": 6,
+      "Nombre": "María",
+      "Telefono": "555-2693",
+      "Direccion": "Calle 22 #162"
+    },
+    {
+      "ID_Cliente": 7,
+      "Nombre": "Carlos",
+      "Telefono": "555-7015",
+      "Direccion": "Calle 36 #114"
+    },
+    {
+      "ID_Cliente": 8,
+      "Nombre": "John",
+      "Telefono": "555-5441",
+      "Direccion": "Calle 12 #212"
+    },
+    {
+      "ID_Cliente": 9,
+      "Nombre": "Luis",
+      "Telefono": "555-7016",
+      "Direccion": "Calle 27 #841"
+    },
+    {
+      "ID_Cliente": 10,
+      "Nombre": "José",
+      "Telefono": "555-6500",
+      "Direccion": "Calle 8 #757"
+    }
+  ],
+  "Venta": [
+    {
+      "ID_Venta": 1,
+      "Fecha_Venta": 40618,
+      "Total": 19958.86
+    },
+    {
+      "ID_Venta": 2,
+      "Fecha_Venta": 40943,
+      "Total": 15532.75
+    },
+    {
+      "ID_Venta": 3,
+      "Fecha_Venta": 39713,
+      "Total": 9883.78
+    },
+    {
+      "ID_Venta": 4,
+      "Fecha_Venta": 37772,
+      "Total": 10695.88
+    },
+    {
+      "ID_Venta": 5,
+      "Fecha_Venta": 42764,
+      "Total": 9786.14
+    },
+    {
+      "ID_Venta": 6,
+      "Fecha_Venta": 41492,
+      "Total": 20369.7
+    },
+    {
+      "ID_Venta": 7,
+      "Fecha_Venta": 33147,
+      "Total": 23385.75
+    },
+    {
+      "ID_Venta": 8,
+      "Fecha_Venta": 42379,
+      "Total": 11231.9
+    },
+    {
+      "ID_Venta": 9,
+      "Fecha_Venta": 43725,
+      "Total": 17253.66
+    },
+    {
+      "ID_Venta": 10,
+      "Fecha_Venta": 42616,
+      "Total": 6873
+    }
+  ],
+  "Compra": [
+    {
+      "ID_Compra": 1,
+      "Fecha_Compra": 38798,
+      "Precio_Compra": 10379.51
+    },
+    {
+      "ID_Compra": 2,
+      "Fecha_Compra": 41228,
+      "Precio_Compra": 24973.73
+    },
+    {
+      "ID_Compra": 3,
+      "Fecha_Compra": 43382,
+      "Precio_Compra": 18383.9
+    },
+    {
+      "ID_Compra": 4,
+      "Fecha_Compra": 40462,
+      "Precio_Compra": 14616.17
+    },
+    {
+      "ID_Compra": 5,
+      "Fecha_Compra": 42555,
+      "Precio_Compra": 3799.42
+    },
+    {
+      "ID_Compra": 6,
+      "Fecha_Compra": 41237,
+      "Precio_Compra": 21712.08
+    },
+    {
+      "ID_Compra": 7,
+      "Fecha_Compra": 38425,
+      "Precio_Compra": 3506.2
+    },
+    {
+      "ID_Compra": 8,
+      "Fecha_Compra": 35513,
+      "Precio_Compra": 21111.77
+    },
+    {
+      "ID_Compra": 9,
+      "Fecha_Compra": 39316,
+      "Precio_Compra": 21415.04
+    },
+    {
+      "ID_Compra": 10,
+      "Fecha_Compra": 43515,
+      "Precio_Compra": 17169.74
+    }
+  ]
+}
