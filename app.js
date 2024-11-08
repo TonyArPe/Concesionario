@@ -13,6 +13,17 @@ const port = process.env.SERVICE_PORT || 8000;
 const excelFilePath = path.join(__dirname, "doc\\EntidadRelacionVehiculosData.xlsx");
 const jsonFilePath = path.join(__dirname, "data\\datosConcesionario.json");
 
+
+// Motor de vistas Pug
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+app.listen(port, () => {
+    console.log(`Servidor iniciado en http://localhost:${port}`)
+})
+
 /**
  * Funcion para convertir Excel en JSON y guardarlo
  */
@@ -71,8 +82,8 @@ function readJsonFile() {
  * Ruta principal
  */
 app.get('/', (req, res) => {
-    res.send("Bienvenido al Concesionario los Pallos");
-});
+    res.render('index')
+})
 
 /**
  * Ruta para obtener los datos convertidos en JSON
