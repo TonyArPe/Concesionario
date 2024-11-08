@@ -1,0 +1,122 @@
+[
+  {
+    "ID_Vehiculo": 1,
+    "Marca": "Chevrolet",
+    "Modelo": "Sedan",
+    "Año": 2004,
+    "Precio": 40679.89,
+    "Combustible": "Gasolina"
+  },
+  {
+    "ID_Vehiculo": 2,
+    "Marca": "Toyota",
+    "Modelo": "Hatchback",
+    "Año": 2005,
+    "Precio": 30269.74,
+    "Combustible": "Eléctrico"
+  },
+  {
+    "ID_Vehiculo": 3,
+    "Marca": "Chevrolet",
+    "Modelo": "Coupe",
+    "Año": 2023,
+    "Precio": 18915.95,
+    "Combustible": "Diesel"
+  },
+  {
+    "ID_Vehiculo": 4,
+    "Marca": "Toyota",
+    "Modelo": "Coupe",
+    "Año": 2000,
+    "Precio": 12770.17,
+    "Combustible": "Híbrido"
+  },
+  {
+    "ID_Vehiculo": 5,
+    "Marca": "Toyota",
+    "Modelo": "Coupe",
+    "Año": 2003,
+    "Precio": 15343.84,
+    "Combustible": "Diesel"
+  },
+  {
+    "ID_Vehiculo": 6,
+    "Marca": "BMW",
+    "Modelo": "Sedan",
+    "Año": 2017,
+    "Precio": 49996.86,
+    "Combustible": "Eléctrico"
+  },
+  {
+    "ID_Vehiculo": 7,
+    "Marca": "Chevrolet",
+    "Modelo": "SUV",
+    "Año": 2003,
+    "Precio": 21170.79,
+    "Combustible": "Híbrido"
+  },
+  {
+    "ID_Vehiculo": 8,
+    "Marca": "Chevrolet",
+    "Modelo": "SUV",
+    "Año": 2022,
+    "Precio": 21421.32,
+    "Combustible": "Híbrido"
+  },
+  {
+    "ID_Vehiculo": 9,
+    "Marca": "Toyota",
+    "Modelo": "Coupe",
+    "Año": 2001,
+    "Precio": 36687.32,
+    "Combustible": "Híbrido"
+  },
+  {
+    "ID_Vehiculo": 10,
+    "Marca": "Toyota",
+    "Modelo": "Coupe",
+    "Año": 2015,
+    "Precio": 45768.36,
+    "Combustible": "Diesel"
+  },
+  {
+    "ID_Vehiculo": 11,
+    "Marca": "Toyota",
+    "Modelo": "SUV",
+    "Año": 2011,
+    "Precio": 8726.65,
+    "Combustible": "Híbrido"
+  },
+  {
+    "ID_Vehiculo": 12,
+    "Marca": "Ford",
+    "Modelo": "Truck",
+    "Año": 2023,
+    "Precio": 17419.34,
+    "Combustible": "Gasolina"
+  },
+  {
+    "ID_Vehiculo": 13,
+    "Marca": "Toyota",
+    "Modelo": "Hatchback",
+    "Año": 2001,
+    "Precio": 12121.02,
+    "Combustible": "Gasolina"
+  },
+  {
+    "ID_Vehiculo": 14,
+    "Marca": "Ford",
+    "Modelo": "Truck",
+    "Año": 2006,
+    "Precio": 12688.86,
+    "Combustible": "Diesel"
+  },
+  {
+    "ID_Vehiculo": 15,
+    "Marca": "BMW",
+    "Modelo": "Hatchback",
+    "Año": 2008,
+    "Precio": 6853.59,
+    "Combustible": "Diesel"
+  }
+]
