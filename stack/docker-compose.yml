@@ -1,5 +1,3 @@
-# Docker compose temporal
-# TODO: actualizar parametros para nuestra aplicación
 version: '3.1'
 
 services:
@@ -8,14 +6,14 @@ services:
     image: adminer
     restart: "no"
     ports:
-      - ${ADMINER_PORT}:8080
+      - ${ADMYNER_PORTS}
 
-  db-gesaca:
+  db-concesionario:
     image: mysql:latest
     restart: "no"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
-      - ${MYSQL_PORT}:3306
+      - ${MYSQL_PORTS}
     volumes:
       - ./scripts:/docker-entrypoint-initdb.d

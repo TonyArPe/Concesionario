@@ -80,6 +80,20 @@ Las relaciones aseguran que un cliente pueda realizar varias ventas o compras, p
   Los datos necesarios de nuestro .env son los siguientes:
 
   ```javascript
+    MYSQL_PORT=33307
+    MYSQL_PORTS=33307:3306
+    ADMYNER_PORTS=8182:8080
+    SERVICE_PORT=8000
+
+
+    MYSQL_HOST=localhost
+    MYSQL_PORT=33307
+    MYSQL_USER=root
+    MYSQL_ROOT_PASSWORD=1234
+    MYSQL_DATABASE=concesionario
+  ```
+
+  ```javascript
 
   ```
 * Creamos la carpeta stack donde meteremos los ficheros **docker_compose.yml**

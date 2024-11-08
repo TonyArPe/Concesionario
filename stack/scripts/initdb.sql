@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS Concesionario;
+CREATE DATABASE IF NOT EXISTS concesionario;
 
-USE Concesionario;
+USE concesionario;
 
 
 -- Crear tabla Vehículo
