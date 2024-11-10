@@ -1,6 +1,7 @@
 const express = require('express');
 const xlsx = require("xlsx");
 const jsonfile = require("jsonfile");
+const bodyParser = require('body-parser')
 const path = require("path");
 const fs = require('fs');
 
@@ -13,16 +14,14 @@ const port = process.env.SERVICE_PORT || 8000;
 const excelFilePath = path.join(__dirname, "doc\\EntidadRelacionVehiculosData.xlsx");
 const jsonFilePath = path.join(__dirname, "data\\datosConcesionario.json");
 
+// Carpeta public
+app.use(express.static(path.join(__dirname, 'public')))
 
 // Motor de vistas Pug
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-app.listen(port, () => {
-    console.log(`Servidor iniciado en http://localhost:${port}`)
-})
 
 /**
  * Funcion para convertir Excel en JSON y guardarlo
@@ -97,9 +96,7 @@ app.get('/datos', async (req, res) => {
     }
 });
 
-/**
- * Inicio del servidor
- */
+
 app.listen(port, () => {
-    console.log(`Servidor iniciado en http://localhost:${port}`);
-});
+    console.log(`Servidor iniciado en http://localhost:${port}`)
+})

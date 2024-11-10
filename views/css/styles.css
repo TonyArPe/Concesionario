@@ -1,0 +1,57 @@
+header{
+  height: 150px;
+  background-color: #455a64;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header img {
+  height: 150px;
+}
+
+.buttons-container{
+  background-color: #607d8b;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly
+  
+}
+
+.buttons-container .button {
+  width: 150px;
+  height: 150px;
+  background-color: #cfd8dc;
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFFFFF;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.5);
+  
+}
+
+.buttons-container .button:hover {
+  background-color: #0056b3; /* Cambiar el color de fondo cuando se pasa el ratón */
+}
+
+
+footer{
+  height: 150px;
+  background-color: #648291;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 10px;
+}
+
+footer img {
+  height: 75px;
+}
