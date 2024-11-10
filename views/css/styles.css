@@ -12,7 +12,7 @@ header img {
 
 .buttons-container{
   background-color: #607d8b;
-  height: 250px;
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: space-evenly
@@ -20,13 +20,12 @@ header img {
 }
 
 .buttons-container .button {
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   background-color: #cfd8dc;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: bold;
   color: #FFFFFF;
-  padding: 10px 20px;
   border-radius: 20px;
   border: none;
 
@@ -54,4 +53,36 @@ footer{
 
 footer img {
   height: 75px;
+}
+
+/* Vehiculos */
+
+.vehiculos {
+  padding: 30px;
+  background-color: #cfd8dc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+
+.vehiculo {
+  width: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  background-color: #BDBDBD;
+  border-radius: 20px; 
+}
+
+.vehiculo img{
+  width: auto;
+  height: 200px;
+  border-radius: 20px;
+}
+
+.vehiculo-info p{
+  font-size: 20px;
+  
 }
