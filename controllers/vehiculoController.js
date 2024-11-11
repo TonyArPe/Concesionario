@@ -10,7 +10,6 @@ exports.listarVehiculos = (req, res) => {
   db.query("SELECT * FROM `Vehiculo`", (err, response) => {
     if (err) res.send("ERROR al hacer la consulta");
     else res.render("vehiculos/list", { vehiculos: response });
-    console.log(response)
   });
 }
 
