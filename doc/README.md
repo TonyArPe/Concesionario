@@ -111,7 +111,7 @@ Las relaciones aseguran que un cliente pueda realizar varias ventas o compras, p
         ports:
         - ${ADMINER_PORT}:8080
 
-    db-gesaca:
+    db-concesionario:
         image: mysql:latest
         restart: "no"
         environment:
@@ -225,8 +225,7 @@ Las relaciones aseguran que un cliente pueda realizar varias ventas o compras, p
   ```
 Estos se iniciaran nada mas realizar la conexion con nuestra base de datos.
 
-* El
- diagrama Entidad-Relacion de nuestro proyecto es:
+* El diagrama Entidad-Relacion de nuestro proyecto es:
 
  VEHICULO   |   MARCA   |   MODELO  |   AÑO |   PRECIO  |   COMBUSTIBLE 
 ------- | ------- | ------- | ------- | ------- | -------
@@ -247,7 +246,7 @@ Estos se iniciaran nada mas realizar la conexion con nuestra base de datos.
 15 | BMW | Hatchback | 2008 | 6853,59 | Diesel
 
 
-  **DENTRO DEL .GITIGNORE SE ENCUENTRAN LOS FICHEROS .ENV, NODE_MODULES Y PACKAGE-LOCK.JSON**
+**DENTRO DEL .GITIGNORE SE ENCUENTRAN LOS FICHEROS .ENV, NODE_MODULES Y PACKAGE-LOCK.JSON**
 
 ### CREACION DE LAS TABLAS Y CONEXION A LA BASE DE DATOS
 
@@ -314,7 +313,3 @@ Creamos nuestra base de datos llamada **initdb.sql** en la carpeta raiz de nuest
 * Creamos el fichero de rutas **compra.js** en la carpeta routes
 
 # AQUI PONES EL TEMA DE LAS RUTAS PARA LOS CONTROLADORES RAFA
-
-# BORRAR DESPUES
-TONY: HACER CONTROLADORES Y MARSHALLING Y UNMARSHALLING PARA QUE INSERTE LOS DATOS COGIENDOLOS DEL EXCEL
-RAFA: VISTAS Y ENRUTADORES
