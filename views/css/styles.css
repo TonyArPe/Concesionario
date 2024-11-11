@@ -4,24 +4,31 @@ header{
   display: flex;
   gap: 30PX;
   align-items: center;
+  line-height: 30px;
 }
 
 header img {
   height: 150px;
 }
 
-a {
-  width: auto;
-  height: fit-content;
-  color: inherit;
+header a {
+  width: 150px;
+  height: 30px;
+  text-align: center;
+  border-radius: 15px;
+  cursor: pointer;
   text-decoration: none;
+  color: white;
 }
 
-
-.buttons-container .button:hover {
-  background-color: #0056b3; /* Cambiar el color de fondo cuando se pasa el ratón */
+header a:hover {
+  background-color: #435761;
+  transition: ease 0.3s;
 }
 
+header a:active {
+  background-color: #435761;
+}
 
 footer{
   height: 150px;

@@ -4,13 +4,13 @@ block content
 
     form(method="post") 
         .mb-3
-            label.form-label(for="Marca") Marca:
-            input.form-control(type="text", name="nombre" value=cliente.Nombre)
+            label.form-label(for="Fecha_Compra") Fecha:
+            input.form-control(type="text", name="Fecha_Compra" value=compra.Fecha_Compra)
         .mb-3
-            label.form-label(for="Modelo") Modelo:
-            input.form-control(type="text", name="telefono" value=cliente.Telefono)
+            label.form-label(for="Precio_Compra") Precio:
+            input.form-control(type="text", name="Precio_Compra" value=compra.Precio_Compra)
         .mb-3
-            label.form-label(for="Anio") Año:
-            input.form-control(type="text", name="direccion" value=cliente.Direccion)
-        input(type="hidden", name="id", value=cliente.ID_Cliente)
+            label.form-label(for="Vehiculo") Vehiculo:
+            input.form-control(type="text", name="ID_Vehiculo" value=compra.ID_Vehiculo)
+        input(type="hidden", name="id", value=compra.ID_Cliente)
         button.btn.btn-danger(type="submit") Editar

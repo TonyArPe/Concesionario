@@ -5,16 +5,16 @@ block content
     .compras
         each compra in compras
             .compra 
-                img(src="/images/compras/compra-" + compra.ID_compra + ".png")
                 .compra-info
                     p="ID: " + compra.ID_Compra
-                    p="Nombre: " + compra.Fecha_Compra
+                    p="Fecha: " + compra.Fecha_Compra
                     p="Precio: " + compra.Precio_Compra
-                    p="Direccion: " + compra.ID_Cliente 
+                    p="Cliente: " + compra.ID_Cliente
+                    p="Vehiculo: " + compra.ID_Vehiculo
                 .compra-btn
-                    a(href=`/compras/del/${compra.ID_compra}`)
+                    a(href=`/compras/del/${compra.ID_Compra}`)
                         button
                             i.material-icons delete
-                    a(href=`/compras/edit/${compra.ID_compra}`)
+                    a(href=`/compras/edit/${compra.ID_Compra}`)
                         button 
                             i.material-icons edit
