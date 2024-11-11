@@ -43,6 +43,8 @@ CREATE TABLE Compra (
     FOREIGN KEY (ID_Vehiculo) REFERENCES Vehiculo(ID_Vehiculo) ON DELETE SET NULL
 );
 
+SET NAMES utf8mb4;
+
 INSERT INTO Vehiculo (ID_Vehiculo, Marca, Modelo, Anio, Precio, Combustible) VALUES
 (1, 'Chevrolet', 'Sedan', 2004, 40679.89, 'Gasolina'),
 (2, 'Toyota', 'Hatchback', 2005, 30269.74, 'Eléctrico'),

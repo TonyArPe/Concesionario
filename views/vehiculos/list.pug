@@ -1,16 +1,19 @@
 extends ../templates/layout
 
 block content
-
+    a.btn.btn-success(href="/vehiculos/add") Añadir carro
     .vehiculos
         each vehiculo in vehiculos
             .vehiculo 
-                img(src="/images/vehiculos/vehiculo-1.png")
+                img(src="/images/vehiculos/vehiculo-" + vehiculo.ID_Vehiculo + ".png")
                 .vehiculo-info
                     p="Marca: " + vehiculo.Marca
                     p="Modelo: " + vehiculo.Modelo
                     p="Año: " + vehiculo.Anio
-                    p="Precio: " + vehiculo.Precio
+                    p="Precio: " + vehiculo.Precio + " €"
                     p="Combustible: " + vehiculo.Combustible
-                button Borrar
-                button Editar
+                .vehiculo-btn
+                    button
+                        i.material-icons delete
+                    button 
+                        i.material-icons edit
