@@ -13,10 +13,10 @@ block content
             label.form-label(for="Anio") Año:
             input.form-control(type="text", name="anio" value=vehiculo.Anio, disabled)
         .mb-3
-            label.form-label(for="Combustible") Combustible:
-            input.form-control(type="text", name="Precio" value=vehiculo.Precio, disabled)
-        .mb-3
             label.form-label(for="Precio") Precio:
             input.form-control(type="text", name="Combustible" value=vehiculo.Combustible, disabled)
-        input(type="hidden", name="id", value=vehiculo.id)
-        button.btn.btn-danger(type="submit") Borrar
+        .mb-3
+            label.form-label(for="Combustible") Combustible:
+            input.form-control(type="text", name="Precio" value=vehiculo.Precio, disabled)
+        input(type="hidden", name="id", value=vehiculo.ID_Vehiculo)
+        button.btn.btn-danger(type="submit") Editar

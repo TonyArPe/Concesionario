@@ -5,18 +5,18 @@ block content
     form(method="post") 
         .mb-3
             label.form-label(for="Marca") Marca:
-            input.form-control(type="text", name="Marca" value=vehiculo.Marca)
+            input.form-control(type="text", name="marca" value=vehiculo.Marca)
         .mb-3
             label.form-label(for="Modelo") Modelo:
-            input.form-control(type="text", name="Modelo" value=vehiculo.Modelo)
+            input.form-control(type="text", name="modelo" value=vehiculo.Modelo)
         .mb-3
             label.form-label(for="Anio") Año:
             input.form-control(type="text", name="anio" value=vehiculo.Anio)
         .mb-3
-            label.form-label(for="Combustible") Combustible:
-            input.form-control(type="text", name="Precio" value=vehiculo.Precio)
+            label.form-label(for="Precio") Combustible:
+            input.form-control(type="text", name="precio" value=vehiculo.Precio)
         .mb-3
-            label.form-label(for="Precio") Precio:
-            input.form-control(type="text", name="Combustible" value=vehiculo.Combustible)
-        input(type="hidden", name="id", value=vehiculo.id)
-        button.btn.btn-danger(type="submit") Borrar
+            label.form-label(for="combustible") Precio:
+            input.form-control(type="text", name="combustible" value=vehiculo.Combustible)
+        input(type="hidden", name="id", value=vehiculo.ID_Vehiculo)
+        button.btn.btn-danger(type="submit") Editar

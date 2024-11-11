@@ -1,0 +1,20 @@
+extends ../templates/layout
+
+block content
+    a(href="/compras/add") Añadir carro
+    .compras
+        each compra in compras
+            .compra 
+                img(src="/images/compras/compra-" + compra.ID_compra + ".png")
+                .compra-info
+                    p="ID: " + compra.ID_Compra
+                    p="Nombre: " + compra.Fecha_Compra
+                    p="Precio: " + compra.Precio_Compra
+                    p="Direccion: " + compra.ID_Cliente 
+                .compra-btn
+                    a(href=`/compras/del/${compra.ID_compra}`)
+                        button
+                            i.material-icons delete
+                    a(href=`/compras/edit/${compra.ID_compra}`)
+                        button 
+                            i.material-icons edit

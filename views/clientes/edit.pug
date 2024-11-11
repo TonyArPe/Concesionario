@@ -1,0 +1,16 @@
+extends ../templates/layout
+
+block content 
+
+    form(method="post") 
+        .mb-3
+            label.form-label(for="Marca") Marca:
+            input.form-control(type="text", name="nombre" value=cliente.Nombre)
+        .mb-3
+            label.form-label(for="Modelo") Modelo:
+            input.form-control(type="text", name="telefono" value=cliente.Telefono)
+        .mb-3
+            label.form-label(for="Anio") Año:
+            input.form-control(type="text", name="direccion" value=cliente.Direccion)
+        input(type="hidden", name="id", value=cliente.ID_Cliente)
+        button.btn.btn-danger(type="submit") Editar
