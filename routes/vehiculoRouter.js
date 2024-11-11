@@ -5,12 +5,16 @@ const vehiculosController = require('../controllers/vehiculoController')
 // RUTAS
 router.get('/', vehiculosController.listarVehiculos)
 
+router.get('/add', vehiculosController.formularioVehiculoAdd);
 
+router.post('/add', vehiculosController.vehiculoAdd);
 
-//  get /vehiculos
-// post /vehiculos/add
-// get /vehiculos/del
-// del vehiculos/
-// get vehiculos
+router.get('/del/:id', vehiculosController.formularioVehiculoDel);
+
+router.post('/del/:id', vehiculosController.vehiculoDel);
+
+router.get('/edit/:id', vehiculosController.formularioVehiculoEdit);
+
+router.post('/edit/:id', vehiculosController.vehiculoEdit);
 
 module.exports = router
