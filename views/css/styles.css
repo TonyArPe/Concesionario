@@ -36,7 +36,6 @@ a {
   color: #FFFFFF;
   border-radius: 20px;
   border: none;
-
   transition: all 0.3s ease;
   cursor: pointer;
   box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.5);
@@ -92,5 +91,23 @@ footer img {
 
 .vehiculo-info p{
   font-size: 20px;
-  
+  margin: 15px 0;
+}
+
+.vehiculo-btn{
+  display: flex;
+  align-items: flex-end;
+  margin-left: auto;
+  gap: 10px;
+}
+
+.vehiculo-btn button{
+  width: 100px;
+  height: 50px;
+  border-radius: 15px;
+  border: none;
+}
+
+.vehiculo-btn button:nth-child(1){
+  background-color: rgb(243, 48, 48);
 }

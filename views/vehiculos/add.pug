@@ -1,0 +1,12 @@
+extends ../templates/layout
+
+block content 
+
+    form(action="/alumnos/add", method="post") 
+        .mb-3
+            label.form-label(for="nombre") Nombre:
+            input.form-control(type="text", name="nombre")
+        .mb-3
+            label.form-label(for="apellido") Apellido:
+            input.form-control(type="text", name="apellido")
+        button.btn.btn-primary(type="submit") Enviar
