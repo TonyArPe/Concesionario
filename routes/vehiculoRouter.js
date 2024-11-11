@@ -12,3 +12,5 @@ router.get('/', vehiculosController.listarVehiculos)
 // get /vehiculos/del
 // del vehiculos/
 // get vehiculos
+
+module.exports = router

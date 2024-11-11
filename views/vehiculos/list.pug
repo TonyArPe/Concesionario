@@ -1,12 +1,16 @@
 extends ../templates/layout
 
-.vehiculos
-        .vehiculo 
-            img(src="/images/vehiculos/vehiculo-1.png")
-            .vehiculo-info
-                p Nombre
-                p Marca
-                p Modelo
-                p Año 
-            button Borrar
-            button Editar
+block content
+
+    .vehiculos
+        each vehiculo in vehiculos
+            .vehiculo 
+                img(src="/images/vehiculos/vehiculo-1.png")
+                .vehiculo-info
+                    p="Marca: " + vehiculo.Marca
+                    p="Modelo: " + vehiculo.Modelo
+                    p="Año: " + vehiculo.Anio
+                    p="Precio: " + vehiculo.Precio
+                    p="Combustible: " + vehiculo.Combustible
+                button Borrar
+                button Editar
