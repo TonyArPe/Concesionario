@@ -9,7 +9,7 @@ block content
             h1 Bienvenido a Concesionario Los Pallos
             if error
                 p.error= error
-            form(action="/", method="POST")
+            form(action="/auth/login", method="POST")
                 label(for="usuario") Usuario:
                 input(type="text", id="usuario", name="usuario", required)
                 label(for="contrasena") Contraseña:

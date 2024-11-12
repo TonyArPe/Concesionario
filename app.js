@@ -1,5 +1,6 @@
 const express = require('express');
 const xlsx = require("xlsx");
+const session = require('express-session');
 const jsonfile = require("jsonfile");
 const bodyParser = require('body-parser')
 const path = require("path");
@@ -9,6 +10,7 @@ const vehiculosRouter = require('./routes/vehiculoRouter')
 const clientesRouter = require('./routes/clienteRouter')
 const comprasRouter = require('./routes/compraRouter')
 const ventasRouter = require('./routes/ventaRouter')
+const authRouter = require('./routes/authRouter');
 
 const app = express();
 const port = process.env.SERVICE_PORT || 8000;
@@ -27,12 +29,53 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//Middleware
+
+/**
+ * Middleware para llevar la gestión de sesiones.
+ * Si no hay sesión iniciada, arrancamos...
+ */
+app.use(session({
+    secret: 'misupersecretoquenadiesabe',
+    resave: true,
+    saveUninitialized: false
+}));
+
+
+app.use((req,res,next)=>{
+    res.locals.currentUser = req.session.user;
+    if (!req.session.user){        
+        if (req.path.startsWith('/auth/login') ||
+            req.path.startsWith('/auth/register')){
+            // para hacer el GET/POST al login
+            next();            
+        } else {
+            // cuando es una ruta distinta a login
+            // me redirecciona al login
+            return res.redirect('/auth/login');
+        }
+    } else {
+        // ya estamos logeados        
+        next();
+    }
+});
+
+const authorize = (roles) => {
+    return (req, res, next) => {
+        const { user } = req.session;
+        if (!user || !roles.includes(user.rol)) {
+            return res.render('mensaje', {mensajePagina:'No tienes permiso para acceder a esta página.'});
+        }
+        next();
+    };
+};
+
 // Routers
 app.use('/vehiculos', vehiculosRouter)
 app.use('/clientes', clientesRouter)
 app.use('/compras', comprasRouter)
 app.use('/ventas', ventasRouter)
-
+app.use('/auth', authRouter);
 
 /**
  * Funcion para convertir Excel en JSON y guardarlo
@@ -90,8 +133,12 @@ function readJsonFile() {
 
 // Ruta de login
 app.get('/', (req, res) => {
-    res.render('login');
+    if (req.session.user)
+        res.render('index', {user: req.session.user, titulo: 'Inicio'})
+    else 
+        res.redirect('/login')
 });
+
 
 // Ruta de registro
 app.get('/register', (req, res) => {
@@ -123,6 +170,7 @@ app.post('/register', (req, res) => {
         }
     });
 });
+
 
 // Ruta del dashboard (después del login)
 app.get('/dashboard', (req, res) => {
