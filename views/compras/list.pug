@@ -2,15 +2,24 @@ extends ../templates/layout
 
 block content
     a(href="/compras/add") Añadir carro
-    .compras
+    .ventas
         each compra in compras
-            .compra 
-                .compra-info
-                    p="ID: " + compra.ID_Compra
-                    p="Fecha: " + compra.Fecha_Compra
-                    p="Precio: " + compra.Precio_Compra
-                    p="Cliente: " + compra.ID_Cliente
-                    p="Vehiculo: " + compra.ID_Vehiculo
+            .venta 
+                .venta-info
+                    p=compra.ID_Compra
+                    p=compra.Fecha_Compra
+                    p=compra.Precio_Compra
+                .venta-cliente-info
+                    p="Cliente: " + compra.Cliente.ID_Cliente
+                    p="Nombre: " + compra.Cliente.Nombre
+                    p="Telefono: " + compra.Cliente.Telefono
+                    p="Direccion: " + compra.Cliente.Direccion
+                .venta-vehiculo-info
+                    p="ID_Vehiculo: " + compra.Vehiculo.ID_Vehiculo
+                    p="ID_Vehiculo: " + compra.Vehiculo.Marca
+                    p="ID_Vehiculo: " + compra.Vehiculo.Modelo
+                    p="ID_Vehiculo: " + compra.Vehiculo.Anio
+                    p="ID_Vehiculo: " + compra.Vehiculo.Combustible
                 .compra-btn
                     a(href=`/compras/del/${compra.ID_Compra}`)
                         button

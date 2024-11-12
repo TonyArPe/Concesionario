@@ -13,9 +13,9 @@ block content
                     p="Precio: " + vehiculo.Precio + " €"
                     p="Combustible: " + vehiculo.Combustible
                 .vehiculo-btn
-                    a(href=`/vehiculos/del/${vehiculo.ID_Vehiculo}`) borrar 
-                        button
+                    a(href=`/vehiculos/del/${vehiculo.ID_Vehiculo}`)
+                        button.del
                             i.material-icons delete
                     a(href=`/vehiculos/edit/${vehiculo.ID_Vehiculo}`)
-                        button 
+                        button.edit
                             i.material-icons edit

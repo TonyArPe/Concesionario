@@ -8,6 +8,7 @@ const fs = require('fs');
 const vehiculosRouter = require('./routes/vehiculoRouter')
 const clientesRouter = require('./routes/clienteRouter')
 const comprasRouter = require('./routes/compraRouter')
+const ventasRouter = require('./routes/ventaRouter')
 
 const app = express();
 const port = process.env.SERVICE_PORT || 8000;
@@ -30,6 +31,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/vehiculos', vehiculosRouter)
 app.use('/clientes', clientesRouter)
 app.use('/compras', comprasRouter)
+app.use('/ventas', ventasRouter)
 
 
 /**

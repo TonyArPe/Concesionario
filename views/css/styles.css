@@ -91,6 +91,51 @@ footer img {
   border: none;
 }
 
-.vehiculo-btn button:nth-child(1){
+.del{
   background-color: rgb(243, 48, 48);
+}
+
+.edit{
+  background-color: rgb(64, 165, 148);
+}
+
+/* Ventas */
+
+.ventas{
+  background-color: #cfd8dc;
+}
+
+.venta{
+  height: 50px;
+  display: flex;
+  flex-wrap: nowrap;
+  margin-top: 5px;
+  flex-direction: column;
+  overflow-y: hidden;
+  
+  border-radius: 5px;
+  background-color:#BDBDBD;
+  padding: 5px;
+  margin-left: 100px;
+  transition: all 0.5s;
+
+}
+
+.venta:hover{
+  height: 150px;
+  transition: all 0.5s;
+}
+
+.venta-info{
+  display: flex;
+  flex-direction: row;
+}
+
+.venta-cliente-info {
+  display: flex;
+  flex-direction: row;
+}
+.venta-vehiculo-info {
+  display: flex;
+  flex-direction: row;
 }
