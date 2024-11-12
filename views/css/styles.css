@@ -37,7 +37,6 @@ footer{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   font-size: 10px;
 }
 
@@ -89,6 +88,7 @@ footer img {
   height: 50px;
   border-radius: 15px;
   border: none;
+  cursor: pointer;
 }
 
 .del{
@@ -101,7 +101,7 @@ footer img {
 
 /* Ventas */
 
-.ventas{
+.ventas {
   background-color: #cfd8dc;
 }
 
@@ -113,9 +113,9 @@ footer img {
   flex-direction: column;
   overflow-y: hidden;
   
-  border-radius: 5px;
+  border-radius: 30px;
   background-color:#BDBDBD;
-  padding: 5px;
+  padding-left: 15px;
   margin-left: 100px;
   transition: all 0.5s;
 
@@ -126,16 +126,111 @@ footer img {
   transition: all 0.5s;
 }
 
+/* Clientes */
+.clientes {
+  background-color: #cfd8dc;
+}
+
+.cliente{
+  
+    height: 50px;
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 5px;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 30px;
+    background-color:#BDBDBD;
+    padding-left: 15px;
+    margin-left: 100px;
+    transition: all 0.5s;
+}
+
+.cliente-btn{
+  margin-left: auto;
+  margin-right: 30px;
+  display: flex;
+  gap: 15px;
+}
+
+.cliente-btn button{
+  width: 50px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+}
+
 .venta-info{
   display: flex;
   flex-direction: row;
+  align-items: center;
+  gap: 50px;
 }
+
+.venta-info p:nth-child(2){ width: 35px; }
+.venta-info p:nth-child(3){ width: 500px; }
+.venta-info p:nth-child(4){ width: 100px; }
 
 .venta-cliente-info {
   display: flex;
   flex-direction: row;
+  gap: 50px;
+  align-items: center;
 }
+
+.venta-cliente-info p:nth-child(2){ width: 35px; }
+.venta-cliente-info p:nth-child(3){ width: 500px; }
+.venta-cliente-info p:nth-child(4){ width: 100px; }
+
+
+.venta-cliente-info p{
+  width: 100px;
+}
+
+
 .venta-vehiculo-info {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  gap:50px;
 }
+
+.venta-vehiculo-info p:nth-child(2){ width: 35px; }
+.venta-vehiculo-info p:nth-child(3){ width: 500px; }
+.venta-vehiculo-info p:nth-child(4){ width: 100px; }
+
+/*Formularios*/
+
+form{
+  height: 500px;
+  background-color: #cfd8dc;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.campo{
+  font-size: 20px;
+  background-color:#BDBDBD;
+  padding: 15px;
+  border-radius: 30px;
+}
+
+
+.campo input{
+  height: 30px;
+  border-radius: 15px;
+  margin-left: 30px;
+  background-color: white;
+  border: none;
+}
+
+form button{
+  width: 150px;
+  height: 50px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+

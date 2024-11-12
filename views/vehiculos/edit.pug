@@ -3,20 +3,20 @@ extends ../templates/layout
 block content 
 
     form(method="post") 
-        .mb-3
+        .campo
             label.form-label(for="Marca") Marca:
             input.form-control(type="text", name="marca" value=vehiculo.Marca)
-        .mb-3
+        .campo
             label.form-label(for="Modelo") Modelo:
             input.form-control(type="text", name="modelo" value=vehiculo.Modelo)
-        .mb-3
+        .campo
             label.form-label(for="Anio") Año:
             input.form-control(type="text", name="anio" value=vehiculo.Anio)
-        .mb-3
+        .campo
             label.form-label(for="Precio") Combustible:
             input.form-control(type="text", name="precio" value=vehiculo.Precio)
-        .mb-3
+        .campo
             label.form-label(for="combustible") Precio:
             input.form-control(type="text", name="combustible" value=vehiculo.Combustible)
         input(type="hidden", name="id", value=vehiculo.ID_Vehiculo)
-        button.btn.btn-danger(type="submit") Editar
+        button.edit(type="submit") Editar

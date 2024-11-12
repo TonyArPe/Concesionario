@@ -3,14 +3,14 @@ extends ../templates/layout
 block content 
 
     form(method="post") 
-        .mb-3
-            label.form-label(for="Fecha_Compra") Fecha:
-            input.form-control(type="text", name="Fecha_Compra" value=compra.Fecha_Compra)
-        .mb-3
-            label.form-label(for="Precio_Compra") Precio:
-            input.form-control(type="text", name="Precio_Compra" value=compra.Precio_Compra)
-        .mb-3
-            label.form-label(for="Vehiculo") Vehiculo:
-            input.form-control(type="text", name="ID_Vehiculo" value=compra.ID_Vehiculo)
+        .campo
+            label(for="Fecha_Compra") Fecha:
+            input(type="text", name="Fecha_Compra" value=compra.Fecha_Compra)
+        .campo
+            label(for="Precio_Compra") Precio:
+            input(type="text", name="Precio_Compra" value=compra.Precio_Compra)
+        .campo
+            label(for="Vehiculo") Vehiculo:
+            input(type="text", name="ID_Vehiculo" value=compra.ID_Vehiculo)
         input(type="hidden", name="id", value=compra.ID_Cliente)
-        button.btn.btn-danger(type="submit") Editar
+        button.edit(type="submit") Editar

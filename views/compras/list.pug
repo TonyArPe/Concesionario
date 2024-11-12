@@ -6,24 +6,28 @@ block content
         each compra in compras
             .venta 
                 .venta-info
+                    i.material-icons shopping_bag
                     p=compra.ID_Compra
                     p=compra.Fecha_Compra
                     p=compra.Precio_Compra
+                    .cliente-btn
+                        a(href=`/compras/del/${compra.ID_Compra}`)
+                            button.del
+                                i.material-icons delete
+                        a(href=`/compras/edit/${compra.ID_Compra}`)
+                            button.edit
+                                i.material-icons edit
                 .venta-cliente-info
-                    p="Cliente: " + compra.Cliente.ID_Cliente
-                    p="Nombre: " + compra.Cliente.Nombre
-                    p="Telefono: " + compra.Cliente.Telefono
-                    p="Direccion: " + compra.Cliente.Direccion
+                    i.material-icons person
+                    p=compra.Cliente.ID_Cliente
+                    p=compra.Cliente.Nombre
+                    p=compra.Cliente.Telefono
+                    p=compra.Cliente.Direccion
                 .venta-vehiculo-info
-                    p="ID_Vehiculo: " + compra.Vehiculo.ID_Vehiculo
-                    p="ID_Vehiculo: " + compra.Vehiculo.Marca
-                    p="ID_Vehiculo: " + compra.Vehiculo.Modelo
-                    p="ID_Vehiculo: " + compra.Vehiculo.Anio
-                    p="ID_Vehiculo: " + compra.Vehiculo.Combustible
-                .compra-btn
-                    a(href=`/compras/del/${compra.ID_Compra}`)
-                        button
-                            i.material-icons delete
-                    a(href=`/compras/edit/${compra.ID_Compra}`)
-                        button 
-                            i.material-icons edit
+                    i.material-icons directions_car
+                    p=compra.Vehiculo.ID_Vehiculo
+                    p=compra.Vehiculo.Marca
+                    p=compra.Vehiculo.Modelo
+                    p=compra.Vehiculo.Anio
+                    p=compra.Vehiculo.Combustible
+                

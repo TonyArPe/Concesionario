@@ -6,24 +6,27 @@ block content
         each venta in ventas
             .venta 
                 .venta-info
-                    p="ID: " + venta.ID_Venta
-                    p="Fecha: " + venta.Fecha_Venta
-                    p="Total: " + venta.Total
+                    i.material-icons sell
+                    p=venta.ID_Venta
+                    p=venta.Fecha_Venta
+                    p=venta.Total
+                    .cliente-btn
+                        a(href=`/ventas/del/${venta.ID_Venta}`)
+                            button.del
+                                i.material-icons delete
+                        a(href=`/ventas/edit/${venta.ID_Venta}`)
+                            button.edit
+                                i.material-icons edit
                 .venta-cliente-info
-                    p="Cliente: " + venta.Cliente.ID_Cliente
-                    p="Nombre: " + venta.Cliente.Nombre
-                    p="Telefono: " + venta.Cliente.Telefono
-                    p="Direccion: " + venta.Cliente.Direccion
+                    i.material-icons person
+                    p=venta.Cliente.ID_Cliente
+                    p=venta.Cliente.Nombre
+                    p=venta.Cliente.Telefono
+                    p=venta.Cliente.Direccion
                 .venta-vehiculo-info
-                    p="ID_Vehiculo: " + venta.Vehiculo.ID_Vehiculo
-                    p="ID_Vehiculo: " + venta.Vehiculo.Marca
-                    p="ID_Vehiculo: " + venta.Vehiculo.Modelo
-                    p="ID_Vehiculo: " + venta.Vehiculo.Anio
-                    p="ID_Vehiculo: " + venta.Vehiculo.Combustible
-                .Venta-btn
-                    a(href=`/ventas/del/${venta.ID_Venta}`)
-                        button
-                            i.material-icons delete
-                    a(href=`/ventas/edit/${venta.ID_Venta}`)
-                        button 
-                            i.material-icons edit
+                    i.material-icons directions_car
+                    p=venta.Vehiculo.ID_Vehiculo
+                    p=venta.Vehiculo.Marca
+                    p=venta.Vehiculo.Modelo
+                    p=venta.Vehiculo.Anio
+                    p=venta.Vehiculo.Combustible

@@ -5,16 +5,16 @@ block content
     .clientes
         each cliente in clientes
             .cliente 
-                img(src="/images/clientes/cliente-" + cliente.ID_cliente + ".png")
-                .cliente-info
-                    p="ID: " + cliente.ID_Cliente
-                    p="Nombre: " + cliente.Nombre
-                    p="Telefono: " + cliente.Telefono
-                    p="Direccion: " + cliente.Direccion 
+                .venta-cliente-info
+                    i.material-icons person
+                    p=cliente.ID_Cliente
+                    p=cliente.Nombre
+                    p=cliente.Telefono
+                    p=cliente.Direccion 
                 .cliente-btn
                     a(href=`/clientes/del/${cliente.ID_Cliente}`)
-                        button
+                        button.del
                             i.material-icons delete
                     a(href=`/clientes/edit/${cliente.ID_Cliente}`)
-                        button 
+                        button.edit
                             i.material-icons edit
