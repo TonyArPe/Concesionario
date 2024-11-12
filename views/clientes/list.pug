@@ -1,0 +1,20 @@
+extends ../templates/layout
+
+block content
+    a(href="/clientes/add") Añadir carro
+    .clientes
+        each cliente in clientes
+            .cliente 
+                img(src="/images/clientes/cliente-" + cliente.ID_cliente + ".png")
+                .cliente-info
+                    p="ID: " + cliente.ID_Cliente
+                    p="Nombre: " + cliente.Nombre
+                    p="Telefono: " + cliente.Telefono
+                    p="Direccion: " + cliente.Direccion 
+                .cliente-btn
+                    a(href=`/clientes/del/${cliente.ID_Cliente}`)
+                        button
+                            i.material-icons delete
+                    a(href=`/clientes/edit/${cliente.ID_Cliente}`)
+                        button 
+                            i.material-icons edit

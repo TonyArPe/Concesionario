@@ -1,7 +1,7 @@
 extends ../templates/layout
 
 block content
-    a.btn.btn-success(href="/vehiculos/add") Añadir carro
+    a(href="/vehiculos/add") Añadir carro
     .vehiculos
         each vehiculo in vehiculos
             .vehiculo 
@@ -13,7 +13,9 @@ block content
                     p="Precio: " + vehiculo.Precio + " €"
                     p="Combustible: " + vehiculo.Combustible
                 .vehiculo-btn
-                    button
-                        i.material-icons delete
-                    button 
-                        i.material-icons edit
+                    a(href=`/vehiculos/del/${vehiculo.ID_Vehiculo}`)
+                        button.del
+                            i.material-icons delete
+                    a(href=`/vehiculos/edit/${vehiculo.ID_Vehiculo}`)
+                        button.edit
+                            i.material-icons edit
