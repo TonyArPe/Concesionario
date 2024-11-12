@@ -82,12 +82,47 @@ function readJsonFile() {
     });
 }
 
-/**
- * Ruta principal
- */
+// Ruta de login
 app.get('/', (req, res) => {
-    res.render('index')
-})
+    res.render('index');
+});
+
+// Ruta de registro
+app.get('/register', (req, res) => {
+    res.render('register');
+});
+
+// Ruta para registrar un nuevo usuario
+app.post('/register', (req, res) => {
+    const { usuario, contrasena } = req.body;
+
+    // Verificar si el usuario ya existe
+    db.query('SELECT * FROM Usuario WHERE Usuario = ?', [usuario], (err, results) => {
+        if (err) throw err;
+
+        if (results.length > 0) {
+            res.render('register', { error: 'El usuario ya existe.' });
+        } else {
+            // Encriptar la contraseña antes de guardarla
+            bcrypt.hash(contrasena, 10, (err, hashedPassword) => {
+                if (err) throw err;
+
+                // Insertar el nuevo usuario en la base de datos
+                db.query('INSERT INTO Usuario (Usuario, Contrasena) VALUES (?, ?)', [usuario, hashedPassword], (err, results) => {
+                    if (err) throw err;
+
+                    res.redirect('/');
+                });
+            });
+        }
+    });
+});
+
+// Ruta del dashboard (después del login)
+app.get('/dashboard', (req, res) => {
+    // Aquí podrías pasar datos como el usuario logueado, etc.
+    res.render('dashboard', { usuario: 'admin' });
+});
 
 /**
  * Ruta para obtener los datos convertidos en JSON

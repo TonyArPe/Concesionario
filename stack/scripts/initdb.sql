@@ -2,6 +2,13 @@ CREATE DATABASE IF NOT EXISTS concesionario;
 
 USE concesionario;
 
+-- Crear tabla de Usuario
+CREATE TABLE Usuario (
+    ID_Usuario INT AUTO_INCREMENT PRIMARY KEY,
+    Usuario VARCHAR(50) NOT NULL,
+    Contrasena VARCHAR(255) NOT NULL
+);
+
 
 -- Crear tabla Vehículo
 CREATE TABLE Vehiculo (
@@ -44,6 +51,10 @@ CREATE TABLE Compra (
 );
 
 SET NAMES utf8mb4;
+
+INSERT INTO Usuario (Usuario, Contrasena) VALUES
+('tony', '1234'),
+('rafa', '4321');
 
 INSERT INTO Vehiculo (ID_Vehiculo, Marca, Modelo, Anio, Precio, Combustible) VALUES
 (1, 'Chevrolet', 'Sedan', 2004, 40679.89, 'Gasolina'),

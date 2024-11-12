@@ -111,3 +111,75 @@ footer img {
 .vehiculo-btn button:nth-child(1){
   background-color: rgb(243, 48, 48);
 }
+
+/* CSS de Login */
+
+.login-container {
+  width: 300px;
+  margin: 100px auto;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+  text-align: center;
+}
+
+.error {
+  color: red;
+  text-align: center;
+}
+
+.dashboard {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.dashboard a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #f44336;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.dashboard a:hover {
+  background-color: #e53935;
+}
+
+/* CSS Registro */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.register-container {
+  width: 300px;
+  margin: 100px auto;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.register-container h2 {
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.register-container {
+  text-align: center;
+}
+
