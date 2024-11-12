@@ -1,21 +1,4 @@
-doctype html
-html(lang="es")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Login
-    link(rel="stylesheet", href="/styles.css")
-  body
-    .login-container
-      h1 Bienvenido a Concesionario Los Pallos
-      br
-      h2 Escriba su Usuario:
-      if error
-        p.error= error
-      form(action="/", method="POST")
-        label(for="usuario") Usuario:
-        input(type="text", id="usuario", name="usuario", required)
-        label(for="contrasena") Contraseña:
-        input(type="password", id="contrasena", name="contrasena", required)
-        button(type="submit") Login
-        a(href="/register") Regístrarse
+extends templates/layout
+
+block content
+    

@@ -90,7 +90,7 @@ function readJsonFile() {
 
 // Ruta de login
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render('login');
 });
 
 // Ruta de registro
