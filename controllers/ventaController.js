@@ -7,11 +7,51 @@ const db = require('../db');
  * @param {*} res 
  */
 exports.listarVentas = (req, res) => {
-  db.query("SELECT * FROM `Venta`", (err, response) => {
-    if (err) res.send("ERROR al hacer la consulta");
-    else res.render("ventas/", { ventas: response });
+  const query = `
+    SELECT 
+      Venta.ID_Venta, Venta.Fecha_Venta, Venta.Total,
+      Cliente.ID_Cliente, Cliente.Nombre, Cliente.Telefono, Cliente.Direccion,
+      Vehiculo.ID_Vehiculo, Vehiculo.Marca, Vehiculo.Modelo, Vehiculo.Anio, 
+      Vehiculo.Precio, Vehiculo.Combustible
+    FROM 
+      Venta
+    INNER JOIN Cliente ON Cliente.ID_Cliente = Venta.ID_Cliente
+    INNER JOIN Vehiculo ON Vehiculo.ID_Vehiculo = Venta.ID_Vehiculo;
+  `;
+
+  db.query(query, (err, response) => {
+    if (err) {
+      res.status(500).send("ERROR al hacer la consulta");
+      return;
+    }
+
+    // Transformar la respuesta al formato solicitado
+    const ventas = response.map((venta) => ({
+      ID_Venta: venta.ID_Venta,
+      Fecha_Venta: venta.Fecha_Venta,
+      Total: parseFloat(venta.Total), // Asegúrate de que sea un número
+      Cliente: {
+        ID_Cliente: venta.ID_Cliente,
+        Nombre: venta.Nombre,
+        Telefono: venta.Telefono,
+        Direccion: venta.Direccion
+      },
+      Vehiculo: {
+        ID_Vehiculo: venta.ID_Vehiculo,
+        Marca: venta.Marca,
+        Modelo: venta.Modelo,
+        Anio: venta.Anio,
+        Precio: parseFloat(venta.Precio), // Asegúrate de que sea un número
+        Combustible: venta.Combustible
+      }
+    }));
+
+    // Renderizar la vista con las ventas transformadas
+    res.render("ventas/list", { ventas });
+    console.log(ventas); // Imprimir el objeto transformado en la consola
   });
 };
+
 
 /**
  * Formulario para añadir una nueva venta

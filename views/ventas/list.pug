@@ -1,0 +1,29 @@
+extends ../templates/layout
+
+block content
+    a(href="/ventas/add") Añadir carro
+    .ventas
+        each venta in ventas
+            .venta 
+                .venta-info
+                    p="ID: " + venta.ID_Venta
+                    p="Fecha: " + venta.Fecha_Venta
+                    p="Total: " + venta.Total
+                .venta-cliente-info
+                    p="Cliente: " + venta.Cliente.ID_Cliente
+                    p="Nombre: " + venta.Cliente.Nombre
+                    p="Telefono: " + venta.Cliente.Telefono
+                    p="Direccion: " + venta.Cliente.Direccion
+                .venta-vehiculo-info
+                    p="ID_Vehiculo: " + venta.Vehiculo.ID_Vehiculo
+                    p="ID_Vehiculo: " + venta.Vehiculo.Marca
+                    p="ID_Vehiculo: " + venta.Vehiculo.Modelo
+                    p="ID_Vehiculo: " + venta.Vehiculo.Anio
+                    p="ID_Vehiculo: " + venta.Vehiculo.Combustible
+                .Venta-btn
+                    a(href=`/ventas/del/${venta.ID_Venta}`)
+                        button
+                            i.material-icons delete
+                    a(href=`/ventas/edit/${venta.ID_Venta}`)
+                        button 
+                            i.material-icons edit

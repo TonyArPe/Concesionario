@@ -7,11 +7,51 @@ const db = require('../db');
  * @param {*} res 
  */
 exports.listarCompras = (req, res) => {
-  db.query("SELECT * FROM `Compra`", (err, response) => {
-    if (err) res.send("ERROR al hacer la consulta");
-    else res.render("compras/", { compras: response });
+  const query = `
+    SELECT 
+      Compra.ID_Compra, Compra.Fecha_Compra, Compra.Precio_Compra,
+      Cliente.ID_Cliente, Cliente.Nombre, Cliente.Telefono, Cliente.Direccion,
+      Vehiculo.ID_Vehiculo, Vehiculo.Marca, Vehiculo.Modelo, Vehiculo.Anio, 
+      Vehiculo.Precio, Vehiculo.Combustible
+    FROM 
+      Compra
+    INNER JOIN Cliente ON Cliente.ID_Cliente = Compra.ID_Cliente
+    INNER JOIN Vehiculo ON Vehiculo.ID_Vehiculo = Compra.ID_Vehiculo;
+  `;
+
+  db.query(query, (err, response) => {
+    if (err) {
+      res.status(500).send("ERROR al hacer la consulta");
+      return;
+    }
+
+    // Transformar la respuesta al formato solicitado
+    const compras = response.map((compra) => ({
+      ID_Compra: compra.ID_Compra,
+      Fecha_Compra: compra.Fecha_Compra,
+      Precio_Compra: parseFloat(compra.Precio_Compra),
+      Cliente: {
+        ID_Cliente: compra.ID_Cliente,
+        Nombre: compra.Nombre,
+        Telefono: compra.Telefono,
+        Direccion: compra.Direccion
+      },
+      Vehiculo: {
+        ID_Vehiculo: compra.ID_Vehiculo,
+        Marca: compra.Marca,
+        Modelo: compra.Modelo,
+        Anio: compra.Anio,
+        Precio: parseFloat(compra.Precio),
+        Combustible: compra.Combustible
+      }
+    }));
+
+    // Renderizar la vista con las compras transformadas
+    res.render("compras/list", { compras });
+    console.log(response); // Imprimir el objeto transformado en la consola
   });
 };
+
 
 /**
  * Formulario para añadir una nueva compra

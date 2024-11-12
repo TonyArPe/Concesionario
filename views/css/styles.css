@@ -1,51 +1,34 @@
 header{
   height: 150px;
-  background-color: #455a64;
+  background-color: #607d8b;
   display: flex;
-  justify-content: center;
+  gap: 30PX;
   align-items: center;
+  line-height: 30px;
 }
 
 header img {
   height: 150px;
 }
 
-a {
-  width: auto;
-  height: fit-content;
-  color: inherit;
-  text-decoration: none;
-}
-
-
-.buttons-container{
-  background-color: #607d8b;
-  height: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly
-  
-}
-
-.buttons-container .button {
-  width: 100px;
-  height: 100px;
-  background-color: #cfd8dc;
-  font-size: 1rem;
-  font-weight: bold;
-  color: #FFFFFF;
-  border-radius: 20px;
-  border: none;
-  transition: all 0.3s ease;
+header a {
+  width: 150px;
+  height: 30px;
+  text-align: center;
+  border-radius: 15px;
   cursor: pointer;
-  box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.5);
-  
+  text-decoration: none;
+  color: white;
 }
 
-.buttons-container .button:hover {
-  background-color: #0056b3; /* Cambiar el color de fondo cuando se pasa el ratón */
+header a:hover {
+  background-color: #435761;
+  transition: ease 0.3s;
 }
 
+header a:active {
+  background-color: #435761;
+}
 
 footer{
   height: 150px;
@@ -108,78 +91,51 @@ footer img {
   border: none;
 }
 
-.vehiculo-btn button:nth-child(1){
+.del{
   background-color: rgb(243, 48, 48);
 }
 
-/* CSS de Login */
-
-.login-container {
-  width: 300px;
-  margin: 100px auto;
-  padding: 20px;
-  background: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.edit{
+  background-color: rgb(64, 165, 148);
 }
 
-.login-container h2 {
-  text-align: center;
+/* Ventas */
+
+.ventas{
+  background-color: #cfd8dc;
 }
 
-.error {
-  color: red;
-  text-align: center;
-}
-
-.dashboard {
-  text-align: center;
-  margin-top: 50px;
-}
-
-.dashboard a {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #f44336;
-  color: white;
-  text-decoration: none;
+.venta{
+  height: 50px;
+  display: flex;
+  flex-wrap: nowrap;
+  margin-top: 5px;
+  flex-direction: column;
+  overflow-y: hidden;
+  
   border-radius: 5px;
+  background-color:#BDBDBD;
+  padding: 5px;
+  margin-left: 100px;
+  transition: all 0.5s;
+
 }
 
-.dashboard a:hover {
-  background-color: #e53935;
+.venta:hover{
+  height: 150px;
+  transition: all 0.5s;
 }
 
-/* CSS Registro */
-
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
+.venta-info{
+  display: flex;
+  flex-direction: row;
 }
 
-.register-container {
-  width: 300px;
-  margin: 100px auto;
-  padding: 20px;
-  background: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.venta-cliente-info {
+  display: flex;
+  flex-direction: row;
 }
-
-.register-container h2 {
-  text-align: center;
+.venta-vehiculo-info {
+  display: flex;
+  flex-direction: row;
 }
-
-input {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.register-container {
-  text-align: center;
-}
-

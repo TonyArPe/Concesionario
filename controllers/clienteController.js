@@ -9,7 +9,7 @@ const db = require('../db');
 exports.listarClientes = (req, res) => {
   db.query("SELECT * FROM `Cliente`", (err, response) => {
     if (err) res.send("ERROR al hacer la consulta");
-    else res.render("clientes/", { clientes: response });
+    else res.render("clientes/list", { clientes: response });
   });
 }
 
@@ -86,11 +86,11 @@ exports.formularioClienteEdit = (req, res) => {
   const { id } = req.params;
   if (isNaN(id)) res.send("PARÁMETROS INCORRECTOS");
   else {
-    db.query("SELECT * FROM Vehiculo WHERE ID_Cliente=?", [id], (error, respuesta) => {
+    db.query("SELECT * FROM Cliente WHERE ID_Cliente=?", [id], (error, respuesta) => {
       if (error) res.send("ERROR AL INTENTAR EDITAR CLIENTE");
       else {
         if (respuesta.length > 0) {
-          res.render("clientess/edit", { cliente: respuesta[0] });
+          res.render("clientes/edit", { cliente: respuesta[0] });
         } else {
           res.send("ERROR AL INTENTAR EDITAR CLIENTE, NO EXISTE");
         }
@@ -107,9 +107,9 @@ exports.formularioClienteEdit = (req, res) => {
 exports.clienteEdit = (req, res) => {
   const { id, nombre, telefono, direccion } = req.body;
   const paramId = req.params["id"];
-  
+
   if (isNaN(id) || isNaN(paramId) || id !== paramId) {
-    res.send("ERROR EDITANDO CLIENTE");
+    res.send("ERROR EDITANDO ");
   } else {
     db.query(
       "UPDATE Cliente SET Nombre = ?, Telefono = ?, Direccion = ? WHERE ID_Cliente = ?",

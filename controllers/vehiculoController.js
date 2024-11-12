@@ -107,9 +107,9 @@ exports.formularioVehiculoEdit = (req, res) => {
 exports.vehiculoEdit = (req, res) => {
   const { id, marca, modelo, anio, precio, combustible } = req.body;
   const paramId = req.params["id"];
-  
+
   if (isNaN(id) || isNaN(paramId) || id !== paramId) {
-    res.send("ERROR EDITANDO VEHÍCULO");
+    res.send("ERROR EDITANDO");
   } else {
     db.query(
       "UPDATE Vehiculo SET Marca = ?, Modelo = ?, Anio = ?, Precio = ?, Combustible = ? WHERE ID_Vehiculo = ?",
