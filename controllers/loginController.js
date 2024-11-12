@@ -50,7 +50,7 @@ exports.showRegister = (req, res) => {
 exports.register = (req, res) => {
     const {usuario, contrasena} = req.body
 
-    db.query="SELECT * FROM Usuario WHERE Usuario = ?", [usuario], (err,results) => {
+    db.query("SELECT * FROM Usuario WHERE Usuario = ?", [usuario], (err,results) => {
         if(err)
             throw err
         if(results.length > 0)
@@ -65,5 +65,5 @@ exports.register = (req, res) => {
                         res.render("/")
             })
         })
-    }
+    });
 }
