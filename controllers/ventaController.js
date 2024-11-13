@@ -176,3 +176,19 @@ exports.ventaEdit = (req, res) => {
     );
   }
 };
+
+// Método para listar los vehículos de una venta específica
+exports.listarVehiculosPorVenta = async (req, res) => {
+  const ventaId = req.params.id;
+
+  try {
+      const [vehiculos] = await db.query(
+          'SELECT * FROM Vehiculos WHERE ID_Venta = ?',
+          [ventaId]
+      );
+      res.render('vehiculosPorVenta', { vehiculos, ventaId });
+  } catch (error) {
+      console.error('Error al obtener vehículos de la venta:', error);
+      res.status(500).send('Error en el servidor');
+  }
+};

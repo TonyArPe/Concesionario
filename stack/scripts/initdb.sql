@@ -53,7 +53,7 @@ CREATE TABLE Compra (
 SET NAMES utf8mb4;
 
 INSERT INTO Usuario (Usuario, Contrasena) VALUES
-('tony', '1234'),
+('tony', '1234');
 ('rafa', '4321');
 
 INSERT INTO Vehiculo (ID_Vehiculo, Marca, Modelo, Anio, Precio, Combustible) VALUES

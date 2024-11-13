@@ -14,6 +14,9 @@ router.post('/del/:id', comprasController.compraDel);
 router.get('/edit/:id', comprasController.formularioCompraEdit);
 router.post('/edit/:id', comprasController.compraEdit);
 
+// Ruta para listar las compras de un cliente específico
+router.get('/cliente/:id', comprasController.listarComprasPorCliente);
+
 /**Todo implementaar controllaador clientes en es te router */
 
 // Listar los clientes que han comprado un vehiculo

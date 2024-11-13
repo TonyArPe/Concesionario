@@ -121,3 +121,35 @@ exports.clienteEdit = (req, res) => {
     );
   }
 };
+
+// Método para listar las compras de un cliente específico
+exports.listarComprasPorCliente = async (req, res) => {
+    const clienteId = req.params.id;
+
+    try {
+        const [compras] = await db.query(
+            'SELECT * FROM Compras WHERE cliente_id = ?',
+            [clienteId]
+        );
+        res.render('comprasPorCliente', { compras, clienteId });
+    } catch (error) {
+        console.error('Error al obtener compras del cliente:', error);
+        res.status(500).send('Error en el servidor');
+    }
+};
+
+// Método para listar las compras de un cliente específico
+exports.listarComprasPorCliente = async (req, res) => {
+  const clienteId = req.params.id;
+
+  try {
+      const [compras] = await db.query(
+          'SELECT * FROM Compras WHERE cliente_id = ?',
+          [clienteId]
+      );
+      res.render('comprasPorCliente', { compras, clienteId });
+  } catch (error) {
+      console.error('Error al obtener compras del cliente:', error);
+      res.status(500).send('Error en el servidor');
+  }
+};
