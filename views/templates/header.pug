@@ -1,8 +1,12 @@
 body
-        header
+        
+    header
+        if currentUser
             img(src="/images/logo1.png" alt="Logo concesionario")         
             a(href="/vehiculos") VEHÍCULOS
             a(href="/clientes") CLIENTES
             a(href="/compras") COMPRAS
             a(href="/ventas") VENTAS
             a(href="/auth/logout") SALIR
+        if !currentUser
+            img.no-session(src="/images/logo1.png" alt="Logo concesionario")    

@@ -42,7 +42,10 @@ app.use(session({
 }));
 
 
+app.use('/public', express.static('public'));
+
 app.use((req,res,next)=>{
+    
     res.locals.currentUser = req.session.user;
     if (!req.session.user){        
         if (req.path.startsWith('/auth/login') ||
@@ -58,17 +61,24 @@ app.use((req,res,next)=>{
         // ya estamos logeados        
         next();
     }
+
 });
 
-const authorize = (roles) => {
-    return (req, res, next) => {
-        const { user } = req.session;
-        if (!user || !roles.includes(user.rol)) {
-            return res.render('mensaje', {mensajePagina:'No tienes permiso para acceder a esta página.'});
-        }
-        next();
-    };
-};
+// app.use((req, res, next) => {
+//     res.locals.isAuthenticated = !!req.session.user;
+//     next();
+// });
+
+
+// const authorize = (roles) => {
+//     return (req, res, next) => {
+//         const { user } = req.session;
+//         if (!user || !roles.includes(user.rol)) {
+//             return res.render('mensaje', {mensajePagina:'No tienes permiso para acceder a esta página.'});
+//         }
+//         next();
+//     };
+// };
 
 // Routers
 app.use('/vehiculos', vehiculosRouter)

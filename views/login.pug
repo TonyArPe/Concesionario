@@ -7,14 +7,15 @@ block content
         
         .login
             h1 Bienvenido a Concesionario Los Pallos
-            if error
-                p.error= error
-            form(action="/auth/login", method="POST")
+            form(action="", method="POST")
                 label(for="usuario") Usuario:
-                input(type="text", id="usuario", name="usuario", required)
+                input(type="text", id="username", name="username", required)
                 label(for="contrasena") Contraseña:
-                input(type="password", id="contrasena", name="contrasena", required)
+                input(type="password", id="password", name="password", required)
+                
                 .login-btns
+                    if errorMsg
+                        p.error= errorMsg
                     button(type="submit") Login
-                    a(href="/register")
-                        button  Regístrarse
+                    a(href="/auth/register") ¿No te has registtrado? Registrate ahora
+                    

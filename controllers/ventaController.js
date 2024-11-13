@@ -25,11 +25,11 @@ exports.listarVentas = (req, res) => {
       return;
     }
 
-    // Transformar la respuesta al formato solicitado
+    
     const ventas = response.map((venta) => ({
       ID_Venta: venta.ID_Venta,
       Fecha_Venta: venta.Fecha_Venta,
-      Total: parseFloat(venta.Total), // Asegúrate de que sea un número
+      Total: parseFloat(venta.Total), 
       Cliente: {
         ID_Cliente: venta.ID_Cliente,
         Nombre: venta.Nombre,
@@ -41,14 +41,13 @@ exports.listarVentas = (req, res) => {
         Marca: venta.Marca,
         Modelo: venta.Modelo,
         Anio: venta.Anio,
-        Precio: parseFloat(venta.Precio), // Asegúrate de que sea un número
+        Precio: parseFloat(venta.Precio), 
         Combustible: venta.Combustible
       }
     }));
-
-    // Renderizar la vista con las ventas transformadas
+  
     res.render("ventas/list", { ventas });
-    console.log(ventas); // Imprimir el objeto transformado en la consola
+    
   });
 };
 

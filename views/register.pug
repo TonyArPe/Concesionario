@@ -1,0 +1,21 @@
+extends templates/layout
+
+block content
+
+    .login-container
+        
+        
+        .login
+            h1 Registrese en Concesionario Los Pallos
+            form(action="", method="POST")
+                label(for="usuario") Usuario:
+                input(type="text", id="username", name="username", required)
+                label(for="contrasena") Contraseña:
+                input(type="password", id="password", name="password", required)
+                
+                .login-btns
+                    if errorMsg
+                        p.error= errorMsg
+                    button(type="submit") Register
+                    a(href="/auth/login") ¿Tienes una cuenta? Inicia sesión
+                    

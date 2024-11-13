@@ -25,7 +25,7 @@ exports.listarCompras = (req, res) => {
       return;
     }
 
-    // Transformar la respuesta al formato solicitado
+    
     const compras = response.map((compra) => ({
       ID_Compra: compra.ID_Compra,
       Fecha_Compra: compra.Fecha_Compra,
@@ -46,9 +46,9 @@ exports.listarCompras = (req, res) => {
       }
     }));
 
-    // Renderizar la vista con las compras transformadas
+   
     res.render("compras/list", { compras });
-    console.log(response); // Imprimir el objeto transformado en la consola
+    
   });
 };
 

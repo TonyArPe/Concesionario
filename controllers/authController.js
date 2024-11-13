@@ -8,20 +8,19 @@ exports.registerForm = (req, res) =>{
 
 exports.register = (req, res) =>{
     const datosUsuario = req.body;
-    datosUsuario.rol='cliente'
     datosUsuario.password= bcrypt.hashSync(datosUsuario.password, 10);
     try {
             // guardamos el usuario en la BBDD SIN ACTIVAR
         db.query(
-            'INSERT INTO users (username, password, enabled) VALUES (?,?,?)',
+            'INSERT INTO Usuario (Usuario, Contrasena) VALUES (?,?)',
             [datosUsuario.username, datosUsuario.password, 0],
             (error, respuesta) => {
                 if (error) res.send('ERROR INSERTANDO usuario' + req.body)
-                else res.render('mensaje', {tituloPagina:'Registro usuarios', mensajePagina: 'Usuario registrado'});
+                else res.render('register', {errorMsg: 'Usuario ya registrado'});
         }
       );                
     } catch (error) {
-        res.render('mensaje', {tituloPagina:'ERROR', mensajePagina: 'Error ' + error});
+        res.render('register', { errorMsg: 'Error ' + error});
     }   
 };
 
@@ -31,26 +30,24 @@ exports.loginForm = (req, res) =>{
 
 exports.login = (req, res)=>{
     const {username, password} = req.body;
-
     db.query(
-        'SELECT * from users WHERE username=?',
+        'SELECT * from Usuario WHERE Usuario=?',
         [username],
         (error, rsUsuario) => {
             if (error) {
-               alert('Usuario no encontrado');
+               res.render('login', { errorMsg : 'Usuario no encontrado'})
             } else {
                 const usuario = rsUsuario[0];
                 if (usuario) {
-                    if (usuario.enabled==1 && bcrypt.compareSync(password, usuario.password)){
-                        req.session.user = usuario.username;
+                    if (/*usuario.enabled==1 &&*/ bcrypt.compareSync(password, usuario.Contrasena)){
+                        req.session.user = usuario.Usuario;
                         res.redirect('/');
                     } else {                       
-                        alert('Usuario desactivado')
+                        res.render('login', { errorMsg : 'Contraseña incorrecta'})
                     }
                 } else {
-                     alert('Usuario no encontrado o credenciales inválidas');
+                     res.render('login', {errorMsg : 'Usuario no encontrado o credenciales inválidas'});
                 }
-                console.log(res)
             }
         }
     )    
