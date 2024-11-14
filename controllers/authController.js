@@ -16,7 +16,8 @@ exports.register = (req, res) =>{
             [datosUsuario.username, datosUsuario.password, 0],
             (error, respuesta) => {
                 if (error) res.send('ERROR INSERTANDO usuario' + req.body)
-                else res.render('register', {errorMsg: 'Usuario ya registrado'});
+                    else res.render('register', {errorMsg: 'Usuario ya registrado'});
+            
         }
       );                
     } catch (error) {
