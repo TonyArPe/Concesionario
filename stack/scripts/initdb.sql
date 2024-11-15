@@ -5,7 +5,7 @@ USE concesionario;
 -- Crear tabla de Usuario
 CREATE TABLE Usuario (
     ID_Usuario INT AUTO_INCREMENT PRIMARY KEY,
-    Usuario VARCHAR(50) NOT NULL,
+    Usuario VARCHAR(50) NOT NULL UNIQUE,
     Contrasena VARCHAR(255) NOT NULL
 );
 

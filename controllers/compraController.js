@@ -1,4 +1,5 @@
 const db = require("../db");
+const clienteController = require("./clienteController");
 
 // Función para listar todas las compras
 exports.listarCompras = (req, res) => {
@@ -39,7 +40,10 @@ exports.listarCompras = (req, res) => {
         },
       }));
 
-      res.render("compras/list", { compras });
+      const clientes = clienteController.listarClientes()
+      console.log(clientes.Cliente)
+
+      res.render("compras/list", { compras, clientes });
     }
   );
 };

@@ -1,8 +1,6 @@
 extends ../templates/layout
 
 block content
-    a(href="/compras/add") Añadir carro
-    h3 Compras de cliente: #{cliente.ID_Cliente}, #{cliente.Nombre}
     .ventas
         each compra in compras
             .venta-cc
