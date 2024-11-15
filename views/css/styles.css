@@ -72,7 +72,7 @@ footer img {
 }
 
 .vehiculo img{
-  width: auto;
+  width: 300px;
   height: 200px;
   border-radius: 20px;
 }
@@ -125,6 +125,19 @@ footer img {
   margin-left: 100px;
   transition: all 0.5s;
 
+}
+
+.venta-cc{
+  height: 100px;
+  display: flex;
+  flex-wrap: nowrap;
+  margin-top: 5px;
+  flex-direction: column;
+  
+  border-radius: 30px;
+  background-color:#BDBDBD;
+  padding-left: 15px;
+  margin-left: 100px;
 }
 
 .venta:hover{

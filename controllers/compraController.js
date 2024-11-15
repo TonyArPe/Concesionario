@@ -217,8 +217,6 @@ exports.listarComprasPorCliente = (req, res) => {
       },
     }));
 
-    console.log(compras);
-
     res.render("compras/comprasPorCliente", { compras, cliente });
   });
 };

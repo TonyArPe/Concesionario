@@ -2,20 +2,20 @@ extends ../templates/layout
 
 block content 
 
-    form(action="/alumnos/add", method="post") 
-            .mb-3
-                label.form-label(for="Marca") Marca:
-                input.form-control(type="text", name="Marca")
-            .mb-3
-                label.form-label(for="Modelo") Modelo:
-                input.form-control(type="text", name="Modelo")
-            .mb-3
-                label.form-label(for="Anio") Año:
-                input.form-control(type="text", name="anio")
-            .mb-3
-                label.form-label(for="Combustible") Combustible:
-                input.form-control(type="text", name="Precio")
-            .mb-3
-                label.form-label(for="Precio") Precio:
-                input.form-control(type="text", name="Combustible")
-            button.btn.btn-primary(type="submit") Enviar
+    form(action="/vehiculos/add", method="post") 
+            .campo
+                label(for="Marca") Marca:
+                input(type="text", name="Marca")
+            .campo
+                label(for="Modelo") Modelo:
+                input(type="text", name="Modelo")
+            .campo
+                label(for="Anio") Año:
+                input(type="text", name="anio")
+            .campo
+                label(for="Combustible") Combustible:
+                input(type="text", name="Precio")
+            .campo
+                label(for="Precio") Precio:
+                input(type="text", name="Combustible")
+            button.edit(type="submit") Enviar

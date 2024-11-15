@@ -126,7 +126,7 @@ function readJsonFile() {
 // Ruta de login
 app.get('/', (req, res) => {
     if (req.session.user)
-        res.render('index', {user: req.session.user, titulo: 'Inicio'})
+        res.render('dashboard', {user: req.session.user})
     else 
         res.redirect('/login')
 });
@@ -160,12 +160,6 @@ app.post('/register', (req, res) => {
             });
         }
     });
-});
-
-// Ruta del dashboard (después del login)
-app.get('/dashboard', (req, res) => {
-    // Aquí podrías pasar datos como el usuario logueado, etc.
-    res.render('dashboard', { usuario: 'admin' });
 });
 
 /**
