@@ -1,8 +1,8 @@
 const db = require("../db");
 const clienteController = require("./clienteController");
 
-// Función para listar todas las compras
 exports.listarCompras = (req, res) => {
+  // Primera consulta: obtener las compras
   db.query(
     `SELECT 
       Compra.ID_Compra, Compra.Fecha_Compra, Compra.Precio_Compra,
@@ -13,14 +13,15 @@ exports.listarCompras = (req, res) => {
       Compra
     INNER JOIN Cliente ON Cliente.ID_Cliente = Compra.ID_Cliente
     INNER JOIN Vehiculo ON Vehiculo.ID_Vehiculo = Compra.ID_Vehiculo`,
-    (err, response) => {
+    (err, responseCompras) => {
       if (err) {
         console.error("Error al hacer la consulta de compras: ", err);
         res.send("ERROR al hacer la consulta");
         return;
       }
 
-      const compras = response.map((compra) => ({
+      // Procesar las compras
+      const compras = responseCompras.map((compra) => ({
         ID_Compra: compra.ID_Compra,
         Fecha_Compra: compra.Fecha_Compra,
         Precio_Compra: parseFloat(compra.Precio_Compra),
@@ -40,10 +41,17 @@ exports.listarCompras = (req, res) => {
         },
       }));
 
-      const clientes = clienteController.listarClientes()
-      console.log(clientes.Cliente)
+      // Segunda consulta: obtener los clientes
+      db.query("SELECT * FROM `Cliente`", (err, responseClientes) => {
+        if (err) {
+          console.error("Error al hacer la consulta de clientes: ", err);
+          res.send("ERROR al obtener los clientes");
+          return;
+        }
 
-      res.render("compras/list", { compras, clientes });
+        // Renderizar la vista con ambas consultas
+        res.render("compras/list", { compras, clientes: responseClientes });
+      });
     }
   );
 };

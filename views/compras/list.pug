@@ -1,13 +1,13 @@
 extends ../templates/layout
 
-block content
-    div(class="container")
-            h3 Listado de Clientes: 
-                each cliente in clientes
-                    span #{cliente.Nombre} 
+block content 
 
-    if !cliente
         .ventas
+            .clientes-dropdown
+                label(for="cliente-select") Seleccionar Cliente:
+                select#cliente-select(name="cliente")
+                    each cliente in clientes
+                        option(value=cliente.ID_Cliente)= cliente.Nombre
             each compra in compras
                 .venta 
                     .venta-info
@@ -35,27 +35,8 @@ block content
                         p=compra.Vehiculo.Modelo
                         p=compra.Vehiculo.Anio
                         p=compra.Vehiculo.Combustible
-    else
-        .ventas
-            each compra in compras
-                .venta-cc
-                    .venta-info
-                        i.material-icons shopping_bag
-                        p=compra.ID_Compra
-                        p=compra.Fecha_Compra
-                        p=compra.Precio_Compra
-                        .cliente-btn
-                            a(href=`/compras/del/${compra.ID_Compra}`)
-                                button.del
-                                    i.material-icons delete
-                            a(href=`/compras/edit/${compra.ID_Compra}`)
-                                button.edit
-                                    i.material-icons edit
-                    .venta-vehiculo-info
-                        i.material-icons directions_car
-                        p=compra.Vehiculo.ID_Vehiculo
-                        p=compra.Vehiculo.Marca
-                        p=compra.Vehiculo.Modelo
-                        p=compra.Vehiculo.Anio
-                        p=compra.Vehiculo.Combustible
-                
+
+            <script>
+            
+            </script>
+
