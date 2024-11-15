@@ -4,6 +4,7 @@ const comprasController = require('../controllers/compraController');
 
 
 router.get('/', comprasController.listarCompras);
+router.post('/', comprasController.listarComprasPorCliente);
 
 router.get('/add', comprasController.formularioCompraAdd);
 router.post('/add', comprasController.compraAdd);
@@ -16,6 +17,7 @@ router.post('/edit/:id', comprasController.compraEdit);
 
 // Ruta para listar las compras de un cliente específico
 router.get('/clientes/:id', comprasController.listarComprasPorCliente);
+router.post('/clientes/:id', comprasController.listarComprasPorCliente);
 
 /**Todo implementaar controllaador clientes en es te router */
 

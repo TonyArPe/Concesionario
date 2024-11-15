@@ -221,7 +221,7 @@ footer img {
 /*Formularios*/
 
 form{
-  height: 500px;
+  height: auto;
   background-color: #cfd8dc;
   padding: 30px;
   display: flex;

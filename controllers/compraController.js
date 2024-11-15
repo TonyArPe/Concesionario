@@ -229,6 +229,17 @@ exports.listarComprasPorCliente = (req, res) => {
       },
     }));
 
-    res.render("compras/comprasPorCliente", { compras, cliente });
+    let clientes = null
+
+    // Segunda consulta: obtener los clientes
+    db.query("SELECT * FROM `Cliente`", (err, responseClientes) => {
+      if (err) {
+        console.error("Error al hacer la consulta de clientes: ", err);
+        res.send("ERROR al obtener los clientes");
+        return;
+      }
+      clientes = responseClientes
+    });
+    res.render("compras/comprasPorCliente", { compras, cliente, clientes });
   });
 };

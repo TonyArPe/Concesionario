@@ -2,6 +2,13 @@ extends ../templates/layout
 
 block content
     .ventas
+        .clientes-dropdown
+            form(action="/compras/clientes", method="POST")
+                label(for="cliente-select") Seleccionar Cliente:
+                select#cliente-select(name="cliente")
+                    each cliente in clientes
+                        option(value=cliente.ID_Cliente)= cliente.Nombre
+                button(type="submit") Buscar
         each compra in compras
             .venta-cc
                 .venta-info
