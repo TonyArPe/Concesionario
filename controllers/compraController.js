@@ -1,4 +1,4 @@
-const db = require('../db');
+const db = require("../db");
 
 // Función para listar todas las compras
 exports.listarCompras = (req, res) => {
@@ -12,12 +12,32 @@ exports.listarCompras = (req, res) => {
       Compra
     INNER JOIN Cliente ON Cliente.ID_Cliente = Compra.ID_Cliente
     INNER JOIN Vehiculo ON Vehiculo.ID_Vehiculo = Compra.ID_Vehiculo`,
-    (err, compras) => {
+    (err, response) => {
       if (err) {
         console.error("Error al hacer la consulta de compras: ", err);
         res.send("ERROR al hacer la consulta");
         return;
       }
+
+      const compras = response.map((compra) => ({
+        ID_Compra: compra.ID_Compra,
+        Fecha_Compra: compra.Fecha_Compra,
+        Precio_Compra: parseFloat(compra.Precio_Compra),
+        Cliente: {
+          ID_Cliente: compra.ID_Cliente,
+          Nombre: compra.Nombre,
+          Telefono: compra.Telefono,
+          Direccion: compra.Direccion,
+        },
+        Vehiculo: {
+          ID_Vehiculo: compra.ID_Vehiculo,
+          Marca: compra.Marca,
+          Modelo: compra.Modelo,
+          Anio: compra.Anio,
+          Precio: parseFloat(compra.Precio),
+          Combustible: compra.Combustible,
+        },
+      }));
 
       res.render("compras/list", { compras });
     }
@@ -35,7 +55,6 @@ exports.formularioCompraAdd = (req, res) => {
     res.render("compras/add", { vehiculos });
   });
 };
-
 
 // Función para añadir una compra
 exports.compraAdd = (req, res) => {
@@ -60,18 +79,22 @@ exports.formularioCompraDel = (req, res) => {
   if (isNaN(id)) {
     res.send("PARÁMETROS INCORRECTOS");
   } else {
-    db.query("SELECT * FROM Compra WHERE ID_Compra=?", [id], (error, respuesta) => {
-      if (error) {
-        console.error("Error al intentar borrar compra: ", error);
-        res.send("ERROR AL INTENTAR BORRAR COMPRA");
-        return;
+    db.query(
+      "SELECT * FROM Compra WHERE ID_Compra=?",
+      [id],
+      (error, respuesta) => {
+        if (error) {
+          console.error("Error al intentar borrar compra: ", error);
+          res.send("ERROR AL INTENTAR BORRAR COMPRA");
+          return;
+        }
+        if (respuesta.length > 0) {
+          res.render("compras/del", { compra: respuesta[0] });
+        } else {
+          res.send("ERROR AL INTENTAR BORRAR COMPRA, NO EXISTE");
+        }
       }
-      if (respuesta.length > 0) {
-        res.render("compras/del", { compra: respuesta[0] });
-      } else {
-        res.send("ERROR AL INTENTAR BORRAR COMPRA, NO EXISTE");
-      }
-    });
+    );
   }
 };
 
@@ -81,14 +104,18 @@ exports.compraDel = (req, res) => {
   if (isNaN(id)) {
     res.send("ERROR BORRANDO COMPRA");
   } else {
-    db.query("DELETE FROM Compra WHERE ID_Compra=?", [id], (error, respuesta) => {
-      if (error) {
-        console.error("Error al eliminar la compra: ", error);
-        res.send("ERROR AL ELIMINAR COMPRA");
-        return;
+    db.query(
+      "DELETE FROM Compra WHERE ID_Compra=?",
+      [id],
+      (error, respuesta) => {
+        if (error) {
+          console.error("Error al eliminar la compra: ", error);
+          res.send("ERROR AL ELIMINAR COMPRA");
+          return;
+        }
+        res.redirect("/compras");
       }
-      res.redirect("/compras");
-    });
+    );
   }
 };
 
@@ -98,25 +125,29 @@ exports.formularioCompraEdit = (req, res) => {
   if (isNaN(id)) {
     res.send("PARÁMETROS INCORRECTOS");
   } else {
-    db.query("SELECT * FROM Compra WHERE ID_Compra=?", [id], (error, respuesta) => {
-      if (error) {
-        console.error("Error al intentar editar compra: ", error);
-        res.send("ERROR AL INTENTAR EDITAR COMPRA");
-        return;
+    db.query(
+      "SELECT * FROM Compra WHERE ID_Compra=?",
+      [id],
+      (error, respuesta) => {
+        if (error) {
+          console.error("Error al intentar editar compra: ", error);
+          res.send("ERROR AL INTENTAR EDITAR COMPRA");
+          return;
+        }
+        if (respuesta.length > 0) {
+          db.query("SELECT * FROM Vehiculo", (err, vehiculos) => {
+            if (err) {
+              console.error("Error al obtener los vehículos: ", err);
+              res.send("ERROR AL OBTENER LOS VEHÍCULOS");
+              return;
+            }
+            res.render("compras/edit", { compra: respuesta[0], vehiculos });
+          });
+        } else {
+          res.send("ERROR AL INTENTAR EDITAR COMPRA, NO EXISTE");
+        }
       }
-      if (respuesta.length > 0) {
-        db.query("SELECT * FROM Vehiculo", (err, vehiculos) => {
-          if (err) {
-            console.error("Error al obtener los vehículos: ", err);
-            res.send("ERROR AL OBTENER LOS VEHÍCULOS");
-            return;
-          }
-          res.render("compras/edit", { compra: respuesta[0], vehiculos });
-        });
-      } else {
-        res.send("ERROR AL INTENTAR EDITAR COMPRA, NO EXISTE");
-      }
-    });
+    );
   }
 };
 
@@ -165,26 +196,29 @@ exports.listarComprasPorCliente = (req, res) => {
       return;
     }
 
+    const cliente = {
+      ID_Cliente: response[0].ID_Cliente,
+      Nombre: response[0].Nombre,
+      Telefono: response[0].Telefono,
+      Direccion: response[0].Direccion,
+    };
+
     const compras = response.map((compra) => ({
       ID_Compra: compra.ID_Compra,
       Fecha_Compra: compra.Fecha_Compra,
       Precio_Compra: parseFloat(compra.Precio_Compra),
-      Cliente: {
-        ID_Cliente: compra.ID_Cliente,
-        Nombre: compra.Nombre,
-        Telefono: compra.Telefono,
-        Direccion: compra.Direccion
-      },
       Vehiculo: {
         ID_Vehiculo: compra.ID_Vehiculo,
         Marca: compra.Marca,
         Modelo: compra.Modelo,
         Anio: compra.Anio,
         Precio: parseFloat(compra.Precio),
-        Combustible: compra.Combustible
-      }
+        Combustible: compra.Combustible,
+      },
     }));
 
-    res.render("compras/list", { compras });
+    console.log(compras);
+
+    res.render("compras/comprasPorCliente", { compras, cliente });
   });
 };
