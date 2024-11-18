@@ -14,13 +14,15 @@ exports.register = (req, res) =>{
             'INSERT INTO Usuario (Usuario, Contrasena) VALUES (?,?)',
             [datosUsuario.username, datosUsuario.password, 0],
             (error, respuesta) => {
-                if (error) res.send('ERROR INSERTANDO usuario' + req.body)
-                    else res.render('register', {errorMsg: 'Usuario ya registrado'});
+                if (error)
+                  res.render('register', { errorMsg: 'Usuario ya registrado'});
+                else 
+                  res.redirect('login')
             
-        }
+        } 
       );                
     } catch (error) {
-        res.render('register', { errorMsg: 'Error ' + error});
+        res.render('register', { errorMsg: 'Error inesperado'});
     }   
 };
 
@@ -43,10 +45,8 @@ exports.login = (req, res)=>{
         }
       }
     );
-  } catch (error) {
-    res.render("register", { errorMsg: "Error " + error });
-  }
-};
+  } 
+
 
 exports.loginForm = (req, res) => {
   res.render("login");
