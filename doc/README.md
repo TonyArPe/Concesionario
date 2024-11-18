@@ -376,6 +376,9 @@ Creamos nuestra base de datos llamada **initdb.sql** en la carpeta raiz de nuest
 
 * Creamos el fichero de rutas **vehiculoRouter.js** en la carpeta routes
 
+### RUTAS
+
+
 ### ClienteController.js
 
 * Creamos el controlador ClienteController.js

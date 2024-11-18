@@ -6,8 +6,11 @@ block content
             form(action="/ventas/vehiculos", method="POST")
                 label(for="vehiculo-select") Seleccionar Vehiculo:
                 select#vehiculo-select(name="vehiculo")
-                    each vehiculo in vehiculos
-                        option(value=vehiculo.ID_Vehiculo)= vehiculo.Marca
+                    each vehi in vehiculos
+                        if vehi.ID_Vehiculo === vehi.ID_Vehiculo
+                            option(value=vehi.ID_Vehiculo selected)= cli.Marca
+                        else
+                            option(value=vehi.ID_Vehiculo)= vehi.Marca
                 button(type="submit") Buscar
         each venta in ventas
             .venta-cc
