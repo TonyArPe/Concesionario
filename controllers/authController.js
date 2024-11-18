@@ -12,7 +12,7 @@ exports.register = (req, res) => {
     // guardamos el usuario en la BBDD
     db.query(
       "INSERT INTO Usuario (Usuario, Contrasena) VALUES (?,?)",
-      [datosUsuario.username, datosUsuario.password, 0],
+      [datosUsuario.username, datosUsuario.password],
       (error, respuesta) => {
         if (error)
           res.render("register", { errorMsg: `Usuario ya registrado` });
