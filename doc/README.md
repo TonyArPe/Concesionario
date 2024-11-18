@@ -374,30 +374,41 @@ Creamos nuestra base de datos llamada **initdb.sql** en la carpeta raiz de nuest
 
 * Creamos el controlador VehiculoController.js
 
-* Creamos el fichero de rutas **vehiculo.js** en la carpeta routes
-
-# AQUI PONES EL TEMA DE LAS RUTAS PARA LOS CONTROLADORES RAFA
+* Creamos el fichero de rutas **vehiculoRouter.js** en la carpeta routes
 
 ### ClienteController.js
 
 * Creamos el controlador ClienteController.js
 
-* Creamos el fichero de rutas **cliente.js** en la carpeta routes
+* Creamos el fichero de rutas **clienteRouter.js** en la carpeta routes
 
-# AQUI PONES EL TEMA DE LAS RUTAS PARA LOS CONTROLADORES RAFA
 
 ### VentaController.js
 
 * Creamos el controlador VentaController.js
 
-* Creamos el fichero de rutas **venta.js** en la carpeta routes
+* Creamos el fichero de rutas **ventaRouter.js** en la carpeta routes
 
-# AQUI PONES EL TEMA DE LAS RUTAS PARA LOS CONTROLADORES RAFA
 
 ### CompraController.js
 
 * Creamos el controlador CompraController.js
 
-* Creamos el fichero de rutas **compra.js** en la carpeta routes
+* Creamos el fichero de rutas **compraRouter.js** en la carpeta routes
 
-# AQUI PONES EL TEMA DE LAS RUTAS PARA LOS CONTROLADORES RAFA
+### AuthController.js
+
+* Creamos el controlador AuthController.js
+
+* Creamos el fichero de rutas **authRouter.js** en la carpeta routes
+
+## MOTOR DE PLANTILLAS PUG
+
+Gracias a la rapidez y velocidad a la hora de generar archivos html utilizaremos este motor de plantillas
+en el cual hemos creado unas plantillas que usaremos y exportaremos a las demas paginas.
+
+En la carpeta *templates* se encuentran el *head, footer y layout* que exportaremos a las demas,
+y asi ahorrar tiempo de codigo.
+
+En la raiz de la carpeta *views* se encontrara la pagina principal del login el cual cuando
+nos hayamos registrado correctamente nos dejara tener acceso a todo lo demas.
