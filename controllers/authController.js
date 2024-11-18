@@ -34,7 +34,7 @@ exports.login = (req, res)=>{
     const {username, password} = req.body;
     db.query(
       "INSERT INTO Usuario (Usuario, Contrasena) VALUES (?,?)",
-      [datosUsuario.username, datosUsuario.password, 0],
+      [datosUsuario.username, datosUsuario.password],
       (error, respuesta) => {
         if (error)
           res.render("register", { errorMsg: `Usuario ya registrado` });

@@ -6,8 +6,11 @@ block content
             form(action="/compras/clientes", method="POST")
                 label(for="cliente-select") Seleccionar Cliente:
                 select#cliente-select(name="cliente")
-                    each cliente in clientes
-                        option(value=cliente.ID_Cliente)= cliente.Nombre
+                    each cli in clientes
+                        if cliente.ID_Cliente === cli.ID_Cliente
+                            option(value=cli.ID_Cliente selected)= cli.Nombre
+                        else
+                            option(value=cli.ID_Cliente)= cli.Nombre
                 button(type="submit") Buscar
         each compra in compras
             .venta-cc
@@ -30,4 +33,12 @@ block content
                     p=compra.Vehiculo.Modelo
                     p=compra.Vehiculo.Anio
                     p=compra.Vehiculo.Combustible
+
+    script.
+        document.querySelector('form').addEventListener('submit', function (e) {
+            const clienteID = document.getElementById('cliente-select').value;
+            if (clienteID) {
+                this.action = `/compras/clientes/${clienteID}`;
+            }
+        });
                 

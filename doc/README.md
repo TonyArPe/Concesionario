@@ -1,6 +1,8 @@
-# ProyectoConjuntoGrupo6
+# CONCESIONARIO LOS PALLOS
 
 ## Especificaciones del proyecto
+
+## Sistema de Gestión de Compra-Venta de Vehículos
 
 Compra-Venta Coches
 Una agencia de vehículos quiere implementar un sistema para gestionar la compra y venta de autos. La agencia necesita registrar la siguiente información:
@@ -19,46 +21,6 @@ Relaciones:
 Un cliente puede vender varios vehículos a la agencia, pero un vehículo sólo puede ser vendido una vez.
 Un cliente puede comprar múltiples vehículos, pero cada venta es independiente.
 Cada vehículo puede estar en una de las transacciones (compra o venta).
-
-
-Solución
-
-@startuml
-entity "Vehículo" {
-    +ID_Vehiculo : int
-    Marca : string
-    Modelo : string
-    Año : int
-    Precio : float
-    Combustible : string
-}
-
-entity "Cliente" {
-    +ID_Cliente : int
-    Nombre : string
-    Telefono : string
-    Direccion : string
-}
-
-entity "Venta" {
-    +ID_Venta : int
-    Fecha_Venta : date
-    Total : float
-}
-
-entity "Compra" {
-    +ID_Compra : int
-    Fecha_Compra : date
-    Precio_Compra : float
-}
-
-' Relación entre entidades
-Cliente ||--o{ Venta : Realiza
-Cliente ||--o{ Compra : Ofrece
-Venta }|--|| Vehículo : Incluye
-Compra }|--|| Vehículo : Comprado
-
-@enduml
 
 ## Explicación:
 
@@ -225,58 +187,58 @@ Estos se iniciaran nada mas realizar la conexion con nuestra base de datos.
 
 ## VEHICULOS:
 
-| VEHICULO  |   MARCA   |   MODELO   |   AÑO  |   PRECIO   |   COMBUSTIBLE |
-|-----------|-----------|------------|--------|------------|---------------|
-| 1         | Chevrolet | Sedan     | 2004   | 40679,89   | Gasolina      |
-| 2         | Toyota    | Hatchback | 2005   | 30269,74   | Eléctrico     |
-| 3         | Chevrolet | Coupe     | 2023   | 18915,95   | Diesel        |
-| 4         | Toyota    | Coupe     | 2000   | 12770,17   | Híbrido       |
-| 5         | Toyota    | Coupe     | 2003   | 15343,84   | Diesel        |
-| 6         | BMW       | Sedan     | 2017   | 49996,86   | Eléctrico     |
-| 7         | Chevrolet | SUV       | 2003   | 21170,79   | Híbrido       |
-| 8         | Chevrolet | SUV       | 2022   | 21421,32   | Híbrido       |
-| 9         | Toyota    | Coupe     | 2001   | 36687,32   | Híbrido       |
-| 10        | Toyota    | Coupe     | 2015   | 45768,36   | Diesel        |
-| 11        | Toyota    | SUV       | 2011   | 8726,65    | Híbrido       |
-| 12        | Ford      | Truck     | 2023   | 17419,34   | Gasolina      |
-| 13        | Toyota    | Hatchback | 2001   | 12121,02   | Gasolina      |
-| 14        | Ford      | Truck     | 2006   | 12688,86   | Diesel        |
-| 15        | BMW       | Hatchback | 2008   | 6853,59    | Diesel        |
+| VEHICULO | MARCA     | MODELO    | AÑO  | PRECIO   | COMBUSTIBLE |
+| -------- | --------- | --------- | ---- | -------- | ----------- |
+| 1        | Chevrolet | Sedan     | 2004 | 40679,89 | Gasolina    |
+| 2        | Toyota    | Hatchback | 2005 | 30269,74 | Eléctrico   |
+| 3        | Chevrolet | Coupe     | 2023 | 18915,95 | Diesel      |
+| 4        | Toyota    | Coupe     | 2000 | 12770,17 | Híbrido     |
+| 5        | Toyota    | Coupe     | 2003 | 15343,84 | Diesel      |
+| 6        | BMW       | Sedan     | 2017 | 49996,86 | Eléctrico   |
+| 7        | Chevrolet | SUV       | 2003 | 21170,79 | Híbrido     |
+| 8        | Chevrolet | SUV       | 2022 | 21421,32 | Híbrido     |
+| 9        | Toyota    | Coupe     | 2001 | 36687,32 | Híbrido     |
+| 10       | Toyota    | Coupe     | 2015 | 45768,36 | Diesel      |
+| 11       | Toyota    | SUV       | 2011 | 8726,65  | Híbrido     |
+| 12       | Ford      | Truck     | 2023 | 17419,34 | Gasolina    |
+| 13       | Toyota    | Hatchback | 2001 | 12121,02 | Gasolina    |
+| 14       | Ford      | Truck     | 2006 | 12688,86 | Diesel      |
+| 15       | BMW       | Hatchback | 2008 | 6853,59  | Diesel      |
 
 ## CLIENTES:
 
-| ID_Cliente | Nombre  | Teléfono  | Dirección          |
-|------------|---------|-----------|--------------------|
-| 1          | Ana     | 555-8386  | Calle 49 #963      |
-| 2          | John    | 555-9349  | Calle 31 #503      |
-| 3          | Carlos  | 555-5291  | Calle 45 #880      |
-| 4          | John    | 555-2304  | Calle 10 #987      |
-| 5          | Ana     | 555-9803  | Calle 34 #741      |
-| 6          | María   | 555-2693  | Calle 22 #162      |
-| 7          | Carlos  | 555-7015  | Calle 36 #114      |
-| 8          | John    | 555-5441  | Calle 12 #212      |
-| 9          | Luis    | 555-7016  | Calle 27 #841      |
-| 10         | José    | 555-6500  | Calle 8 #757       |
+| ID_Cliente | Nombre | Teléfono | Dirección     |
+| ---------- | ------ | -------- | ------------- |
+| 1          | Ana    | 555-8386 | Calle 49 #963 |
+| 2          | John   | 555-9349 | Calle 31 #503 |
+| 3          | Carlos | 555-5291 | Calle 45 #880 |
+| 4          | John   | 555-2304 | Calle 10 #987 |
+| 5          | Ana    | 555-9803 | Calle 34 #741 |
+| 6          | María  | 555-2693 | Calle 22 #162 |
+| 7          | Carlos | 555-7015 | Calle 36 #114 |
+| 8          | John   | 555-5441 | Calle 12 #212 |
+| 9          | Luis   | 555-7016 | Calle 27 #841 |
+| 10         | José   | 555-6500 | Calle 8 #757  |
 
 ## VENTAS:
 
-| ID_Venta | Fecha_Venta | Total      |
-|----------|-------------|------------|
-| 1        | 2011-03-16  | 19958,86   |
-| 2        | 2012-02-04  | 15532,75   |
-| 3        | 2008-09-22  | 9883,78    |
-| 4        | 2003-05-31  | 10695,88   |
-| 5        | 2017-01-29  | 9786,14    |
-| 6        | 2013-08-06  | 20369,70   |
-| 7        | 1990-10-01  | 23385,75   |
-| 8        | 2016-01-10  | 11231,90   |
-| 9        | 2019-09-17  | 17253,66   |
-| 10       | 2016-09-03  | 6873,00    |
+| ID_Venta | Fecha_Venta | Total    |
+| -------- | ----------- | -------- |
+| 1        | 2011-03-16  | 19958,86 |
+| 2        | 2012-02-04  | 15532,75 |
+| 3        | 2008-09-22  | 9883,78  |
+| 4        | 2003-05-31  | 10695,88 |
+| 5        | 2017-01-29  | 9786,14  |
+| 6        | 2013-08-06  | 20369,70 |
+| 7        | 1990-10-01  | 23385,75 |
+| 8        | 2016-01-10  | 11231,90 |
+| 9        | 2019-09-17  | 17253,66 |
+| 10       | 2016-09-03  | 6873,00  |
 
 ## COMPRAS:
 
 | ID_Compra | Fecha_Compra | Precio_Compra |
-|-----------|--------------|---------------|
+| --------- | ------------ | ------------- |
 | 1         | 2006-03-22   | 10379,51      |
 | 2         | 2012-11-15   | 24973,73      |
 | 3         | 2018-10-09   | 18383,90      |
@@ -375,11 +337,49 @@ Creamos nuestra base de datos llamada **initdb.sql** en la carpeta raiz de nuest
 
 * Creamos el fichero de rutas **vehiculoRouter.js** en la carpeta routes
 
+### Tabla de Rutas para Vehículos
+
+| Método | Ruta                  | Descripción                                                            | Controlador / Funcionalidad |
+| ------ | --------------------- | ---------------------------------------------------------------------- | --------------------------- |
+| GET    | `/vehiculos/`         | Lista todos los vehículos disponibles.                                 | `listarVehiculos`           |
+| GET    | `/vehiculos/add`      | Muestra el formulario para añadir un nuevo vehículo.                   | `formularioVehiculoAdd`     |
+| POST   | `/vehiculos/add`      | Añade un nuevo vehículo a la base de datos.                            | `vehiculoAdd`               |
+| GET    | `/vehiculos/del/:id`  | Muestra el formulario para confirmar la eliminación de un vehículo.    | `formularioVehiculoDel`     |
+| POST   | `/vehiculos/del/:id`  | Elimina un vehículo de la base de datos.                               | `vehiculoDel`               |
+| GET    | `/vehiculos/edit/:id` | Muestra el formulario para editar los datos de un vehículo específico. | `formularioVehiculoEdit`    |
+| POST   | `/vehiculos/edit/:id` | Actualiza los datos de un vehículo en la base de datos.                | `vehiculoEdit`              |
+
+### Explicación de columnas:
+1. **Método**: El método HTTP utilizado para la ruta (GET, POST).
+2. **Ruta**: La URL que está asociada con la ruta del controlador.
+3. **Descripción**: Breve explicación de lo que hace cada ruta.
+4. **Controlador / Funcionalidad**: Nombre del controlador y la función que se ejecuta cuando se accede a esa ruta.
+
+
+
 ### ClienteController.js
 
 * Creamos el controlador ClienteController.js
 
 * Creamos el fichero de rutas **clienteRouter.js** en la carpeta routes
+### Tabla de Rutas para Clientes
+
+| Método | Ruta                 | Descripción                                                           | Controlador / Funcionalidad |
+| ------ | -------------------- | --------------------------------------------------------------------- | --------------------------- |
+| GET    | `/clientes/`         | Lista todos los clientes disponibles.                                 | `listarClientes`            |
+| GET    | `/clientes/add`      | Muestra el formulario para añadir un nuevo cliente.                   | `formularioClienteAdd`      |
+| POST   | `/clientes/add`      | Añade un nuevo cliente a la base de datos.                            | `clienteAdd`                |
+| GET    | `/clientes/del/:id`  | Muestra el formulario para confirmar la eliminación de un cliente.    | `formularioClienteDel`      |
+| POST   | `/clientes/del/:id`  | Elimina un cliente de la base de datos.                               | `clienteDel`                |
+| GET    | `/clientes/edit/:id` | Muestra el formulario para editar los datos de un cliente específico. | `formularioClienteEdit`     |
+| POST   | `/clientes/edit/:id` | Actualiza los datos de un cliente en la base de datos.                | `clienteEdit`               |
+
+### Explicación de columnas:
+1. **Método**: El método HTTP utilizado para la ruta (GET, POST).
+2. **Ruta**: La URL que está asociada con la ruta del controlador.
+3. **Descripción**: Breve explicación de lo que hace cada ruta.
+4. **Controlador / Funcionalidad**: Nombre del controlador y la función que se ejecuta cuando se accede a esa ruta.
+
 
 
 ### VentaController.js
@@ -388,6 +388,27 @@ Creamos nuestra base de datos llamada **initdb.sql** en la carpeta raiz de nuest
 
 * Creamos el fichero de rutas **ventaRouter.js** en la carpeta routes
 
+### Tabla de Rutas para Ventas
+
+| Método | Ruta                    | Descripción                                                          | Controlador / Funcionalidad |
+| ------ | ----------------------- | -------------------------------------------------------------------- | --------------------------- |
+| GET    | `/ventas/`              | Lista todas las ventas disponibles.                                  | `listarVentas`              |
+| GET    | `/ventas/add`           | Muestra el formulario para añadir una nueva venta.                   | `formularioVentaAdd`        |
+| POST   | `/ventas/add`           | Añade una nueva venta a la base de datos.                            | `ventaAdd`                  |
+| GET    | `/ventas/del/:id`       | Muestra el formulario para confirmar la eliminación de una venta.    | `formularioVentaDel`        |
+| POST   | `/ventas/del/:id`       | Elimina una venta de la base de datos.                               | `ventaDel`                  |
+| GET    | `/ventas/edit/:id`      | Muestra el formulario para editar los datos de una venta específica. | `formularioVentaEdit`       |
+| POST   | `/ventas/edit/:id`      | Actualiza los datos de una venta en la base de datos.                | `ventaEdit`                 |
+| GET    | `/ventas/vehiculos/:id` | Lista las ventas asociadas a un vehículo específico.                 | `listarVentasPorVehiculo`   |
+| POST   | `/ventas/vehiculos/:id` | Lista las ventas asociadas a un vehículo específico.                 | `listarVentasPorVehiculo`   |
+
+### Explicación de columnas:
+1. **Método**: El método HTTP utilizado para la ruta (GET, POST).
+2. **Ruta**: La URL que está asociada con la ruta del controlador.
+3. **Descripción**: Breve explicación de lo que hace cada ruta.
+4. **Controlador / Funcionalidad**: Nombre del controlador y la función que se ejecuta cuando se accede a esa ruta.
+
+
 
 ### CompraController.js
 
@@ -395,11 +416,50 @@ Creamos nuestra base de datos llamada **initdb.sql** en la carpeta raiz de nuest
 
 * Creamos el fichero de rutas **compraRouter.js** en la carpeta routes
 
+### Tabla de Rutas para Compras
+
+| Método | Ruta                    | Descripción                                                           | Controlador / Funcionalidad |
+| ------ | ----------------------- | --------------------------------------------------------------------- | --------------------------- |
+| GET    | `/compras/`             | Lista todas las compras disponibles.                                  | `listarCompras`             |
+| POST   | `/compras/`             | Lista las compras asociadas a un cliente específico.                  | `listarComprasPorCliente`   |
+| GET    | `/compras/add`          | Muestra el formulario para añadir una nueva compra.                   | `formularioCompraAdd`       |
+| POST   | `/compras/add`          | Añade una nueva compra a la base de datos.                            | `compraAdd`                 |
+| GET    | `/compras/del/:id`      | Muestra el formulario para confirmar la eliminación de una compra.    | `formularioCompraDel`       |
+| POST   | `/compras/del/:id`      | Elimina una compra de la base de datos.                               | `compraDel`                 |
+| GET    | `/compras/edit/:id`     | Muestra el formulario para editar los datos de una compra específica. | `formularioCompraEdit`      |
+| POST   | `/compras/edit/:id`     | Actualiza los datos de una compra en la base de datos.                | `compraEdit`                |
+| GET    | `/compras/clientes/:id` | Lista las compras asociadas a un cliente específico.                  | `listarComprasPorCliente`   |
+| POST   | `/compras/clientes/:id` | Lista las compras asociadas a un cliente específico.                  | `listarComprasPorCliente`   |
+
+### Explicación de columnas:
+1. **Método**: El método HTTP utilizado para la ruta (GET, POST).
+2. **Ruta**: La URL que está asociada con la ruta del controlador.
+3. **Descripción**: Breve explicación de lo que hace cada ruta.
+4. **Controlador / Funcionalidad**: Nombre del controlador y la función que se ejecuta cuando se accede a esa ruta.
+
+
 ### AuthController.js
 
 * Creamos el controlador AuthController.js
 
 * Creamos el fichero de rutas **authRouter.js** en la carpeta routes
+
+### Tabla de Rutas para Autenticación
+
+| Método | Ruta             | Descripción                                | Controlador / Funcionalidad |
+| ------ | ---------------- | ------------------------------------------ | --------------------------- |
+| GET    | `/auth/register` | Muestra el formulario de registro.         | `registerForm`              |
+| POST   | `/auth/register` | Registra a un nuevo usuario.               | `register`                  |
+| GET    | `/auth/login`    | Muestra el formulario de inicio de sesión. | `loginForm`                 |
+| POST   | `/auth/login`    | Inicia sesión con un usuario.              | `login`                     |
+| GET    | `/auth/logout`   | Cierra la sesión del usuario.              | `logout`                    |
+
+### Explicación de columnas:
+1. **Método**: El método HTTP utilizado para la ruta (GET, POST).
+2. **Ruta**: La URL que está asociada con la ruta del controlador.
+3. **Descripción**: Breve explicación de lo que hace cada ruta.
+4. **Controlador / Funcionalidad**: Nombre del controlador y la función que se ejecuta cuando se accede a esa ruta.
+
 
 ## MOTOR DE PLANTILLAS PUG
 
