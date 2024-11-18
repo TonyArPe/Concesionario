@@ -7,6 +7,7 @@ body
             a(href="/clientes") CLIENTES
             a(href="/compras") COMPRAS
             a(href="/ventas") VENTAS
-            a(href="/auth/logout") SALIR
+            a.salir(href="/auth/logout")
+                i.material-icons logout
         if !currentUser
             img.no-session(src="/images/logo1.png" alt="Logo concesionario")    

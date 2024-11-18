@@ -1,8 +1,8 @@
 extends ../templates/layout
 
 block content
-    a(href="/clientes/add") Añadir carro
     .clientes
+        a(href="/clientes/add") Añadir cliente
         each cliente in clientes
             .cliente 
                 .venta-cliente-info

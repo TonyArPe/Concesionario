@@ -7,10 +7,10 @@ block content
                 label(for="vehiculo-select") Seleccionar Vehiculo:
                 select#vehiculo-select(name="vehiculo")
                     each vehi in vehiculos
-                        if vehi.ID_Vehiculo === vehi.ID_Vehiculo
-                            option(value=vehi.ID_Vehiculo selected)= cli.Marca
+                        if vehi.ID_Vehiculo === vehiculo.ID_Vehiculo
+                            option(value=vehi.ID_Vehiculo selected)= `${vehi.Marca} ${vehi.Modelo}`
                         else
-                            option(value=vehi.ID_Vehiculo)= vehi.Marca
+                            option(value=vehi.ID_Vehiculo)= `${vehi.Marca} ${vehi.Modelo}`
                 button(type="submit") Buscar
         each venta in ventas
             .venta-cc
