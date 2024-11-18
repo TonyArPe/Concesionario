@@ -2,42 +2,35 @@ extends ../templates/layout
 
 block content
     .ventas
-        .vehiculos-dropdown
+        .clientes-dropdown
             form(action="/ventas/vehiculos", method="POST")
-                label(for="vehiculo-select") Seleccionar Vehículo:
+                label(for="vehiculo-select") Seleccionar Vehiculo:
                 select#vehiculo-select(name="vehiculo")
                     each vehiculo in vehiculos
-                        option(value=vehiculo.ID_Vehiculo)= `${vehiculo.Marca} ${vehiculo.Modelo}`
+                        option(value=vehiculo.ID_Vehiculo)= vehiculo.Marca
                 button(type="submit") Buscar
-
         each venta in ventas
-            .venta 
+            .venta-cc
                 .venta-info
-                    i.material-icons attach_money
-                    p= venta.ID_Venta
-                    p= venta.Fecha_Venta
-                    p= venta.Total
-                    .vehiculo-btn
+                    i.material-icons shopping_bag
+                    p=venta.ID_Venta
+                    p=venta.Fecha_Venta
+                    p=venta.Total
+
+                    .cliente-btn
                         a(href=`/ventas/del/${venta.ID_Venta}`)
                             button.del
                                 i.material-icons delete
                         a(href=`/ventas/edit/${venta.ID_Venta}`)
                             button.edit
                                 i.material-icons edit
-                .venta-vehiculo-info
-                    i.material-icons directions_car
-                    p= venta.Vehiculo.ID_Vehiculo
-                    p= venta.Vehiculo.Marca
-                    p= venta.Vehiculo.Modelo
-                    p= venta.Vehiculo.Anio
-                    p= venta.Vehiculo.Combustible
                 .venta-cliente-info
                     i.material-icons person
-                    p= venta.Cliente.ID_Cliente
-                    p= venta.Cliente.Nombre
-                    p= venta.Cliente.Telefono
-                    p= venta.Cliente.Direccion
-
+                    p=venta.Cliente.ID_Cliente
+                    p=venta.Cliente.Nombre
+                    p=venta.Cliente.Telefono
+                    p=venta.Cliente.Direccion
+                
     script.
         document.querySelector('form').addEventListener('submit', function (e) {
             const vehiculoID = document.getElementById('vehiculo-select').value;
@@ -45,3 +38,4 @@ block content
                 this.action = `/ventas/vehiculos/${vehiculoID}`;
             }
         });
+                
