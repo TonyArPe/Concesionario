@@ -22,8 +22,8 @@ Cada vehículo puede estar en una de las transacciones (compra o venta).
 
 
 Solución
-
-@startuml
+```plantuml
+@startuml concesionarios
 entity "Vehículo" {
     +ID_Vehiculo : int
     Marca : string
@@ -59,6 +59,7 @@ Venta }|--|| Vehículo : Incluye
 Compra }|--|| Vehículo : Comprado
 
 @enduml
+```
 
 ## Explicación:
 

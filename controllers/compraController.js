@@ -208,12 +208,14 @@ exports.listarComprasPorCliente = (req, res) => {
       return;
     }
 
-    const cliente = {
-      ID_Cliente: response[0].ID_Cliente,
-      Nombre: response[0].Nombre,
-      Telefono: response[0].Telefono,
-      Direccion: response[0].Direccion,
-    };
+    const cliente = response.length > 0
+      ? {
+          ID_Cliente: response[0].ID_Cliente,
+          Nombre: response[0].Nombre,
+          Telefono: response[0].Telefono,
+          Direccion: response[0].Direccion,
+        }
+      : null;
 
     const compras = response.map((compra) => ({
       ID_Compra: compra.ID_Compra,
@@ -229,17 +231,17 @@ exports.listarComprasPorCliente = (req, res) => {
       },
     }));
 
-    let clientes = null
-
     // Segunda consulta: obtener los clientes
     db.query("SELECT * FROM `Cliente`", (err, responseClientes) => {
       if (err) {
         console.error("Error al hacer la consulta de clientes: ", err);
-        res.send("ERROR al obtener los clientes");
+        res.status(500).send("ERROR al obtener los clientes");
         return;
       }
-      clientes = responseClientes
+
+      // Renderizar la vista solo después de obtener todos los datos
+      res.render("compras/comprasPorCliente", { compras, cliente, clientes: responseClientes });
     });
-    res.render("compras/comprasPorCliente", { compras, cliente, clientes });
   });
 };
+

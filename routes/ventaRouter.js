@@ -15,7 +15,8 @@ router.get('/edit/:id', ventasController.formularioVentaEdit);
 router.post('/edit/:id', ventasController.ventaEdit);
 
 // Ruta para listar los vehículos de una venta específica
-router.get('/vehiculos/:id', ventasController.listarVehiculosPorVenta);
+router.get('/vehiculos/:id', ventasController.listarVentasPorVehiculo);
+router.post('/vehiculos/:id', ventasController.listarVentasPorVehiculo);
 
 // Listar los vehiculos que han vendido a un cliente
 // router.get('/:id/vehiculos', ventasController.listarVehiculos);

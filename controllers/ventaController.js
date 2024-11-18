@@ -1,5 +1,6 @@
 const express = require('express');
 const db = require('../db');
+const vehiculoController = require("./vehiculoController");
 
 /**
  * Función para listar todas las ventas
@@ -7,8 +8,9 @@ const db = require('../db');
  * @param {*} res 
  */
 exports.listarVentas = (req, res) => {
-  const query = `
-    SELECT 
+  // Primera consulta: obtener las compras
+  db.query(
+    `SELECT 
       Venta.ID_Venta, Venta.Fecha_Venta, Venta.Total,
       Cliente.ID_Cliente, Cliente.Nombre, Cliente.Telefono, Cliente.Direccion,
       Vehiculo.ID_Vehiculo, Vehiculo.Marca, Vehiculo.Modelo, Vehiculo.Anio, 
@@ -16,41 +18,49 @@ exports.listarVentas = (req, res) => {
     FROM 
       Venta
     INNER JOIN Cliente ON Cliente.ID_Cliente = Venta.ID_Cliente
-    INNER JOIN Vehiculo ON Vehiculo.ID_Vehiculo = Venta.ID_Vehiculo;
-  `;
-
-  db.query(query, (err, response) => {
-    if (err) {
-      res.status(500).send("ERROR al hacer la consulta");
-      return;
-    }
-
-    
-    const ventas = response.map((venta) => ({
-      ID_Venta: venta.ID_Venta,
-      Fecha_Venta: venta.Fecha_Venta,
-      Total: parseFloat(venta.Total), 
-      Cliente: {
-        ID_Cliente: venta.ID_Cliente,
-        Nombre: venta.Nombre,
-        Telefono: venta.Telefono,
-        Direccion: venta.Direccion
-      },
-      Vehiculo: {
-        ID_Vehiculo: venta.ID_Vehiculo,
-        Marca: venta.Marca,
-        Modelo: venta.Modelo,
-        Anio: venta.Anio,
-        Precio: parseFloat(venta.Precio), 
-        Combustible: venta.Combustible
+    INNER JOIN Vehiculo ON Vehiculo.ID_Vehiculo = Venta.ID_Vehiculo`,
+    (err, responseVentas) => {
+      if (err) {
+        console.error("Error al hacer la consulta de ventas: ", err);
+        res.send("ERROR al hacer la consulta");
+        return;
       }
-    }));
-  
-    res.render("ventas/list", { ventas });
-    
-  });
-};
 
+      // Procesar las ventas
+      const ventas = responseVentas.map((venta) => ({
+        ID_Venta: venta.ID_Venta,
+        Fecha_Venta: venta.Fecha_Venta,
+        Total: parseFloat(venta.Total),
+        Cliente: {
+          ID_Cliente: venta.ID_Cliente,
+          Nombre: venta.Nombre,
+          Telefono: venta.Telefono,
+          Direccion: venta.Direccion,
+        },
+        Vehiculo: {
+          ID_Vehiculo: venta.ID_Vehiculo,
+          Marca: venta.Marca,
+          Modelo: venta.Modelo,
+          Anio: venta.Anio,
+          Precio: parseFloat(venta.Precio),
+          Combustible: venta.Combustible,
+        },
+      }));
+
+      // Segunda consulta: obtener los vehiculos
+      db.query("SELECT * FROM `Vehiculo`", (err, responseVehiculos) => {
+        if (err) {
+          console.error("Error al hacer la consulta de vehiculos: ", err);
+          res.send("ERROR al obtener los vehiculos");
+          return;
+        }
+
+        // Renderizar la vista con ambas consultas
+        res.render("ventas/list", { ventas, vehiculos: responseVehiculos });
+      });
+    }
+  );
+};
 
 /**
  * Formulario para añadir una nueva venta
@@ -177,18 +187,61 @@ exports.ventaEdit = (req, res) => {
   }
 };
 
-// Método para listar los vehículos de una venta específica
-exports.listarVehiculosPorVenta = async (req, res) => {
-  const ventaId = req.params.id;
+// Función para listar ventas por vehículo
+exports.listarVentasPorVehiculo = (req, res) => {
+  const query = `
+    SELECT 
+      Venta.ID_Venta, Venta.Fecha_Venta, Venta.Total,
+      Vehiculo.ID_Vehiculo, Vehiculo.Marca, Vehiculo.Modelo, Vehiculo.Anio, 
+      Vehiculo.Combustible,
+      Cliente.ID_Cliente, Cliente.Nombre, Cliente.Telefono, Cliente.Direccion
+    FROM 
+      Venta
+    INNER JOIN Vehiculo ON Vehiculo.ID_Vehiculo = Venta.ID_Vehiculo
+    INNER JOIN Cliente ON Cliente.ID_Cliente = Venta.ID_Cliente
+    WHERE Vehiculo.ID_Vehiculo = ?;
+  `;
 
-  try {
-      const [vehiculos] = await db.query(
-          'SELECT * FROM Vehiculos WHERE ID_Venta = ?',
-          [ventaId]
-      );
-      res.render('vehiculosPorVenta', { vehiculos, ventaId });
-  } catch (error) {
-      console.error('Error al obtener vehículos de la venta:', error);
-      res.status(500).send('Error en el servidor');
-  }
+  db.query(query, [req.params.id], (err, response) => {
+    if (err) {
+      console.error("Error al hacer la consulta: ", err);
+      res.status(500).send("ERROR al hacer la consulta");
+      return;
+    }
+
+    const vehiculo = response.length > 0
+      ? {
+          ID_Vehiculo: response[0].ID_Vehiculo,
+          Marca: response[0].Marca,
+          Modelo: response[0].Modelo,
+          Anio: response[0].Anio,
+          Combustible: response[0].Combustible,
+        }
+      : null;
+
+    const ventas = response.map((venta) => ({
+      ID_Venta: venta.ID_Venta,
+      Fecha_Venta: venta.Fecha_Venta,
+      Total: parseFloat(venta.Total),
+      Cliente: {
+        ID_Cliente: venta.ID_Cliente,
+        Nombre: venta.Nombre,
+        Telefono: venta.Telefono,
+        Direccion: venta.Direccion,
+      },
+      Vehiculo: vehiculo,
+    }));
+
+    // Obtener los vehículos para el dropdown
+    db.query("SELECT * FROM `Vehiculo`", (err, responseVehiculos) => {
+      if (err) {
+        console.error("Error al hacer la consulta de vehículos: ", err);
+        res.status(500).send("ERROR al obtener los vehículos");
+        return;
+      }
+    
+      console.log("Vehículos obtenidos:", responseVehiculos);
+      res.render("ventas/vehiculosPorVenta", { ventas, vehiculo, vehiculos: responseVehiculos });
+    });
+  });
 };
