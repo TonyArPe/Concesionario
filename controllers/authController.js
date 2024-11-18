@@ -5,11 +5,31 @@ exports.registerForm = (req, res) => {
   res.render("register");
 };
 
-exports.register = (req, res) => {
-  const datosUsuario = req.body;
-  datosUsuario.password = bcrypt.hashSync(datosUsuario.password, 10);
-  try {
-    // guardamos el usuario en la BBDD
+exports.register = (req, res) =>{
+    const datosUsuario = req.body;
+    datosUsuario.password= bcrypt.hashSync(datosUsuario.password, 10);
+    try {
+            // guardamos el usuario en la BBDD SIN ACTIVAR
+        db.query(
+            'INSERT INTO Usuario (Usuario, Contrasena) VALUES (?,?)',
+            [datosUsuario.username, datosUsuario.password, 0],
+            (error, respuesta) => {
+                if (error) res.send('ERROR INSERTANDO usuario' + req.body)
+                    else res.render('register', {errorMsg: 'Usuario ya registrado'});
+            
+        }
+      );                
+    } catch (error) {
+        res.render('register', { errorMsg: 'Error ' + error});
+    }   
+};
+
+exports.loginForm = (req, res) =>{
+    res.render('login');
+};
+
+exports.login = (req, res)=>{
+    const {username, password} = req.body;
     db.query(
       "INSERT INTO Usuario (Usuario, Contrasena) VALUES (?,?)",
       [datosUsuario.username, datosUsuario.password, 0],
