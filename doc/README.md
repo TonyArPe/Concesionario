@@ -60,8 +60,7 @@ Compra }|--|| Vehículo : Comprado
 
 @enduml
 
-Explicación
-
+## Explicación:
 
 Entidad "Vehículo" se conecta a "Venta" y "Compra" para diferenciar entre cuando un vehículo es comprado por la agencia o vendido a un cliente.
 
@@ -412,3 +411,10 @@ y asi ahorrar tiempo de codigo.
 
 En la raiz de la carpeta *views* se encontrara la pagina principal del login el cual cuando
 nos hayamos registrado correctamente nos dejara tener acceso a todo lo demas.
+
+## Iniciar el proyecto
+
+1. Asegúrate de tener Docker instalado en tu máquina.
+2. Clona este repositorio y navega a la carpeta `stack`.
+3. Ejecuta `docker-compose up` para levantar los servicios de base de datos y Adminer.
+4. Accede a `localhost:${ADMINER_PORT}` para interactuar con la base de datos a través de Adminer.
