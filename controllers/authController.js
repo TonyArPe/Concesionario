@@ -5,48 +5,24 @@ exports.registerForm = (req, res) => {
   res.render("register");
 };
 
-exports.register = (req, res) =>{
-    const datosUsuario = req.body;
-    datosUsuario.password= bcrypt.hashSync(datosUsuario.password, 10);
-    try {
-            // guardamos el usuario en la BBDD SIN ACTIVAR
-        db.query(
-            'INSERT INTO Usuario (Usuario, Contrasena) VALUES (?,?)',
-            [datosUsuario.username, datosUsuario.password, 0],
-            (error, respuesta) => {
-                if (error)
-                  res.render('register', { errorMsg: 'Usuario ya registrado'});
-                else 
-                  res.redirect('login')
-            
-        } 
-      );                
-    } catch (error) {
-        res.render('register', { errorMsg: 'Error inesperado'});
-    }   
-};
-
-exports.loginForm = (req, res) =>{
-    res.render('login');
-};
-
-exports.login = (req, res)=>{
-    const {username, password} = req.body;
+exports.register = (req, res) => {
+  const datosUsuario = req.body;
+  datosUsuario.password = bcrypt.hashSync(datosUsuario.password, 10);
+  try {
+    // guardamos el usuario en la BBDD SIN ACTIVAR
     db.query(
       "INSERT INTO Usuario (Usuario, Contrasena) VALUES (?,?)",
       [datosUsuario.username, datosUsuario.password],
       (error, respuesta) => {
         if (error)
-          res.render("register", { errorMsg: `Usuario ya registrado` });
-        else {
-          res.redirect("/auth/login");
-          res.render("login");
-          
-        }
+          res.render("register", { errorMsg: "Usuario ya registrado" });
+        else res.redirect("login");
       }
     );
-  } 
-
+  } catch (error) {
+    res.render("register", { errorMsg: "Error inesperado" });
+  }
+};
 
 exports.loginForm = (req, res) => {
   res.render("login");
@@ -63,12 +39,7 @@ exports.login = (req, res) => {
       } else {
         const usuario = rsUsuario[0];
         if (usuario) {
-          if (
-            /*usuario.enabled==1 &&*/ bcrypt.compareSync(
-              password,
-              usuario.Contrasena
-            )
-          ) {
+          if (bcrypt.compareSync(password, usuario.Contrasena)) {
             req.session.user = usuario.Usuario;
             res.redirect("/");
           } else {
