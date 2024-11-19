@@ -28,17 +28,14 @@ exports.formularioVehiculoAdd = (req, res) => {
  * @param {*} res 
  */
 exports.vehiculoAdd = (req, res) => {
-  const { marca, modelo, anio, precio, combustible } = req.body;
+  const { Marca, Modelo, Anio, Precio, Combustible } = req.body;
   console.log(req.body)
   db.query(
     `INSERT INTO Vehiculo (Marca, Modelo, Anio, Precio, Combustible) VALUES (?, ?, ?, ?, ?)`,
-    [marca, modelo, anio, precio, combustible],
+    [Marca, Modelo, Anio, Precio, Combustible],
     (error, respuesta) => {
       if (error) res.send("ERROR INSERTANDO VEHÍCULO");
-      else res.redirect("/vehiculos");
-
-      console.log(error)
-      
+      else res.redirect("/vehiculos"); 
     }
   );
 };

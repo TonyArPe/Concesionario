@@ -165,19 +165,20 @@ exports.formularioCompraEdit = (req, res) => {
 
 // Función para editar una compra
 exports.compraEdit = (req, res) => {
-  const { id, ID_Vehiculo, Fecha_Compra, Precio_Compra } = req.body;
+  const { Precio_Compra, ID_Vehiculo, id } = req.body;
   const paramId = req.params["id"];
 
   if (isNaN(id) || isNaN(paramId) || id !== paramId) {
     res.send("ERROR EDITANDO COMPRA");
   } else {
     db.query(
-      "UPDATE Compra SET ID_Vehiculo = ?, Fecha_Compra = ?, Precio_Compra = ? WHERE ID_Compra = ?",
-      [ID_Vehiculo, Fecha_Compra, Precio_Compra, id],
+      "UPDATE Compra SET ID_Vehiculo = ?, Precio_Compra = ? WHERE ID_Compra = ?",
+      [ID_Vehiculo, Precio_Compra, id],
       (error, respuesta) => {
         if (error) {
           console.error("Error al editar la compra: ", error);
           res.send("ERROR EDITANDO COMPRA");
+          
           return;
         }
         res.redirect("/compras");

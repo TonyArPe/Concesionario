@@ -3,14 +3,14 @@ extends ../templates/layout
 block content 
 
     form(method="post") 
-        .mb-3
-            label.form-label(for="Nombre") Marca:
+        .campo
+            label.form-label(for="Nombre") Nombre:
             input.form-control(type="text", name="Nombre" value=cliente.Nombre, disabled)
-        .mb-3
-            label.form-label(for="Modelo") Modelo:
-            input.form-control(type="text", name="Modelo" value=cliente.Telefono, disabled)
-        .mb-3
-            label.form-label(for="Anio") Año:
+        .campo
+            label.form-label(for="Telefono") Telefono:
+            input.form-control(type="text", name="Telefono" value=cliente.Telefono, disabled)
+        .campo
+            label.form-label(for="Direccion") Direccion:
             input.form-control(type="text", name="Direccion" value=cliente.Direccion, disabled)
         input(type="hidden", name="ID_Cliente", value=cliente.ID_cliente)
         button.del(type="submit") Editar

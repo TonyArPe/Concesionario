@@ -28,10 +28,10 @@ exports.formularioClienteAdd = (req, res) => {
  * @param {*} res 
  */
 exports.clienteAdd = (req, res) => {
-  const { nombre, telefono, direccion } = req.body;
+  const { Nombre, Telefono, Direccion } = req.body;
   db.query(
     `INSERT INTO Cliente (nombre, telefono, direccion) VALUES (?, ?, ?)`,
-    [nombre, telefono, direccion],
+    [Nombre, Telefono, Direccion],
     (error, respuesta) => {
       if (error) res.send("ERROR INSERTANDO CLIENTE");
       else res.redirect("/clientes");

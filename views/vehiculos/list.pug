@@ -6,7 +6,8 @@ block content
             i.material-icons directions_car add  
         each vehiculo in vehiculos
             .vehiculo 
-                img(src="/images/vehiculos/vehiculo-" + vehiculo.ID_Vehiculo + ".png")
+                img(src="/images/vehiculos/vehiculo-" + vehiculo.ID_Vehiculo + ".png", 
+                    onerror="this.onerror=null;this.src='/images/vehiculos/vehiculo-.png';")
                 .vehiculo-info
                     p="Marca: " + vehiculo.Marca
                     p="Modelo: " + vehiculo.Modelo

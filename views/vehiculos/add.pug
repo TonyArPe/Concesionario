@@ -13,9 +13,9 @@ block content
                 label(for="Anio") Año:
                 input(type="number", name="Anio", pattern="\d{4}" placeholder="Ej. 2024" title="Ingrese un año de 4 dígitos" required)
             .campo
-                label(for="Combustible") Combustible:
-                input(type="number", name="Combustible", placeholder="diesel", required)
-            .campo
                 label(for="Precio") Precio:
                 input(type="number", name="Precio", required)
+            .campo
+                label(for="Combustible") Combustible:
+                input(type="text", name="Combustible", placeholder="diesel", required)
             button.edit(type="submit") Enviar
