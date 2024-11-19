@@ -3,19 +3,19 @@ extends ../templates/layout
 block content 
 
     form(action=`/compras/edit/${compra.ID_Compra}`, method="post") 
-        .mb-3
+        .campo
             label.form-label(for="Cliente") Cliente:
             select.form-control(name="ID_Cliente")
                 each cliente in clientes
                     option(value=cliente.ID_Cliente selected=(cliente.ID_Cliente == compra.ID_Cliente))= cliente.Nombre
-        .mb-3
+        .campo
             label.form-label(for="Vehiculo") Vehículo:
             select.form-control(name="ID_Vehiculo")
                 each vehiculo in vehiculos
                     option(value=vehiculo.ID_Vehiculo selected=(vehiculo.ID_Vehiculo == compra.ID_Vehiculo))= vehiculo.Marca + " - " + vehiculo.Modelo
-        .mb-3
+        .campo
             label(for="Fecha_Compra") Fecha:
-            input(type="text", name="Fecha_Compra" value=compra.Fecha_Compra)
+            input(type="date", name="Fecha_Compra" value=compra.Fecha_Compra)
         .campo
             label(for="Precio_Compra") Precio:
             input(type="text", name="Precio_Compra" value=compra.Precio_Compra)
