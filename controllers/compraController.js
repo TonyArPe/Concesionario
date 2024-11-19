@@ -58,23 +58,31 @@ exports.listarCompras = (req, res) => {
 
 // Función para mostrar el formulario de adición de compra
 exports.formularioCompraAdd = (req, res) => {
-  db.query("SELECT * FROM Vehiculo", (err, vehiculos) => {
-    if (err) {
-      console.error("Error al obtener los vehículos: ", err);
+  db.query("SELECT * FROM Vehiculo", (errVehiculos, vehiculos) => {
+    if (errVehiculos) {
+      console.error("Error al obtener los vehículos: ", errVehiculos);
       res.send("ERROR AL OBTENER LOS VEHÍCULOS");
       return;
     }
-    res.render("compras/add", { vehiculos });
+    db.query("SELECT * FROM Cliente", (errClientes, clientes) => {
+      if (errClientes) {
+        console.error("Error al obtener los clientes: ", errClientes);
+        res.send("ERROR AL OBTENER LOS CLIENTES");
+        return;
+      }
+      res.render("compras/add", { vehiculos, clientes });
+    });
   });
 };
 
+
 // Función para añadir una compra
 exports.compraAdd = (req, res) => {
-  const { ID_Vehiculo, Fecha_Compra, Precio_Compra } = req.body;
+  const { ID_Cliente, ID_Vehiculo, Fecha_Compra, Precio_Compra } = req.body;
   db.query(
-    `INSERT INTO Compra (ID_Vehiculo, Fecha_Compra, Precio_Compra) VALUES (?, ?, ?)`,
-    [ID_Vehiculo, Fecha_Compra, Precio_Compra],
-    (error, respuesta) => {
+    `INSERT INTO Compra (ID_Cliente, ID_Vehiculo, Fecha_Compra, Precio_Compra) VALUES (?, ?, ?, ?)`,
+    [ID_Cliente, ID_Vehiculo, Fecha_Compra, Precio_Compra],
+    (error) => {
       if (error) {
         console.error("Error al insertar la compra: ", error);
         res.send("ERROR INSERTANDO COMPRA");
@@ -84,6 +92,7 @@ exports.compraAdd = (req, res) => {
     }
   );
 };
+
 
 // Función para mostrar el formulario de eliminación de compra
 exports.formularioCompraDel = (req, res) => {
@@ -136,32 +145,40 @@ exports.formularioCompraEdit = (req, res) => {
   const { id } = req.params;
   if (isNaN(id)) {
     res.send("PARÁMETROS INCORRECTOS");
-  } else {
-    db.query(
-      "SELECT * FROM Compra WHERE ID_Compra=?",
-      [id],
-      (error, respuesta) => {
-        if (error) {
-          console.error("Error al intentar editar compra: ", error);
-          res.send("ERROR AL INTENTAR EDITAR COMPRA");
-          return;
-        }
-        if (respuesta.length > 0) {
-          db.query("SELECT * FROM Vehiculo", (err, vehiculos) => {
-            if (err) {
-              console.error("Error al obtener los vehículos: ", err);
-              res.send("ERROR AL OBTENER LOS VEHÍCULOS");
+    return;
+  }
+  db.query(
+    "SELECT * FROM Compra WHERE ID_Compra=?",
+    [id],
+    (error, respuesta) => {
+      if (error) {
+        console.error("Error al intentar editar compra: ", error);
+        res.send("ERROR AL INTENTAR EDITAR COMPRA");
+        return;
+      }
+      if (respuesta.length > 0) {
+        db.query("SELECT * FROM Vehiculo", (errVehiculos, vehiculos) => {
+          if (errVehiculos) {
+            console.error("Error al obtener los vehículos: ", errVehiculos);
+            res.send("ERROR AL OBTENER LOS VEHÍCULOS");
+            return;
+          }
+          db.query("SELECT * FROM Cliente", (errClientes, clientes) => {
+            if (errClientes) {
+              console.error("Error al obtener los clientes: ", errClientes);
+              res.send("ERROR AL OBTENER LOS CLIENTES");
               return;
             }
-            res.render("compras/edit", { compra: respuesta[0], vehiculos });
+            res.render("compras/edit", { compra: respuesta[0], vehiculos, clientes });
           });
-        } else {
-          res.send("ERROR AL INTENTAR EDITAR COMPRA, NO EXISTE");
-        }
+        });
+      } else {
+        res.send("ERROR AL INTENTAR EDITAR COMPRA, NO EXISTE");
       }
-    );
-  }
+    }
+  );
 };
+
 
 // Función para editar una compra
 exports.compraEdit = (req, res) => {
@@ -231,7 +248,6 @@ exports.listarComprasPorCliente = (req, res) => {
       },
     }));
 
-    // Segunda consulta: obtener los clientes
     db.query("SELECT * FROM `Cliente`", (err, responseClientes) => {
       if (err) {
         console.error("Error al hacer la consulta de clientes: ", err);
@@ -239,9 +255,9 @@ exports.listarComprasPorCliente = (req, res) => {
         return;
       }
 
-      // Renderizar la vista solo después de obtener todos los datos
       res.render("compras/comprasPorCliente", { compras, cliente, clientes: responseClientes });
     });
   });
 };
+
 

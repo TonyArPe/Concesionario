@@ -1,21 +1,21 @@
 extends ../templates/layout
 
-block content 
-
-    form(action="/alumnos/add", method="post") 
-            .mb-3
-                label.form-label(for="Marca") Marca:
-                input.form-control(type="text", name="Marca")
-            .mb-3
-                label.form-label(for="Modelo") Modelo:
-                input.form-control(type="text", name="Modelo")
-            .mb-3
-                label.form-label(for="Anio") Año:
-                input.form-control(type="text", name="anio")
-            .mb-3
-                label.form-label(for="Combustible") Combustible:
-                input.form-control(type="text", name="Precio")
-            .mb-3
-                label.form-label(for="Precio") Precio:
-                input.form-control(type="text", name="Combustible")
-            button.btn.btn-primary(type="submit") Enviar
+block content
+    form(action="/ventas/add", method="post") 
+        .mb-3
+            label.form-label(for="ID_Vehiculo") Vehículo:
+            select.form-control(name="ID_Vehiculo")
+                each vehiculo in vehiculos
+                    option(value=vehiculo.ID_Vehiculo)= `${vehiculo.Marca} ${vehiculo.Modelo}`
+        .mb-3
+            label.form-label(for="ID_Cliente") Cliente:
+            select.form-control(name="ID_Cliente")
+                each cliente in clientes
+                    option(value=cliente.ID_Cliente)= cliente.Nombre
+        .mb-3
+            label.form-label(for="Fecha_Venta") Fecha:
+            input.form-control(type="date", name="Fecha_Venta")
+        .mb-3
+            label.form-label(for="Total") Total:
+            input.form-control(type="number", name="Total", step="0.01")
+        button.btn.btn-primary(type="submit") Añadir Venta
