@@ -1,11 +1,11 @@
-const express = require('express');
-const db = require('../db');
+const express = require("express");
+const db = require("../db");
 const vehiculoController = require("./vehiculoController");
 
 /**
  * Función para listar todas las ventas
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 exports.listarVentas = (req, res) => {
   // Primera consulta: obtener las compras
@@ -64,8 +64,8 @@ exports.listarVentas = (req, res) => {
 
 /**
  * Formulario para añadir una nueva venta
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 exports.formularioVentaAdd = (req, res) => {
   db.query("SELECT * FROM `Vehiculo`", (err, vehiculos) => {
@@ -81,8 +81,8 @@ exports.formularioVentaAdd = (req, res) => {
 
 /**
  * Función para agregar una nueva venta
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 exports.ventaAdd = (req, res) => {
   const { ID_Vehiculo, ID_Cliente, Fecha_Venta, Total } = req.body;
@@ -98,30 +98,34 @@ exports.ventaAdd = (req, res) => {
 
 /**
  * Formulario para borrar una venta según su id
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 exports.formularioVentaDel = (req, res) => {
   const { id } = req.params;
   if (isNaN(id)) res.send("PARÁMETROS INCORRECTOS");
   else {
-    db.query("SELECT * FROM Venta WHERE ID_Venta=?", [id], (error, respuesta) => {
-      if (error) res.send("ERROR AL INTENTAR BORRAR VENTA");
-      else {
-        if (respuesta.length > 0) {
-          res.render("ventas/del", { venta: respuesta[0] });
-        } else {
-          res.send("ERROR AL INTENTAR BORRAR VENTA, NO EXISTE");
+    db.query(
+      "SELECT * FROM Venta WHERE ID_Venta=?",
+      [id],
+      (error, respuesta) => {
+        if (error) res.send("ERROR AL INTENTAR BORRAR VENTA");
+        else {
+          if (respuesta.length > 0) {
+            res.render("ventas/del", { venta: respuesta[0] });
+          } else {
+            res.send("ERROR AL INTENTAR BORRAR VENTA, NO EXISTE");
+          }
         }
       }
-    });
+    );
   }
 };
 
 /**
  * Función para borrar una venta según su id
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 exports.ventaDel = (req, res) => {
   const { id } = req.params;
@@ -136,38 +140,47 @@ exports.ventaDel = (req, res) => {
 
 /**
  * Formulario para editar una venta según su id
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 exports.formularioVentaEdit = (req, res) => {
   const { id } = req.params;
   if (isNaN(id)) res.send("PARÁMETROS INCORRECTOS");
   else {
-    db.query("SELECT * FROM Venta WHERE ID_Venta=?", [id], (error, respuesta) => {
-      if (error) res.send("ERROR AL INTENTAR EDITAR VENTA");
-      else {
-        if (respuesta.length > 0) {
-          db.query("SELECT * FROM Vehiculo", (err, vehiculos) => {
-            if (err) res.send("ERROR AL OBTENER LOS VEHÍCULOS");
-            else {
-              db.query("SELECT * FROM Cliente", (err, clientes) => {
-                if (err) res.send("ERROR AL OBTENER LOS CLIENTES");
-                else res.render("ventas/edit", { venta: respuesta[0], vehiculos, clientes });
-              });
-            }
-          });
-        } else {
-          res.send("ERROR AL INTENTAR EDITAR VENTA, NO EXISTE");
+    db.query(
+      "SELECT * FROM Venta WHERE ID_Venta=?",
+      [id],
+      (error, respuesta) => {
+        if (error) res.send("ERROR AL INTENTAR EDITAR VENTA");
+        else {
+          if (respuesta.length > 0) {
+            db.query("SELECT * FROM Vehiculo", (err, vehiculos) => {
+              if (err) res.send("ERROR AL OBTENER LOS VEHÍCULOS");
+              else {
+                db.query("SELECT * FROM Cliente", (err, clientes) => {
+                  if (err) res.send("ERROR AL OBTENER LOS CLIENTES");
+                  else
+                    res.render("ventas/edit", {
+                      venta: respuesta[0],
+                      vehiculos,
+                      clientes,
+                    });
+                });
+              }
+            });
+          } else {
+            res.send("ERROR AL INTENTAR EDITAR VENTA, NO EXISTE");
+          }
         }
       }
-    });
+    );
   }
 };
 
 /**
  * Función para editar una venta según su id
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 exports.ventaEdit = (req, res) => {
   const { id, ID_Vehiculo, ID_Cliente, Fecha_Venta, Total } = req.body;
@@ -209,15 +222,18 @@ exports.listarVentasPorVehiculo = (req, res) => {
       return;
     }
 
-    const vehiculo = response.length > 0
-      ? {
-          ID_Vehiculo: response[0].ID_Vehiculo,
-          Marca: response[0].Marca,
-          Modelo: response[0].Modelo,
-          Anio: response[0].Anio,
-          Combustible: response[0].Combustible,
-        }
-      : null;
+
+
+    const vehiculo =
+      response.length > 0
+        ? {
+            ID_Vehiculo: response[0].ID_Vehiculo,
+            Marca: response[0].Marca,
+            Modelo: response[0].Modelo,
+            Anio: response[0].Anio,
+            Combustible: response[0].Combustible,
+          }
+        : null;
 
     const ventas = response.map((venta) => ({
       ID_Venta: venta.ID_Venta,
@@ -239,9 +255,24 @@ exports.listarVentasPorVehiculo = (req, res) => {
         res.status(500).send("ERROR al obtener los vehículos");
         return;
       }
-    
+
+      if (ventas.length === 0) {
+        return res.render("ventas/list", {
+          vehiculo,
+          ventas: [],
+          vehiculos: responseVehiculos,
+          mensaje: "Nadie ha comprado este coche.",
+        });
+      }
+  
+      res.render("ventas", { vehiculos: responseVehiculos, ventas });
+
       console.log("Vehículos obtenidos:", responseVehiculos);
-      res.render("ventas/vehiculosPorVenta", { ventas, vehiculo, vehiculos: responseVehiculos });
+      res.render("ventas/vehiculosPorVenta", {
+        ventas,
+        vehiculo,
+        vehiculos: responseVehiculos,
+      });
     });
   });
 };
