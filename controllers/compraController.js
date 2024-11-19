@@ -182,26 +182,56 @@ exports.formularioCompraEdit = (req, res) => {
 
 // Función para editar una compra
 exports.compraEdit = (req, res) => {
-  const { Precio_Compra, ID_Vehiculo, id } = req.body;
-  const paramId = req.params["id"];
+  const { ID_Cliente, ID_Vehiculo, Fecha_Compra, Precio_Compra } = req.body; // Extraer valores del formulario
+  const id = req.params.id; // ID de la compra desde la URL
 
-  if (isNaN(id) || isNaN(paramId) || id !== paramId) {
-    res.send("ERROR EDITANDO COMPRA");
-  } else {
-    db.query(
-      "UPDATE Compra SET ID_Vehiculo = ?, Precio_Compra = ? WHERE ID_Compra = ?",
-      [ID_Vehiculo, Precio_Compra, id],
-      (error, respuesta) => {
-        if (error) {
-          console.error("Error al editar la compra: ", error);
-          res.send("ERROR EDITANDO COMPRA");
-          return;
-        }
-        res.redirect("/compras");
-      }
-    );
+  // Validar ID de la URL
+  if (!id || isNaN(id)) {
+    console.error("ID de compra inválido:", id);
+    return res.status(400).send("ERROR: ID de compra inválido.");
   }
+
+  // Validar datos del formulario
+  if (!ID_Cliente || isNaN(ID_Cliente)) {
+    console.error("ID_Cliente inválido o no proporcionado:", ID_Cliente);
+    return res.status(400).send("ERROR: Cliente inválido o no proporcionado.");
+  }
+
+  if (!ID_Vehiculo || isNaN(ID_Vehiculo)) {
+    console.error("ID_Vehiculo inválido o no proporcionado:", ID_Vehiculo);
+    return res.status(400).send("ERROR: Vehículo inválido o no proporcionado.");
+  }
+
+  if (!Fecha_Compra || isNaN(Date.parse(Fecha_Compra))) {
+    console.error("Fecha de compra inválida:", Fecha_Compra);
+    return res.status(400).send("ERROR: Fecha de compra inválida.");
+  }
+
+  if (!Precio_Compra || isNaN(Precio_Compra)) {
+    console.error("Precio de compra inválido o no proporcionado:", Precio_Compra);
+    return res.status(400).send("ERROR: Precio de compra inválido o no proporcionado.");
+  }
+
+  // Actualizar en la base de datos
+  db.query(
+    `UPDATE Compra SET 
+      ID_Cliente = ?, 
+      ID_Vehiculo = ?, 
+      Fecha_Compra = ?, 
+      Precio_Compra = ? 
+    WHERE ID_Compra = ?`,
+    [ID_Cliente, ID_Vehiculo, Fecha_Compra, Precio_Compra, id],
+    (error, resultado) => {
+      if (error) {
+        console.error("Error al actualizar la compra:", error);
+        return res.status(500).send("ERROR al actualizar la compra.");
+      }
+      console.log("Compra actualizada correctamente:", resultado);
+      res.redirect("/compras"); // Redirigir al listado de compras después de la edición
+    }
+  );
 };
+
 
 // Función para listar compras por cliente
 exports.listarComprasPorCliente = (req, res) => {

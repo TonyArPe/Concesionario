@@ -1,8 +1,7 @@
 extends ../templates/layout
 
-block content 
-
-    form(action=`/compras/edit/${compra.ID_Compra}`, method="post") 
+block content
+    form(action=`/compras/edit/${compra.ID_Compra}`, method="post")
         .campo
             label.form-label(for="Cliente") Cliente:
             select.form-control(name="ID_Cliente")
@@ -15,12 +14,9 @@ block content
                     option(value=vehiculo.ID_Vehiculo selected=(vehiculo.ID_Vehiculo == compra.ID_Vehiculo))= vehiculo.Marca + " - " + vehiculo.Modelo
         .campo
             label(for="Fecha_Compra") Fecha:
-            input(type="date", name="Fecha_Compra" value=compra.Fecha_Compra)
+            input(type="date", name="Fecha_Compra", value=compra.Fecha_Compra)
         .campo
             label(for="Precio_Compra") Precio:
-            input(type="text", name="Precio_Compra" value=compra.Precio_Compra)
-        .campo
-            label(for="Vehiculo") Vehiculo:
-            input(type="text", name="ID_Vehiculo" value=compra.ID_Vehiculo)
+            input(type="text", name="Precio_Compra", value=compra.Precio_Compra)
         input(type="hidden", name="id", value=compra.ID_Cliente)
         button.edit(type="submit") Editar
