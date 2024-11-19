@@ -1,10 +1,20 @@
 extends ../templates/layout
 
-block content 
-
+block content
     form(method="post") 
-        .campo
+        .mb-3
+            label(for="ID_Vehiculo") Vehículo:
+            select.form-control(name="ID_Vehiculo")
+                each vehiculo in vehiculos
+                    option(value=vehiculo.ID_Vehiculo selected=(vehiculo.ID_Vehiculo == venta.ID_Vehiculo))= `${vehiculo.Marca} ${vehiculo.Modelo}`
+        .mb-3
+            label(for="ID_Cliente") Cliente:
+            select.form-control(name="ID_Cliente")
+                each cliente in clientes
+                    option(value=cliente.ID_Cliente selected=(cliente.ID_Cliente == venta.ID_Cliente))= cliente.Nombre
+        .mb-3
             label(for="Fecha_Venta") Fecha:
+<<<<<<< HEAD
             input(type="text", name="Fecha_Venta" value=venta.Fecha_Venta, disabled)
         .campo
             label(for="Precio_Venta") Precio:
@@ -12,5 +22,11 @@ block content
         .campo
             label(for="Vehiculo") Vehiculo:
             input(type="text", name="ID_Vehiculo" value=venta.ID_Vehiculo)
+=======
+            input.form-control(type="date", name="Fecha_Venta", value=venta.Fecha_Venta)
+        .mb-3
+            label(for="Total") Total:
+            input.form-control(type="number", name="Total", value=venta.Total, step="0.01")
+>>>>>>> tony
         input(type="hidden", name="id", value=venta.ID_Venta)
-        button.edit(type="submit") Editar
+        button.btn.btn-primary(type="submit") Guardar Cambios

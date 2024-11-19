@@ -2,16 +2,25 @@ extends ../templates/layout
 
 block content 
 
-    form(method="post") 
-        .campo
+    form(action=`/compras/edit/${compra.ID_Compra}`, method="post") 
+        .mb-3
+            label.form-label(for="Cliente") Cliente:
+            select.form-control(name="ID_Cliente")
+                each cliente in clientes
+                    option(value=cliente.ID_Cliente selected=(cliente.ID_Cliente == compra.ID_Cliente))= cliente.Nombre
+        .mb-3
+            label.form-label(for="Vehiculo") Vehículo:
+            select.form-control(name="ID_Vehiculo")
+                each vehiculo in vehiculos
+                    option(value=vehiculo.ID_Vehiculo selected=(vehiculo.ID_Vehiculo == compra.ID_Vehiculo))= vehiculo.Marca + " - " + vehiculo.Modelo
+        .mb-3
             label(for="Fecha_Compra") Fecha:
-            input(type="text", name="Fecha_Compra" value=venta.Fecha_Compra, disabled)
+            input(type="text", name="Fecha_Compra" value=compra.Fecha_Compra)
         .campo
-            label(for="Precio") Precio:
+            label(for="Precio_Compra") Precio:
             input(type="text", name="Precio_Compra" value=compra.Precio_Compra)
         .campo
             label(for="Vehiculo") Vehiculo:
-            input(type="text", name="ID_Vehiculo" value=compra.ID_Vehiculo, disabled)
-        input(type="hidden", name="id", value=compra.ID_Compra)
-        
+            input(type="text", name="ID_Vehiculo" value=compra.ID_Vehiculo)
+        input(type="hidden", name="id", value=compra.ID_Cliente)
         button.edit(type="submit") Editar
