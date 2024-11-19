@@ -2,7 +2,8 @@ extends ../templates/layout
 
 block content
     .vehiculos
-        a(href="/vehiculos/add") Añadir coche
+        a.annadir-vehiculo(href="/vehiculos/add")
+            i.material-icons directions_car add  
         each vehiculo in vehiculos
             .vehiculo 
                 img(src="/images/vehiculos/vehiculo-" + vehiculo.ID_Vehiculo + ".png")

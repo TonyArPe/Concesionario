@@ -1,9 +1,8 @@
-
-header{
+header {
   height: 150px;
   background-color: #607d8b;
   display: flex;
-  gap: 30PX;
+  gap: 30px;
   align-items: center;
   line-height: 30px;
 }
@@ -11,8 +10,6 @@ header{
 header img {
   height: 150px;
 }
-
-
 
 header a {
   width: 150px;
@@ -24,7 +21,7 @@ header a {
   color: white;
 }
 
-header a:last-child{
+header a:last-child {
   margin-left: auto;
   margin-right: 20px;
   width: 50px;
@@ -40,7 +37,7 @@ header a:active {
   background-color: #435761;
 }
 
-footer{
+footer {
   height: 150px;
   background-color: #648291;
   display: flex;
@@ -54,7 +51,7 @@ footer img {
   height: 75px;
 }
 
-.no-session{
+.no-session {
   margin-left: auto;
   margin-right: auto;
   align-self: center;
@@ -77,29 +74,29 @@ footer img {
   display: flex;
   flex-direction: row;
   gap: 20px;
-  background-color: #BDBDBD;
-  border-radius: 20px; 
+  background-color: #bdbdbd;
+  border-radius: 20px;
 }
 
-.vehiculo img{
+.vehiculo img {
   width: 300px;
   height: 200px;
   border-radius: 20px;
 }
 
-.vehiculo-info p{
+.vehiculo-info p {
   font-size: 20px;
   margin: 15px 0;
 }
 
-.vehiculo-btn{
+.vehiculo-btn {
   display: flex;
   align-items: flex-end;
   margin-left: auto;
   gap: 10px;
 }
 
-.vehiculo-btn button{
+.vehiculo-btn button {
   width: 100px;
   height: 50px;
   border-radius: 15px;
@@ -107,11 +104,11 @@ footer img {
   cursor: pointer;
 }
 
-.del{
+.del {
   background-color: rgb(243, 48, 48);
 }
 
-.edit{
+.edit {
   background-color: rgb(64, 165, 148);
 }
 
@@ -121,84 +118,90 @@ footer img {
   background-color: #cfd8dc;
 }
 
-.venta{
+.venta {
   height: 50px;
   display: flex;
   flex-wrap: nowrap;
   margin-top: 5px;
   flex-direction: column;
   overflow-y: hidden;
-  
+
   border-radius: 30px;
-  background-color:#BDBDBD;
+  background-color: #bdbdbd;
   padding-left: 15px;
   margin-left: 100px;
   transition: all 0.5s;
-
 }
 
-.venta-cc{
+.venta-cc {
   height: 100px;
   display: flex;
   flex-wrap: nowrap;
   margin-top: 5px;
   flex-direction: column;
-  
+
   border-radius: 30px;
-  background-color:#BDBDBD;
+  background-color: #bdbdbd;
   padding-left: 15px;
   margin-left: 100px;
 }
 
-.venta:hover{
+.venta:hover {
   height: 150px;
   transition: all 0.5s;
 }
 
 /* Clientes */
 .clientes {
+  padding: 30px;
   background-color: #cfd8dc;
+  display: flex;
+  flex-direction: column;
 }
 
-.cliente{
-  
-    height: 50px;
-    display: flex;
-    flex-wrap: nowrap;
-    margin-top: 5px;
-    flex-direction: row;
-    align-items: center;
-    border-radius: 30px;
-    background-color:#BDBDBD;
-    padding-left: 15px;
-    margin-left: 100px;
-    transition: all 0.5s;
+.cliente {
+  height: 50px;
+  display: flex;
+  flex-wrap: nowrap;
+  margin-top: 5px;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 30px;
+  background-color: #bdbdbd;
+  padding-left: 15px;
+  transition: all 0.5s;
 }
 
-.cliente-btn{
+.cliente-btn {
   margin-left: auto;
   margin-right: 30px;
   display: flex;
   gap: 15px;
 }
 
-.cliente-btn button{
+.cliente-btn button {
   width: 50px;
   border-radius: 15px;
   border: none;
   cursor: pointer;
 }
 
-.venta-info{
+.venta-info {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 50px;
 }
 
-.venta-info p:nth-child(2){ width: 35px; }
-.venta-info p:nth-child(3){ width: 500px; }
-.venta-info p:nth-child(4){ width: 100px; }
+.venta-info p:nth-child(2) {
+  width: 35px;
+}
+.venta-info p:nth-child(3) {
+  width: 500px;
+}
+.venta-info p:nth-child(4) {
+  width: 100px;
+}
 
 .venta-cliente-info {
   display: flex;
@@ -207,30 +210,40 @@ footer img {
   align-items: center;
 }
 
-.venta-cliente-info p:nth-child(2){ width: 35px; }
-.venta-cliente-info p:nth-child(3){ width: 500px; }
-.venta-cliente-info p:nth-child(4){ width: 100px; }
-
-
-.venta-cliente-info p{
+.venta-cliente-info p:nth-child(2) {
+  width: 35px;
+}
+.venta-cliente-info p:nth-child(3) {
+  width: 500px;
+}
+.venta-cliente-info p:nth-child(4) {
   width: 100px;
 }
 
+.venta-cliente-info p {
+  width: 100px;
+}
 
 .venta-vehiculo-info {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap:50px;
+  gap: 50px;
 }
 
-.venta-vehiculo-info p:nth-child(2){ width: 35px; }
-.venta-vehiculo-info p:nth-child(3){ width: 500px; }
-.venta-vehiculo-info p:nth-child(4){ width: 100px; }
+.venta-vehiculo-info p:nth-child(2) {
+  width: 35px;
+}
+.venta-vehiculo-info p:nth-child(3) {
+  width: 500px;
+}
+.venta-vehiculo-info p:nth-child(4) {
+  width: 100px;
+}
 
 /*Formularios*/
 
-form{
+form {
   height: auto;
   background-color: #cfd8dc;
   padding: 30px;
@@ -239,15 +252,14 @@ form{
   gap: 10px;
 }
 
-.campo{
+.campo {
   font-size: 20px;
-  background-color:#BDBDBD;
+  background-color: #bdbdbd;
   padding: 15px;
   border-radius: 30px;
 }
 
-
-.campo input{
+.campo input {
   height: 30px;
   border-radius: 15px;
   margin-left: 30px;
@@ -255,7 +267,7 @@ form{
   border: none;
 }
 
-form button{
+form button {
   width: 150px;
   height: 50px;
   border: none;
@@ -265,7 +277,7 @@ form button{
 
 /* Login */
 
-.login-container{
+.login-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -273,7 +285,7 @@ form button{
   padding: 30px;
 }
 
-.login{
+.login {
   width: 700px;
   height: 500px;
   background-color: #bac3c7;
@@ -283,39 +295,112 @@ form button{
   align-items: center;
 }
 
-.login form{
+.login form {
   height: 300px;
   border-radius: 30px;
 }
 
-.login label{
+.login label {
   font-size: 24px;
 }
 
-.login input{
+.login input {
   width: 300px;
   height: 40px;
   border-radius: 15px;
-  border:none;
+  border: none;
 }
 
-.login-btns{
+.login-btns {
   margin-top: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.login-btns button:hover{
+.login-btns button:hover {
   background-color: #607d8b;
   transition: all 0.3s;
 }
 
-.login-btns a{
+.login-btns a {
   color: blue;
   margin-top: 7px;
 }
 
-.error{
+.error {
   color: red;
+}
+
+.dashboard {
+  height: 450px;
+  background-color: #bdbdbd;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  padding-top: 175px;
+}
+
+.dashboard h2 {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.dashboard p {
+  font-size: 30px;
+}
+
+.dashboard button {
+  width: 150px;
+  height: 30px;
+  text-align: center;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.dashboard button:hover {
+  background-color: #435761;
+  transition: ease 0.3s;
+}
+
+.vehiculos a {
+  text-decoration: none;
+}
+
+.clientes a {
+  text-decoration: none;
+}
+
+.annadir-vehiculo {
+  text-align: center;
+  width: 100px;
+  background-color:#bdbdbd;
+  border-radius: 15px;
+  transition: all 0.3s;
+}
+
+.annadir-vehiculo:hover {
+  background-color:  rgb(64, 165, 148);
+}
+
+.annadir-vehiculo .material-icons {
+  font-size: 44px;
+}
+
+.annadir-clientes {
+  width: 100px;
+  background-color:#bdbdbd;;
+  border-radius: 15px;
+  transition: all 0.3s;
+}
+
+.annadir-clientes:hover {
+  background-color:  rgb(64, 165, 148);;
+}
+
+.annadir-clientes .material-icons {
+  font-size: 44px;
 }

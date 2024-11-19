@@ -5,17 +5,17 @@ block content
     form(action="/vehiculos/add", method="post") 
             .campo
                 label(for="Marca") Marca:
-                input(type="text", name="Marca")
+                input(type="text", name="Marca", placeholder="Ej. 2024", required)
             .campo
                 label(for="Modelo") Modelo:
-                input(type="text", name="Modelo")
+                input(type="text", name="Modelo", required)
             .campo
                 label(for="Anio") Año:
-                input(type="text", name="anio")
+                input(type="number", name="anio", pattern="\d{4}" placeholder="Ej. 2024" title="Ingrese un año de 4 dígitos" required)
             .campo
                 label(for="Combustible") Combustible:
-                input(type="text", name="Precio")
+                input(type="number", name="Precio", required)
             .campo
                 label(for="Precio") Precio:
-                input(type="text", name="Combustible")
+                input(type="number", name="Combustible", required)
             button.edit(type="submit") Enviar
