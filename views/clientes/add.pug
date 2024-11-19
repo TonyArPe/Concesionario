@@ -3,19 +3,19 @@ extends ../templates/layout
 block content 
 
     form(action="/alumnos/add", method="post") 
-            .mb-3
-                label.form-label(for="Marca") Marca:
-                input.form-control(type="text", name="Marca")
-            .mb-3
-                label.form-label(for="Modelo") Modelo:
-                input.form-control(type="text", name="Modelo")
-            .mb-3
-                label.form-label(for="Anio") Año:
-                input.form-control(type="text", name="anio")
-            .mb-3
+            .campo
+                label.form-label(for="Nombre") Nombre:
+                input.form-control(type="text", name="Nombre", required)
+            .campo
+                label.form-label(for="Telefono") Modelo:
+                input.form-control(type="number", name="Telefono", required)
+            .campo
+                label.form-label(for="Direccion") Direccion:
+                input.form-control(type="text", name="Direccion", pattern="\d{4}", required)
+            .campo
                 label.form-label(for="Combustible") Combustible:
-                input.form-control(type="text", name="Precio")
-            .mb-3
+                input.form-control(type="text", name="Precio", required)
+            .campo
                 label.form-label(for="Precio") Precio:
-                input.form-control(type="text", name="Combustible")
+                input.form-control(type="text", name="Combustible", required)
             button.btn.btn-primary(type="submit") Enviar
