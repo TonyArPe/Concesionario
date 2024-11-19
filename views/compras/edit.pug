@@ -4,6 +4,9 @@ block content
 
     form(method="post") 
         .campo
+            label(for="Fecha_Compra") Fecha:
+            input(type="text", name="Fecha_Compra" value=venta.Fecha_Compra, disabled)
+        .campo
             label(for="Precio") Precio:
             input(type="text", name="Precio_Compra" value=compra.Precio_Compra)
         .campo
