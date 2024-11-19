@@ -4,13 +4,13 @@ block content
 
     form(method="post") 
         .campo
-            label.form-label(for="Marca") Marca:
+            label.form-label(for="Nombre") Nombre:
             input.form-control(type="text", name="nombre" value=cliente.Nombre)
         .campo
-            label.form-label(for="Modelo") Modelo:
+            label.form-label(for="Telefono") Telefono:
             input.form-control(type="text", name="telefono" value=cliente.Telefono)
         .campo
-            label.form-label(for="Anio") Año:
+            label.form-label(for="Direccion") Direccion:
             input.form-control(type="text", name="direccion" value=cliente.Direccion)
         input(type="hidden", name="id", value=cliente.ID_Cliente)
         button.edit(type="submit") Editar

@@ -2,20 +2,14 @@ extends ../templates/layout
 
 block content 
 
-    form(action="/alumnos/add", method="post") 
+    form(action="/clientes/add", method="post") 
             .campo
                 label.form-label(for="Nombre") Nombre:
                 input.form-control(type="text", name="Nombre", required)
             .campo
-                label.form-label(for="Telefono") Modelo:
+                label.form-label(for="Telefono") Telefono:
                 input.form-control(type="number", name="Telefono", required)
             .campo
                 label.form-label(for="Direccion") Direccion:
-                input.form-control(type="text", name="Direccion", pattern="\d{4}", required)
-            .campo
-                label.form-label(for="Combustible") Combustible:
-                input.form-control(type="text", name="Precio", required)
-            .campo
-                label.form-label(for="Precio") Precio:
-                input.form-control(type="text", name="Combustible", required)
+                input.form-control(type="text", name="Direccion", required)
             button.btn.btn-primary(type="submit") Enviar
