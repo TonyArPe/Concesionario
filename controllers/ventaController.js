@@ -1,6 +1,7 @@
 const express = require("express");
 const db = require("../db");
 const vehiculoController = require("./vehiculoController");
+const clienteController = require("./clienteController");
 
 /**
  * Función para listar todas las ventas
@@ -8,7 +9,7 @@ const vehiculoController = require("./vehiculoController");
  * @param {*} res
  */
 exports.listarVentas = (req, res) => {
-  // Primera consulta: obtener las compras
+  // Primera consulta: obtener las ventas
   db.query(
     `SELECT 
       Venta.ID_Venta, Venta.Fecha_Venta, Venta.Total,
@@ -22,8 +23,7 @@ exports.listarVentas = (req, res) => {
     (err, responseVentas) => {
       if (err) {
         console.error("Error al hacer la consulta de ventas: ", err);
-        res.send("ERROR al hacer la consulta");
-        return;
+        return res.status(500).send("ERROR al hacer la consulta");
       }
 
       // Procesar las ventas
@@ -47,75 +47,100 @@ exports.listarVentas = (req, res) => {
         },
       }));
 
-      // Segunda consulta: obtener los vehiculos
-      db.query("SELECT * FROM `Vehiculo`", (err, responseVehiculos) => {
+      // Segunda consulta: obtener los clientes
+      db.query("SELECT * FROM `Cliente`", (err, responseClientes) => {
         if (err) {
-          console.error("Error al hacer la consulta de vehiculos: ", err);
-          res.send("ERROR al obtener los vehiculos");
-          return;
+          console.error("Error al hacer la consulta de clientes: ", err);
+          return res.status(500).send("ERROR al obtener los clientes");
         }
 
-        // Renderizar la vista con ambas consultas
-        res.render("ventas/list", { ventas, vehiculos: responseVehiculos });
+        // Tercera consulta: obtener los vehículos
+        db.query("SELECT * FROM `Vehiculo`", (err, responseVehiculos) => {
+          if (err) {
+            console.error("Error al hacer la consulta de vehículos: ", err);
+            return res.status(500).send("ERROR al obtener los vehículos");
+          }
+
+          // Renderizar la vista con ambas consultas
+          res.render("ventas/list", { 
+            ventas, 
+            clientes: responseClientes, 
+            vehiculos: responseVehiculos 
+          });
+        });
       });
     }
   );
 };
 
+
 /**
- * Formulario para añadir una nueva venta
+ * Función para mostrar el formulario de adición de venta
  * @param {*} req
  * @param {*} res
  */
 exports.formularioVentaAdd = (req, res) => {
-  db.query("SELECT * FROM `Vehiculo`", (err, vehiculos) => {
-    if (err) res.send("ERROR al obtener los vehículos");
-    else {
-      db.query("SELECT * FROM `Cliente`", (err, clientes) => {
-        if (err) res.send("ERROR al obtener los clientes");
-        else res.render("ventas/add", { vehiculos, clientes });
-      });
+  db.query("SELECT * FROM Vehiculo", (errVehiculos, vehiculos) => {
+    if (errVehiculos) {
+      console.error("Error al obtener los vehículos: ", errVehiculos);
+      res.send("ERROR AL OBTENER LOS VEHÍCULOS");
+      return;
     }
+    db.query("SELECT * FROM Cliente", (errClientes, clientes) => {
+      if (errClientes) {
+        console.error("Error al obtener los clientes: ", errClientes);
+        res.send("ERROR AL OBTENER LOS CLIENTES");
+        return;
+      }
+      res.render("ventas/add", { vehiculos, clientes });
+    });
   });
 };
 
 /**
- * Función para agregar una nueva venta
+ * Función para añadir una venta
  * @param {*} req
  * @param {*} res
  */
 exports.ventaAdd = (req, res) => {
-  const { ID_Vehiculo, ID_Cliente, Fecha_Venta, Total } = req.body;
+  const { ID_Cliente, ID_Vehiculo, Fecha_Venta, Total } = req.body;
   db.query(
-    `INSERT INTO Venta (ID_Vehiculo, ID_Cliente, Fecha_Venta, Total) VALUES (?, ?, ?, ?)`,
-    [ID_Vehiculo, ID_Cliente, Fecha_Venta, Total],
-    (error, respuesta) => {
-      if (error) res.send("ERROR INSERTANDO VENTA");
-      else res.redirect("/ventas");
+    `INSERT INTO Venta (ID_Cliente, ID_Vehiculo, Fecha_Venta, Total) VALUES (?, ?, ?, ?)`,
+    [ID_Cliente, ID_Vehiculo, Fecha_Venta, Total],
+    (error) => {
+      if (error) {
+        console.error("Error al insertar la venta: ", error);
+        res.send("ERROR INSERTANDO VENTA");
+        return;
+      }
+      res.redirect("/ventas");
     }
   );
 };
 
 /**
- * Formulario para borrar una venta según su id
+ * Función para mostrar el formulario de eliminación de venta
  * @param {*} req
  * @param {*} res
  */
 exports.formularioVentaDel = (req, res) => {
   const { id } = req.params;
-  if (isNaN(id)) res.send("PARÁMETROS INCORRECTOS");
-  else {
+  if (isNaN(id)) {
+    res.send("PARÁMETROS INCORRECTOS");
+  } else {
     db.query(
       "SELECT * FROM Venta WHERE ID_Venta=?",
       [id],
       (error, respuesta) => {
-        if (error) res.send("ERROR AL INTENTAR BORRAR VENTA");
-        else {
-          if (respuesta.length > 0) {
-            res.render("ventas/del", { venta: respuesta[0] });
-          } else {
-            res.send("ERROR AL INTENTAR BORRAR VENTA, NO EXISTE");
-          }
+        if (error) {
+          console.error("Error al intentar borrar venta: ", error);
+          res.send("ERROR AL INTENTAR BORRAR VENTA");
+          return;
+        }
+        if (respuesta.length > 0) {
+          res.render("ventas/del", { venta: respuesta[0] });
+        } else {
+          res.send("ERROR AL INTENTAR BORRAR VENTA, NO EXISTE");
         }
       }
     );
@@ -123,154 +148,199 @@ exports.formularioVentaDel = (req, res) => {
 };
 
 /**
- * Función para borrar una venta según su id
+ * Función para eliminar una venta
  * @param {*} req
  * @param {*} res
  */
 exports.ventaDel = (req, res) => {
   const { id } = req.params;
-  if (isNaN(id)) res.send("ERROR BORRANDO VENTA");
-  else {
-    db.query("DELETE FROM Venta WHERE ID_Venta=?", [id], (error, respuesta) => {
-      if (error) res.send("ERROR AL ELIMINAR VENTA");
-      else res.redirect("/ventas");
-    });
+  if (isNaN(id)) {
+    res.send("ERROR BORRANDO VENTA");
+  } else {
+    db.query(
+      "DELETE FROM Venta WHERE ID_Venta=?",
+      [id],
+      (error, respuesta) => {
+        if (error) {
+          console.error("Error al eliminar la venta: ", error);
+          res.send("ERROR AL ELIMINAR VENTA");
+          return;
+        }
+        res.redirect("/ventas");
+      }
+    );
   }
 };
 
 /**
- * Formulario para editar una venta según su id
+ * Función para mostrar el formulario de edición de venta
  * @param {*} req
  * @param {*} res
  */
 exports.formularioVentaEdit = (req, res) => {
   const { id } = req.params;
-  if (isNaN(id)) res.send("PARÁMETROS INCORRECTOS");
-  else {
-    db.query(
-      "SELECT * FROM Venta WHERE ID_Venta=?",
-      [id],
-      (error, respuesta) => {
-        if (error) res.send("ERROR AL INTENTAR EDITAR VENTA");
-        else {
-          if (respuesta.length > 0) {
-            db.query("SELECT * FROM Vehiculo", (err, vehiculos) => {
-              if (err) res.send("ERROR AL OBTENER LOS VEHÍCULOS");
-              else {
-                db.query("SELECT * FROM Cliente", (err, clientes) => {
-                  if (err) res.send("ERROR AL OBTENER LOS CLIENTES");
-                  else
-                    res.render("ventas/edit", {
-                      venta: respuesta[0],
-                      vehiculos,
-                      clientes,
-                    });
-                });
-              }
-            });
-          } else {
-            res.send("ERROR AL INTENTAR EDITAR VENTA, NO EXISTE");
-          }
-        }
-      }
-    );
+  if (isNaN(id)) {
+    res.send("PARÁMETROS INCORRECTOS");
+    return;
   }
+  db.query(
+    "SELECT * FROM Venta WHERE ID_Venta=?",
+    [id],
+    (error, respuesta) => {
+      if (error) {
+        console.error("Error al intentar editar venta: ", error);
+        res.send("ERROR AL INTENTAR EDITAR VENTA");
+        return;
+      }
+      if (respuesta.length > 0) {
+        db.query("SELECT * FROM Vehiculo", (errVehiculos, vehiculos) => {
+          if (errVehiculos) {
+            console.error("Error al obtener los vehículos: ", errVehiculos);
+            res.send("ERROR AL OBTENER LOS VEHÍCULOS");
+            return;
+          }
+          db.query("SELECT * FROM Cliente", (errClientes, clientes) => {
+            if (errClientes) {
+              console.error("Error al obtener los clientes: ", errClientes);
+              res.send("ERROR AL OBTENER LOS CLIENTES");
+              return;
+            }
+            res.render("ventas/edit", { venta: respuesta[0], vehiculos, clientes });
+          });
+        });
+      } else {
+        res.send("ERROR AL INTENTAR EDITAR VENTA, NO EXISTE");
+      }
+    }
+  );
 };
 
 /**
- * Función para editar una venta según su id
+ * Función para editar una venta
  * @param {*} req
  * @param {*} res
  */
 exports.ventaEdit = (req, res) => {
-  const { id, ID_Vehiculo, ID_Cliente, Total } = req.body;
-  const paramId = req.params["id"];
+  const { ID_Cliente, ID_Vehiculo, Fecha_Venta, Total } = req.body; // Extraer valores del formulario
+  const id = req.params.id; // ID de la venta desde la URL
 
-  if (isNaN(id) || isNaN(paramId) || id !== paramId) {
-    res.send("ERROR EDITANDO VENTA");
-  } else {
-    db.query(
-      "UPDATE Venta SET ID_Vehiculo = ?, ID_Cliente = ?, Total = ? WHERE ID_Venta = ?",
-      [ID_Vehiculo, ID_Cliente, Total, id],
-      (error, respuesta) => {
-        if (error) res.send("ERROR EDITANDO VENTA");
-        else res.redirect("/ventas");
-      }
-    );
+  // Validar ID de la URL
+  if (!id || isNaN(id)) {
+    console.error("ID de venta inválido:", id);
+    return res.status(400).send("ERROR: ID de venta inválido.");
   }
+
+  // Validar datos del formulario
+  if (!ID_Cliente || isNaN(ID_Cliente)) {
+    console.error("ID_Cliente inválido o no proporcionado:", ID_Cliente);
+    return res.status(400).send("ERROR: Cliente inválido o no proporcionado.");
+  }
+
+  if (!ID_Vehiculo || isNaN(ID_Vehiculo)) {
+    console.error("ID_Vehiculo inválido o no proporcionado:", ID_Vehiculo);
+    return res.status(400).send("ERROR: Vehículo inválido o no proporcionado.");
+  }
+
+  if (!Fecha_Venta || isNaN(Date.parse(Fecha_Venta))) {
+    console.error("Fecha de venta inválida:", Fecha_Venta);
+    return res.status(400).send("ERROR: Fecha de venta inválida.");
+  }
+
+  if (!Total || isNaN(Total)) {
+    console.error("Total de venta inválido o no proporcionado:", Total);
+    return res.status(400).send("ERROR: Total de venta inválido o no proporcionado.");
+  }
+
+  // Actualizar en la base de datos
+  db.query(
+    `UPDATE Venta SET 
+      ID_Cliente = ?, 
+      ID_Vehiculo = ?, 
+      Fecha_Venta = ?, 
+      Total = ? 
+    WHERE ID_Venta = ?`,
+    [ID_Cliente, ID_Vehiculo, Fecha_Venta, Total, id],
+    (error, resultado) => {
+      if (error) {
+        console.error("Error al actualizar la venta:", error);
+        return res.status(500).send("ERROR al actualizar la venta.");
+      }
+      console.log("Venta actualizada correctamente:", resultado);
+      res.redirect("/ventas"); // Redirigir al listado de ventas después de la edición
+    }
+  );
 };
 
-// Función para listar ventas por vehículo
+/**
+ * Función para listar ventas por cliente
+ * @param {*} req
+ * @param {*} res
+ */
+
 exports.listarVentasPorVehiculo = (req, res) => {
+  // Consulta SQL para obtener compras del cliente con detalles del vehículo
   const query = `
     SELECT 
       Venta.ID_Venta, Venta.Fecha_Venta, Venta.Total,
+      Cliente.ID_Cliente, Cliente.Nombre, Cliente.Telefono, Cliente.Direccion,
       Vehiculo.ID_Vehiculo, Vehiculo.Marca, Vehiculo.Modelo, Vehiculo.Anio, 
-      Vehiculo.Combustible,
-      Cliente.ID_Cliente, Cliente.Nombre, Cliente.Telefono, Cliente.Direccion
+      Vehiculo.Precio, Vehiculo.Combustible
     FROM 
       Venta
-    INNER JOIN Vehiculo ON Vehiculo.ID_Vehiculo = Venta.ID_Vehiculo
     INNER JOIN Cliente ON Cliente.ID_Cliente = Venta.ID_Cliente
-    WHERE Vehiculo.ID_Vehiculo = ?;
+    INNER JOIN Vehiculo ON Vehiculo.ID_Vehiculo = Venta.ID_Vehiculo
+    WHERE Cliente.ID_Cliente = ?;
   `;
 
   db.query(query, [req.params.id], (err, response) => {
     if (err) {
       console.error("Error al hacer la consulta: ", err);
-      res.status(500).send("ERROR al hacer la consulta");
-      return;
+      return res.status(500).send("ERROR al hacer la consulta");
     }
 
-    const vehiculo =
-      response.length > 0
-        ? {
-            ID_Vehiculo: response[0].ID_Vehiculo,
-            Marca: response[0].Marca,
-            Modelo: response[0].Modelo,
-            Anio: response[0].Anio,
-            Combustible: response[0].Combustible,
-          }
-        : null;
+    // Verificamos si existen compras y obtenemos los datos del cliente
+    const cliente = response.length > 0
+      ? {
+          ID_Cliente: response[0].ID_Cliente,
+          Nombre: response[0].Nombre,
+          Telefono: response[0].Telefono,
+          Direccion: response[0].Direccion,
+        }
+      : null;
 
+    // Mapeamos las compras y los detalles de los vehículos, ahora añadiendo el cliente
     const ventas = response.map((venta) => ({
       ID_Venta: venta.ID_Venta,
       Fecha_Venta: venta.Fecha_Venta,
       Total: parseFloat(venta.Total),
-      Cliente: {
-        ID_Cliente: venta.ID_Cliente,
-        Nombre: venta.Nombre,
-        Telefono: venta.Telefono,
-        Direccion: venta.Direccion,
+      Cliente: cliente,  // Ahora se incluye el objeto Cliente en cada venta
+      Vehiculo: {
+        ID_Vehiculo: venta.ID_Vehiculo,
+        Marca: venta.Marca,
+        Modelo: venta.Modelo,
+        Anio: venta.Anio,
+        Precio: parseFloat(venta.Precio),
+        Combustible: venta.Combustible,
       },
-      Vehiculo: vehiculo,
     }));
 
-    // Obtener los vehículos para el dropdown
-    db.query("SELECT * FROM `Vehiculo`", (err, responseVehiculos) => {
+    // Consulta adicional para obtener todos los vehículos disponibles
+    db.query("SELECT * FROM `Vehiculo`", (err, vehiculos) => {
       if (err) {
         console.error("Error al hacer la consulta de vehículos: ", err);
-        res.status(500).send("ERROR al obtener los vehículos");
-        return;
+        return res.status(500).send("ERROR al obtener los vehículos");
       }
 
-      if (ventas.length === 0) {
-        return res.render("ventas/list", {
-          vehiculo,
-          ventas: [],
-          vehiculos: responseVehiculos,
-          mensaje: "Nadie ha comprado este coche.",
-        });
-      }
+      // Verificamos si hay vehículos y asignamos un mensaje en caso de no haber
+      const mensaje = vehiculos.length === 0 ? "No hay vehículos disponibles." : undefined;
 
-      res.render("ventas", { vehiculos: responseVehiculos, ventas });
-
-      console.log("Vehículos obtenidos:", responseVehiculos);
-      res.render("ventas/vehiculosPorVenta", {
-        ventas,
-        vehiculo,
-        vehiculos: responseVehiculos,
+      // Renderizamos la vista con los datos obtenidos
+      res.render("ventas/vehiculosPorVenta", { 
+        ventas, 
+        vehiculos,  // Vehículos disponibles para seleccionar
+        mensaje     // Mensaje si no hay vehículos
       });
     });
   });
 };
+

@@ -6,8 +6,12 @@ block content
             form(action="/ventas/vehiculos", method="POST")
                 label(for="vehiculo-select") Seleccionar Vehículo:
                 select#vehiculo-select(name="vehiculo")
-                    each vehiculo in vehiculos
-                        option(value=vehiculo.ID_Vehiculo)= `${vehiculo.Marca} ${vehiculo.Modelo}`
+                    if vehiculos && vehiculos.length > 0
+                        each vehiculo in vehiculos
+                            option(value=vehiculo.ID_Vehiculo, selected=vehiculo.ID_Vehiculo == selectedVehiculoID) 
+                                = `${vehiculo.Marca} ${vehiculo.Modelo}`
+                    else
+                        p.error No hay vehículos disponibles.
                 button(type="submit") Buscar
 
         each venta in ventas
@@ -26,14 +30,12 @@ block content
                                 i.material-icons edit
                 .venta-vehiculo-info
                     i.material-icons directions_car
-                    p= venta.Vehiculo.ID_Vehiculo
                     p= venta.Vehiculo.Marca
                     p= venta.Vehiculo.Modelo
                     p= venta.Vehiculo.Anio
                     p= venta.Vehiculo.Combustible
                 .venta-cliente-info
                     i.material-icons person
-                    p= venta.Cliente.ID_Cliente
                     p= venta.Cliente.Nombre
                     p= venta.Cliente.Telefono
                     p= venta.Cliente.Direccion

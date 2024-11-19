@@ -4,44 +4,53 @@ block content
     .ventas
         .clientes-dropdown
             form(action="/ventas/vehiculos", method="POST")
-                label(for="vehiculo-select") Seleccionar Vehiculo:
+                label(for="vehiculo-select") Seleccionar Vehículo:
                 select#vehiculo-select(name="vehiculo")
-                    if vehiculo.lenght === 0
-                        p.error= mensaje
+                    // Si no hay vehículos, muestra un mensaje de error
+                    if vehiculos.length === 0
+                        p.error No hay vehículos disponibles.
                     else
                         each vehi in vehiculos
-                            if vehi.ID_Vehiculo === vehiculo.ID_Vehiculo
+                            if vehiculo && vehi.ID_Vehiculo === vehiculo.ID_Vehiculo
                                 option(value=vehi.ID_Vehiculo selected)= `${vehi.Marca} ${vehi.Modelo}`
                             else
                                 option(value=vehi.ID_Vehiculo)= `${vehi.Marca} ${vehi.Modelo}`
                 button(type="submit") Buscar
-            each venta in ventas
-                .venta-cc
-                    .venta-info
-                        i.material-icons shopping_bag
-                        p=venta.ID_Venta
-                        p=venta.Fecha_Venta
-                        p=venta.Total
 
-                        .cliente-btn
-                            a(href=`/ventas/del/${venta.ID_Venta}`)
-                                button.del
-                                    i.material-icons delete
-                            a(href=`/ventas/edit/${venta.ID_Venta}`)
-                                button.edit
-                                    i.material-icons edit
-                    .venta-cliente-info
-                        i.material-icons person
-                        p=venta.Cliente.ID_Cliente
-                        p=venta.Cliente.Nombre
-                        p=venta.Cliente.Telefono
-                        p=venta.Cliente.Direccion
-                    
-        script.
-            document.querySelector('form').addEventListener('submit', function (e) {
-                const vehiculoID = document.getElementById('vehiculo-select').value;
-                if (vehiculoID) {
-                    this.action = `/ventas/vehiculos/${vehiculoID}`;
-                }
-            });
-                
+        each venta in ventas
+            .venta-cc
+                .venta-info
+                    i.material-icons shopping_bag
+                    p= venta.ID_Venta
+                    p= venta.Fecha_Venta
+                    p= venta.Total
+                    .cliente-btn
+                        a(href=`/ventas/del/${venta.ID_Venta}`)
+                            button.del
+                                i.material-icons delete
+                        a(href=`/ventas/edit/${venta.ID_Venta}`)
+                            button.edit
+                                i.material-icons edit
+
+                .venta-cliente-info
+                    i.material-icons person
+                    p= venta.Cliente.ID_Cliente
+                    p= venta.Cliente.Nombre
+                    p= venta.Cliente.Telefono
+                    p= venta.Cliente.Direccion
+
+                .venta-vehiculo-info
+                    i.material-icons directions_car
+                    p= venta.Vehiculo.ID_Vehiculo
+                    p= venta.Vehiculo.Marca
+                    p= venta.Vehiculo.Modelo
+                    p= venta.Vehiculo.Anio
+                    p= venta.Vehiculo.Combustible
+
+    script.
+        document.querySelector('form').addEventListener('submit', function (e) {
+            const vehiculoID = document.getElementById('vehiculo-select').value;
+            if (vehiculoID) {
+                this.action = `/ventas/vehiculos/${vehiculoID}`;
+            }
+        });
