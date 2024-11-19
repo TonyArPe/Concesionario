@@ -183,15 +183,15 @@ exports.formularioVentaEdit = (req, res) => {
  * @param {*} res
  */
 exports.ventaEdit = (req, res) => {
-  const { id, ID_Vehiculo, ID_Cliente, Fecha_Venta, Total } = req.body;
+  const { id, ID_Vehiculo, ID_Cliente, Total } = req.body;
   const paramId = req.params["id"];
 
   if (isNaN(id) || isNaN(paramId) || id !== paramId) {
     res.send("ERROR EDITANDO VENTA");
   } else {
     db.query(
-      "UPDATE Venta SET ID_Vehiculo = ?, ID_Cliente = ?, Fecha_Venta = ?, Total = ? WHERE ID_Venta = ?",
-      [ID_Vehiculo, ID_Cliente, Fecha_Venta, Total, id],
+      "UPDATE Venta SET ID_Vehiculo = ?, ID_Cliente = ?, Total = ? WHERE ID_Venta = ?",
+      [ID_Vehiculo, ID_Cliente, Total, id],
       (error, respuesta) => {
         if (error) res.send("ERROR EDITANDO VENTA");
         else res.redirect("/ventas");
@@ -221,8 +221,6 @@ exports.listarVentasPorVehiculo = (req, res) => {
       res.status(500).send("ERROR al hacer la consulta");
       return;
     }
-
-
 
     const vehiculo =
       response.length > 0
@@ -264,7 +262,7 @@ exports.listarVentasPorVehiculo = (req, res) => {
           mensaje: "Nadie ha comprado este coche.",
         });
       }
-  
+
       res.render("ventas", { vehiculos: responseVehiculos, ventas });
 
       console.log("Vehículos obtenidos:", responseVehiculos);

@@ -178,7 +178,6 @@ exports.compraEdit = (req, res) => {
         if (error) {
           console.error("Error al editar la compra: ", error);
           res.send("ERROR EDITANDO COMPRA");
-          
           return;
         }
         res.redirect("/compras");
