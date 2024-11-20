@@ -29,7 +29,6 @@ exports.formularioVehiculoAdd = (req, res) => {
  */
 exports.vehiculoAdd = (req, res) => {
   const { Marca, Modelo, Anio, Precio, Combustible } = req.body;
-  console.log(req.body)
   db.query(
     `INSERT INTO Vehiculo (Marca, Modelo, Anio, Precio, Combustible) VALUES (?, ?, ?, ?, ?)`,
     [Marca, Modelo, Anio, Precio, Combustible],

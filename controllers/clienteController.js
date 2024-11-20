@@ -35,7 +35,7 @@ exports.clienteAdd = (req, res) => {
     (error, respuesta) => {
       if (error) res.send("ERROR INSERTANDO CLIENTE");
       else res.redirect("/clientes");
-      console.log(error)
+
     }
   );
 };
