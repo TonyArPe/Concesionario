@@ -182,8 +182,8 @@ exports.formularioCompraEdit = (req, res) => {
 
 // Función para editar una compra
 exports.compraEdit = (req, res) => {
-  const { ID_Cliente, ID_Vehiculo, Fecha_Compra, Precio_Compra } = req.body; // Extraer valores del formulario
-  const id = req.params.id; // ID de la compra desde la URL
+  const { ID_Cliente, ID_Vehiculo, Fecha_Compra, Precio_Compra } = req.body; 
+  const id = req.params.id; 
 
   // Validar ID de la URL
   if (!id || isNaN(id)) {

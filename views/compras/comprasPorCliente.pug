@@ -7,10 +7,11 @@ block content
                 label(for="cliente-select") Seleccionar Cliente:
                 select#cliente-select(name="cliente")
                     each cli in clientes
-                        if cliente.ID_Cliente === cli.ID_Cliente
-                            option(value=cli.ID_Cliente selected)= cli.Nombre
+                        if cliente && cliente.ID_Cliente === cli.ID_Cliente
+                            option(value=cli.ID_Cliente selected)= `${cli.ID_Cliente} - ${cli.Nombre}`
                         else
-                            option(value=cli.ID_Cliente)= cli.Nombre
+                            option(value=cli.ID_Cliente)= `${cli.ID_Cliente} - ${cli.Nombre}`
+
                 button(type="submit") Buscar
         each compra in compras
             .venta-cc

@@ -4,12 +4,12 @@ block content
 
     form(action="/clientes/add", method="post") 
             .campo
-                label.form-label(for="Nombre") Nombre:
-                input.form-control(type="text", name="Nombre", required)
+                label(for="Nombre") Nombre:
+                input(type="text", name="Nombre", required)
             .campo
-                label.form-label(for="Telefono") Telefono:
-                input.form-control(type="number", name="Telefono", required)
+                label(for="Telefono") Telefono:
+                input(type="number", name="Telefono", required)
             .campo
-                label.form-label(for="Direccion") Direccion:
-                input.form-control(type="text", name="Direccion", required)
-            button.btn.btn-primary(type="submit") Enviar
+                label(for="Direccion") Direccion:
+                input(type="text", name="Direccion", required)
+            button.edit(type="submit") Enviar
