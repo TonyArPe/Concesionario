@@ -9,7 +9,7 @@ block content
                     if vehiculos && vehiculos.length > 0
                         each vehiculo in vehiculos
                             option(value=vehiculo.ID_Vehiculo, selected=vehiculo.ID_Vehiculo == selectedVehiculoID) 
-                                = `${vehiculo.Marca} ${vehiculo.Modelo}`
+                                = `${vehiculo.ID_Vehiculo} - ${vehiculo.Marca} ${vehiculo.Modelo}`
                     else
                         p.error No hay vehículos disponibles.
                 button(type="submit") Buscar

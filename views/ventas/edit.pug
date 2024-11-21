@@ -6,7 +6,7 @@ block content
             label(for="ID_Vehiculo") Vehículo:
             select.form-control(name="ID_Vehiculo")
                 each vehiculo in vehiculos
-                    option(value=vehiculo.ID_Vehiculo selected=(vehiculo.ID_Vehiculo == venta.ID_Vehiculo))= `${vehiculo.Marca} ${vehiculo.Modelo}`    
+                    option(value=vehiculo.ID_Vehiculo selected=(vehiculo.ID_Vehiculo == venta.ID_Vehiculo))= `${vehiculo.ID_Vehiculo} - ${vehiculo.Marca} ${vehiculo.Modelo}` 
         .campo
             label(for="ID_Cliente") Cliente:
             select.form-control(name="ID_Cliente")

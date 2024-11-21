@@ -4,14 +4,14 @@ block content
     form(action=`/compras/edit/${compra.ID_Compra}`, method="post")
         .campo
             label(for="Cliente") Cliente:
-            select.campo(name="ID_Cliente")
+            select(name="ID_Cliente")
                 each cliente in clientes
-                   option(value=cliente.ID_Cliente selected=(cliente.ID_Cliente == compra.ID_Cliente))= cliente.Nombre
+                   option(value=cliente.ID_Cliente selected=(cliente.ID_Cliente == compra.ID_Cliente))= `${cliente.ID_Cliente} - ${cliente.Nombre}`
         .campo
             label(for="Vehiculo") Vehículo:
             select(name="ID_Vehiculo")
                 each vehiculo in vehiculos
-                    option(value=vehiculo.ID_Vehiculo selected=(vehiculo.ID_Vehiculo == compra.ID_Vehiculo))= vehiculo.Marca + " - " + vehiculo.Modelo
+                    option(value=vehiculo.ID_Vehiculo selected=(vehiculo.ID_Vehiculo == compra.ID_Vehiculo))= `${vehiculo.ID_Vehiculo} - ${vehiculo.Marca} ${vehiculo.Modelo}`
         .campo
             label(for="Fecha_Compra") Fecha:
             input(type="date", name="Fecha_Compra", value=(new Date(compra.Fecha_Compra).toISOString().split('T')[0]))

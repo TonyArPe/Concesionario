@@ -12,7 +12,7 @@ block content
                     else
                         each vehi in vehiculos
                             if vehiculo && vehi.ID_Vehiculo === vehiculo.ID_Vehiculo
-                                option(value=vehi.ID_Vehiculo selected)= `${vehi.Marca} ${vehi.Modelo}`
+                                option(value=vehi.ID_Vehiculo selected)= `${vehiculo.ID_Vehiculo} - ${vehi.Marca} ${vehi.Modelo}`
                             else
                                 option(value=vehi.ID_Vehiculo)= `${vehi.Marca} ${vehi.Modelo}`
                 button(type="submit") Buscar

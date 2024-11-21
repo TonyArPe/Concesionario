@@ -7,7 +7,7 @@ block content
                 label(for="cliente-select") Seleccionar Cliente:
                 select#cliente-select(name="cliente")
                     each cliente in clientes
-                        option(value=cliente.ID_Cliente)= cliente.Nombre
+                        option(value=cliente.ID_Cliente)= `${cliente.ID_Cliente} - ${cliente.Nombre}`
                 button(type="submit") Buscar
 
             each compra in compras
